@@ -1,10 +1,18 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
+import { HashRouter as Router, Switch, Route } from 'react-router-dom'
+
+import Home from './component/common/Home'
+
 class App extends React.Component{
   render(){
     return(
-      <h1>Hello World</h1>
+      <Router>
+        <Switch>
+          <Route path="/" component={Home} />
+        </Switch>
+      </Router>
     )
   }
 }
