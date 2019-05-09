@@ -1,6 +1,6 @@
 import React from 'react'
 
-class SideBar extends React.Component {
+class LocationShow extends React.Component {
 
   constructor(){
     super()
@@ -40,13 +40,13 @@ class SideBar extends React.Component {
       <div>
         {this.state.data.map(location =>
           <div key={location.id}>
-            <div className="title is-3">{location.name}</div>
+            <div className="title is-1">{location.name}</div>
             <div className="location-image"
               id={[location.coordinates.lat, location.coordinates.long]}
               style={{ backgroundImage: `url(${location.image})` }} onClick={this.handleClick}>
             </div>
             {location.films.map(film =>
-              <div key={film.id} className="film-title">{film.title}</div>)}
+              <div key={film.id} className="film-title is-1">{film.title}</div>)}
             <hr />
           </div>
         )}
@@ -55,4 +55,4 @@ class SideBar extends React.Component {
   }
 }
 
-export default SideBar
+export default LocationShow

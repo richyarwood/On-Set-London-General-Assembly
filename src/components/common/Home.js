@@ -7,8 +7,8 @@ import React from 'react'
 // import axios from 'axios'
 
 import Map from './Map'
-// import LocationIndex from './LocationIndex'
-import LocationShow from './LocationIndex'
+import LocationIndex from './LocationIndex'
+// import LocationShow from './LocationShow'
 
 
 
@@ -27,7 +27,7 @@ class Home extends React.Component{
     return (
       <main>
         <div className="sidebar">
-          <LocationShow />
+          <LocationIndex />
         </div>
         <div className="map">
           <Map />
