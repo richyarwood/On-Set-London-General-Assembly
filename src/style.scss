@@ -1,0 +1,32 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.sidebar {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 400px;
+  height: 100vh;
+  background-color: #fff;
+  padding: 30px;
+  z-index: 999;
+  overflow: scroll;
+  -webkit-box-shadow: 6px 0px 14px -5px rgba(0,0,0,0.54);
+  -moz-box-shadow: 6px 0px 14px -5px rgba(0,0,0,0.54);
+  box-shadow: 6px 0px 14px -5px rgba(0,0,0,0.54);
+}
+
+.location-image {
+  height: 100px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin-bottom: 10px;
+}
+
+.film-title {
+  font-size: 14px;
+  text-decoration: underline;
+}
