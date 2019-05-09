@@ -1,0 +1,32 @@
+{
+  "name": "On-Set-London",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:richyarwood/On-Set-London.git",
+  "author": "Richard Yarwood <richyarwood@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "run:client": "webpack-dev-server",
+    "run:server": "nodemon",
+    "build": "webpack -p",
+    "start": "node index"
+  },
+  "dependencies": {
+    "@babel/core": "^7.4.4",
+    "@babel/preset-env": "^7.4.4",
+    "@babel/preset-react": "^7.0.0",
+    "axios": "^0.18.0",
+    "babel-loader": "^8.0.5",
+    "css-loader": "^2.1.1",
+    "html-webpack-plugin": "^3.2.0",
+    "node-sass": "^4.12.0",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-router-dom": "^5.0.0",
+    "sass-loader": "^7.1.0",
+    "style-loader": "^0.23.1",
+    "webpack": "^4.31.0",
+    "webpack-cli": "^3.3.2",
+    "webpack-dev-server": "^3.3.1"
+  }
+}
