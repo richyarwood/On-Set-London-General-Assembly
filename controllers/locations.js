@@ -1,11 +1,18 @@
-const Film = require('../models/Film')
+const Location = require('../models/Location')
 
 function indexRoute(req, res, next) {
-  Film.find()
-    .then(films => res.json(films))
+  Location.find()
+    .then(locations => res.json(locations))
+    .catch(next)
+}
+
+function showRoute(req, res, next) {
+  Location.findById(req.params.id)
+    .then(location => res.json(location))
     .catch(next)
 }
 
 module.exports = {
-  index: indexRoute
+  index: indexRoute,
+  show: showRoute
 }
