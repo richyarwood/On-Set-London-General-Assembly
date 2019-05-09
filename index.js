@@ -10,7 +10,6 @@ app.get('/locations', locationsController.index)
 
 
 app.use(bodyParser.json())
-app.use('/api', routes)
 
 mongoose.connect('mongodb://localhost:27017/on-set-london')
 

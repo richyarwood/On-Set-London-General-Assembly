@@ -4,10 +4,10 @@
 // Renders the map and includes the sidebar, add location button, register/login
 
 import React from 'react'
-import axios from 'axios'
+// import axios from 'axios'
 
-import SideBar from './SideBar'
-import LocationIndex from '../location/LocationIndex'
+import Map from './Map'
+import LocationIndex from './LocationIndex'
 
 
 
@@ -17,19 +17,19 @@ class Home extends React.Component{
     super()
   }
 
-  componentDidMount() {
-    axios('/api/locations')
-      .then(res => this.setState({ locations: res.data }))
-  } 
+  // componentDidMount() {
+  //   axios('/api/locations')
+  //     .then(res => this.setState({ locations: res.data }))
+  // } // This creates a 504 error
 
   render() {
     return (
       <main>
         <div className="sidebar">
-          <SideBar />
+          <LocationIndex />
         </div>
         <div className="map">
-          <LocationIndex />
+          <Map />
         </div>
       </main>
 
