@@ -15,30 +15,14 @@ class Home extends React.Component{
 
   constructor(){
     super()
-
-    this.state = {
-      data: [],
-      center: {
-        lat: -0.070839,
-        long: 51.515619
-      }
-    }
-
-    this.handleClick = this.handleClick.bind(this)
-  }
-
-  handleClick(e){
-    const data = e.target.id.split(',')
-    this.setState( { center: { lat: data[0], long: data[1] } } )
   }
 
   componentDidMount() {
-    axios('/locations')
+    axios('/api/locations')
       .then(res => this.setState({ locations: res.data }))
-  }
+  } 
 
   render() {
-    console.log(this.state.data)
     return (
       <main>
         <div className="sidebar">
