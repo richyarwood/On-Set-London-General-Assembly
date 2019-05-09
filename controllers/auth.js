@@ -2,13 +2,13 @@ const User = require('../models/User')
 const jwt = require('jsonwebtoken')
 const { secret } = require('../config/environment')
 
-function registerRoute(req, res, next) {
+function registerRoute(req, res) {
   User.create(req.body)
     .then(() => res.status(201).json({ message: 'Registration successful' }))
-    .catch(next)
+    .catch(err => res.json(err))
 }
 
-function loginRoute(req, res, next) {
+function loginRoute(req, res) {
   // find the user by their email address
   User.findOne({ email: req.body.email })
     .then(user => {
@@ -21,7 +21,7 @@ function loginRoute(req, res, next) {
       // send it to the client
       res.json({ message: `Welcome back, ${user.username}!`, token })
     })
-    .catch(next)
+    .catch(err => res.json(err))
 }
 
 module.exports = {
