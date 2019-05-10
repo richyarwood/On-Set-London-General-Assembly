@@ -6,9 +6,9 @@ const { port, dbUri } = require('./config/environment')
 
 const app = express()
 
+mongoose.connect(dbUri)
 app.use(bodyParser.json())
 app.use('/api', routes)
 
-mongoose.connect(dbUri)
 
 app.listen(port, () => console.log(`Listening on port ${port}`))

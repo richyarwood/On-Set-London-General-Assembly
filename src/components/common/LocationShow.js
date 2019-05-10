@@ -6,20 +6,7 @@ class LocationShow extends React.Component {
     super()
 
     this.state = {
-      data: [
-        {
-          id: '1',
-          name: 'Relay Building',
-          image: 'http://www.orms.co.uk/wp-content/uploads/2016/05/Orms_Acry_Relay_Aldgate.jpg',
-          areaOfLondon: 'City of London',
-          streetAddress: '30 Hexham Road',
-          postCode: 'SE27 9ED',
-          coordinates: {
-            lat: '-0.0721662',
-            long: '51.515259'
-          }
-        }
-      ],
+      data: [],
       locations: [],
       center: {
         lat: -0.070839,
