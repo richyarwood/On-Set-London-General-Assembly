@@ -3,19 +3,62 @@ body {
   padding: 0;
 }
 
+.sidebar-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 400px;
+  z-index: 4;
+  transform: translateX(0px);
+  transition-property: -webkit-transform,transform,opacity;
+  transition-duration: 0.2s;
+  transition-timing-function: cubic-bezier(0.0,0.0,0.2,1);
+
+  &.close {
+    transform: translateX(-400px);
+  }
+}
+
 .sidebar {
   position: absolute;
   top: 0;
-  bottom: 0;
-  width: 400px;
-  height: 100vh;
-  background-color: #fff;
+  left: 0;
+  width: 100%;
+  height: 100%;
   padding: 30px;
-  z-index: 999;
-  overflow: scroll;
   -webkit-box-shadow: 6px 0px 14px -5px rgba(0,0,0,0.54);
   -moz-box-shadow: 6px 0px 14px -5px rgba(0,0,0,0.54);
   box-shadow: 6px 0px 14px -5px rgba(0,0,0,0.54);
+  z-index: 1;
+  overflow-y: hidden;
+  background-color: #fff;
+
+  &:hover {
+    overflow-y: auto;
+  }
+}
+
+.togglewrapper {
+  opacity: 1;
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 100%;
+  -webkit-box-shadow: 6px 0px 14px -5px rgba(0,0,0,0.54);
+  -moz-box-shadow: 6px 0px 14px -5px rgba(0,0,0,0.54);
+  box-shadow: 6px 0px 14px -5px rgba(0,0,0,0.54);
+  z-index: 1;
+}
+
+.togglebutton {
+  position: absolute;
+  width: 25px;
+  height: 50px;
+  background-color: #fff;
+  top: 8px;
+  left: 100%;
+  padding: 10px;
 }
 
 .location-image {
@@ -29,4 +72,21 @@ body {
 .film-title {
   font-size: 14px;
   text-decoration: underline;
+}
+
+.map-plus-icon {
+  position: fixed;
+  display: block;
+  bottom: 40px;
+  right: 40px;
+  border-radius: 50%;
+  z-index: 5;
+  background-color: #fff;
+  -webkit-box-shadow: 6px 0px 14px -5px rgba(0,0,0,0.54);
+  -moz-box-shadow: 6px 0px 14px -5px rgba(0,0,0,0.54);
+  box-shadow: 6px 0px 14px -5px rgba(0,0,0,0.54);
+}
+
+.fa-plus-circle {
+  color: #0336FF;
 }
