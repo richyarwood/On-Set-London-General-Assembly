@@ -1,16 +1,14 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
+const routes = require('./config/routes')
+const { port, dbUri } = require('./config/environment')
 
-const locationsController = require('./controllers/locations')
 const app = express()
 
-app.get('/', (req, res) => res.json({ message: 'Welcome to On Set' }))
-app.get('/locations', locationsController.index)
-
-
 app.use(bodyParser.json())
+app.use('/api', routes)
 
-mongoose.connect('mongodb://localhost:27017/on-set-london')
+mongoose.connect(dbUri)
 
-app.listen(4000, () => console.log('Listening on port 4000'))
+app.listen(port, () => console.log(`Listening on port ${port}`))
