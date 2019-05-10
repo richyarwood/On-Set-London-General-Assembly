@@ -35,6 +35,7 @@ class LocationIndex extends React.Component {
   }
 
   render() {
+    if(this.state.locations[0]) console.log('locations MAP', this.state.locations[0].coordinates)
     return (
       <div className="location">
         <Map

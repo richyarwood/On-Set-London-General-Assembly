@@ -1,7 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 
-class SideBar extends React.Component {
+class LocationIndex extends React.Component {
 
   constructor(){
     super()
@@ -23,14 +23,19 @@ class SideBar extends React.Component {
       .then(res => this.setState({ locations: res.data }))
   }
 
-  handleClick(e){
-    const data = e.target.id.split(',')
-    this.setState( { center: { lat: data[0], long: data[1] } } )
+  handleClick(){
+    // const data = e.target.id.split(',')
+    // this.setState( { center: { lat: data[0], long: data[1] } } )
+    const coordinates = this.state.locations[0].coordinates
+    // const coordinates = e.target.locations[0].coordinates
+    // const locations = e.target
+    this.setState({ center: { lat: coordinates.lat, long: coordinates.long } })
+    console.log('coordinates INDEX', this.state.locations.coordinates)
   }
 
   render() {
-    console.log('data', this.state.data)
-    console.log('locations', this.state.locations)
+    console.log('data INDEX', this.state.data)
+    console.log('locations INDEX', this.state.locations)
     return (
       <div>
         {this.state.locations.map((location) =>
@@ -50,4 +55,4 @@ class SideBar extends React.Component {
   }
 }
 
-export default SideBar
+export default LocationIndex
