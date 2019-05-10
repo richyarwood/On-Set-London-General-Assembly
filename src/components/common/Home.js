@@ -27,6 +27,7 @@ class Home extends React.Component {
     }
 
     this.handleClick = this.handleClick.bind(this)
+    this.toggleSidebarClick = this.toggleSidebarClick.bind(this)
   }
 
   componentDidMount() {
