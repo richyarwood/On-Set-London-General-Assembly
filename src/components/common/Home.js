@@ -12,10 +12,19 @@ import LocationIndex from './LocationIndex'
 
 
 
-class Home extends React.Component{
+class Home extends React.Component {
 
   constructor(){
     super()
+
+    this.state = {
+      data: [],
+      locations: [],
+      center: {
+        lat: -0.070839,
+        long: 51.515619
+      }
+    }
   }
 
   // componentDidMount() {
