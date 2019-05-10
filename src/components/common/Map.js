@@ -1,4 +1,5 @@
 import React from 'react'
+import axios from 'axios'
 
 import ReactMapboxGl, { Marker } from 'react-mapbox-gl'
 
@@ -21,6 +22,11 @@ class LocationIndex extends React.Component {
     }
 
     this.handleClick = this.handleClick.bind(this)
+  }
+
+  componentDidMount() {
+    axios.get('/api/locations')
+      .then(res => this.setState({ locations: res.data }))
   }
 
   handleClick(e){
