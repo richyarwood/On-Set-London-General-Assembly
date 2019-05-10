@@ -5,20 +5,43 @@ class LocationNew extends React.Component {
   constructor(){
     super()
 
-    this.state = {}
+    this.state = {
+      location: {
+        coordinates: {},
+        sceneNotes: {}
+      },
+      film: {
+        title: ''
+      }
+    }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
 
   handleChange(e){
-    const data = {...this.state.data, [e.target.name]: e.target.value}
-    this.setState({ data })
+    let location = this.state.location
+    let film = this.state.film
+    if(e.target.dataset.coordinates) {
+      location = {...this.state.location, coordinates: {...this.state.location.coordinates, [e.target.name]: e.target.value}}
+    } else if(e.target.dataset.sceneNotes) {
+      location = {...this.state.location, sceneNotes: {...this.state.location.sceneNotes, [e.target.name]: e.target.value}}
+    } else if(e.target.dataset.film) {
+      film = {[e.target.name]: e.target.value}
+    } else {
+      location = {...this.state.location, [e.target.name]: e.target.value}
+    }
+    this.setState({ location, film })
   }
+
   handleSubmit(e) {
     e.preventDefault()
-    console.log(this.state)
+    console.log(this.state.film, 'film')
+    console.log(this.state.location, 'location')
+    // axios.post()
+    // axios.post('api/locations', this.state.location)
   }
+
   render(){
     return(
       <div className="container">
@@ -45,6 +68,18 @@ class LocationNew extends React.Component {
                     name="image"
                     type="text"
                     placeholder="e.g. www.hondo-enterprises.com/the-relay-building-entrance-all.jpg"
+                    onChange={this.handleChange}
+                  />
+                </div>
+              </div>
+              <div className="field">
+                <label className="label">Film name</label>
+                <div className="control">
+                  <input className="input"
+                    name="title"
+                    type="text"
+                    placeholder="e.g. Relay Building"
+                    data-film="film"
                     onChange={this.handleChange}
                   />
                 </div>
@@ -89,7 +124,7 @@ class LocationNew extends React.Component {
                     name="lat"
                     type="text"
                     placeholder="Lat"
-                    data-parent="coordinates"
+                    data-coordinates="coordinates"
                     onChange={this.handleChange}
                   />
                 </div>
@@ -101,7 +136,7 @@ class LocationNew extends React.Component {
                     name="long"
                     type="text"
                     placeholder="Long"
-                    data-parent="coordinates"
+                    data-coordinates="coordinates"
                     onChange={this.handleChange}
                   />
                 </div>
@@ -110,9 +145,10 @@ class LocationNew extends React.Component {
                 <label className="label">Film Name</label>
                 <div className="control">
                   <input className="input"
-                    name="films.film"
+                    name="film"
                     type="text"
                     placeholder="Titanic"
+                    data-scene-notes="film"
                     onChange={this.handleChange}
                   />
                 </div>
@@ -121,9 +157,10 @@ class LocationNew extends React.Component {
                 <label className="label">Scene Notes</label>
                 <div className="control">
                   <input className="input"
-                    name="sceneNotes.text"
+                    name="text"
                     type="text"
                     placeholder="text"
+                    data-scene-notes="text"
                     onChange={this.handleChange}
                   />
                 </div>
