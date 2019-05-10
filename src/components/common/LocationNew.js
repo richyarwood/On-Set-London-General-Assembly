@@ -38,8 +38,7 @@ class LocationNew extends React.Component {
     e.preventDefault()
     console.log(this.state.film, 'film')
     console.log(this.state.location, 'location')
-    // axios.post()
-    // axios.post('api/locations', this.state.location)
+    
   }
 
   render(){
