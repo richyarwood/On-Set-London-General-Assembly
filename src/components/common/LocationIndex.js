@@ -23,26 +23,25 @@ class LocationIndex extends React.Component {
       .then(res => this.setState({ locations: res.data }))
   }
 
-  handleClick(){
-    // const data = e.target.id.split(',')
-    // this.setState( { center: { lat: data[0], long: data[1] } } )
-    const coordinates = this.state.locations[0].coordinates
-    // const coordinates = e.target.locations[0].coordinates
-    // const locations = e.target
-    this.setState({ center: { lat: coordinates.lat, long: coordinates.long } })
-    console.log('coordinates INDEX', this.state.locations.coordinates)
+  handleClick(e){
+    const lat = e.target.dataset.lat
+    const long = e.target.dataset.long
+    this.setState( { center: { lat: lat, long: long } } )
+    console.log('center INDEX', this.state.center)
+    // console.log('coordinates INDEX', data)
   }
 
   render() {
-    console.log('data INDEX', this.state.data)
-    console.log('locations INDEX', this.state.locations)
+    // console.log('data INDEX', this.state.data)
+    // console.log('locations INDEX', this.state.locations)
     return (
       <div>
         {this.state.locations.map((location) =>
           <div key={location._id}>
             <div className="title is-4">{location.name}</div>
             <div className="location-image"
-              id={[location.coordinates.lat, location.coordinates.long]}
+              data-lat={location.coordinates.lat}
+              data-long={location.coordinates.long}
               style={{ backgroundImage: `url(${location.image})` }} onClick={this.handleClick}>
             </div>
             {location.films.map(film =>
