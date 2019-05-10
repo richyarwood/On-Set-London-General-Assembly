@@ -1,5 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import LocationNew from './components/common/LocationNew'
 import { HashRouter as Router, Switch, Route } from 'react-router-dom'
 
 import { library } from '@fortawesome/fontawesome-svg-core'
@@ -22,6 +23,7 @@ class App extends React.Component{
         <Switch>
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
+          <Route path="/new" component={LocationNew} />
           <Route exact path="/" component={Home} />
         </Switch>
       </Router>
