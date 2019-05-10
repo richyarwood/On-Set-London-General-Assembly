@@ -3,6 +3,11 @@ import ReactDOM from 'react-dom'
 import Home from './components/common/Home'
 import { HashRouter as Router, Switch, Route } from 'react-router-dom'
 
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faPlusCircle } from '@fortawesome/free-solid-svg-icons'
+
+library.add(faPlusCircle)
+
 import 'bulma'
 import './style.scss'
 

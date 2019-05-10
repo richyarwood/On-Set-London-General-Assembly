@@ -1,4 +1,5 @@
 import React from 'react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import ReactMapboxGl, { Marker } from 'react-mapbox-gl'
 
@@ -48,6 +49,9 @@ class LocationIndex extends React.Component {
             </Marker>
           )}
         </Map>
+        <div className="map-plus-icon">
+          <FontAwesomeIcon icon="plus-circle" size="4x"/>
+        </div>
       </div>
     )
   }

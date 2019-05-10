@@ -23,20 +23,29 @@ class Home extends React.Component {
       center: {
         lat: -0.070839,
         long: 51.515619
-      }
+      },
+      toggleSidebar: false
     }
+    this.toggleSidebarClick = this.toggleSidebarClick.bind(this)
   }
 
-  // componentDidMount() {
-  //   axios('/api/locations')
-  //     .then(res => this.setState({ locations: res.data }))
-  // } // This creates a 504 error
+  toggleSidebarClick(){
+    console.log('clicked')
+    this.setState({ toggleSidebar: !this.state.toggleSidebar})
+  }
 
   render() {
     return (
       <main>
-        <div className="sidebar">
-          <LocationIndex />
+        <div>
+          <div className={`sidebar-wrapper${this.state.toggleSidebar ? ' close': ''}`}>
+            <div className="sidebar">
+              <LocationIndex />
+            </div>
+            <div className="togglewrapper">
+              <a role="button" className="togglebutton" onClick={this.toggleSidebarClick}>x</a>
+            </div>
+          </div>
         </div>
         <div className="map">
           <Map />
