@@ -1,7 +1,6 @@
 import React from 'react'
-import Promise from 'bluebird'
 import axios from 'axios'
-
+import Form from './Form'
 
 class LocationNew extends React.Component {
 
@@ -48,7 +47,6 @@ class LocationNew extends React.Component {
         const sceneNotes = {...this.state.location.sceneNotes, film: res.data}
         const location = {...this.state.location, sceneNotes, films: films}
         this.setState({ location })
-        console.log(this.state.location)
       })
       .then(
         axios.post('api/locations', this.state.location)
@@ -60,122 +58,12 @@ class LocationNew extends React.Component {
 
   render(){
     return(
-      <div className="container">
-        <div className="columns">
-          <div className="column">
-          </div>
-          <div className="column">
-            <form onSubmit={this.handleSubmit}>
-              <div className="field">
-                <label className="label">Name</label>
-                <div className="control">
-                  <input className="input"
-                    name="name"
-                    type="text"
-                    placeholder="e.g. Relay Building"
-                    onChange={this.handleChange}
-                  />
-                </div>
-              </div>
-              <div className="field">
-                <label className="label">Image</label>
-                <div className="control">
-                  <input className="input"
-                    name="image"
-                    type="text"
-                    placeholder="e.g. www.hondo-enterprises.com/the-relay-building-entrance-all.jpg"
-                    onChange={this.handleChange}
-                  />
-                </div>
-              </div>
-              <div className="field">
-                <label className="label">Film name</label>
-                <div className="control">
-                  <input className="input"
-                    name="title"
-                    type="text"
-                    placeholder="e.g. Relay Building"
-                    data-film="film"
-                    onChange={this.handleChange}
-                  />
-                </div>
-              </div>
-              <div className="field">
-                <label className="label">Area of London</label>
-                <div className="control">
-                  <input className="input"
-                    name="areaOfLondon"
-                    type="text"
-                    placeholder="e.g. East London"
-                    onChange={this.handleChange}
-                  />
-                </div>
-              </div>
-              <div className="field">
-                <label className="label">Address</label>
-                <div className="control">
-                  <input className="input"
-                    name="streetAddress"
-                    type="text"
-                    placeholder="114 Whitechapel High St"
-                    onChange={this.handleChange}
-                  />
-                </div>
-              </div>
-              <div className="field">
-                <label className="label">Postcode</label>
-                <div className="control">
-                  <input className="input"
-                    name="postCode"
-                    type="text"
-                    placeholder="E1 7PT"
-                    onChange={this.handleChange}
-                  />
-                </div>
-              </div>
-              <div className="field">
-                <label className="label">Latitude</label>
-                <div className="control">
-                  <input className="input"
-                    name="lat"
-                    type="text"
-                    placeholder="Lat"
-                    data-coordinates="coordinates"
-                    onChange={this.handleChange}
-                  />
-                </div>
-              </div>
-              <div className="field">
-                <label className="label">Longitude</label>
-                <div className="control">
-                  <input className="input"
-                    name="long"
-                    type="text"
-                    placeholder="Long"
-                    data-coordinates="coordinates"
-                    onChange={this.handleChange}
-                  />
-                </div>
-              </div>
-              <div className="field">
-                <label className="label">Scene Notes</label>
-                <div className="control">
-                  <input className="input"
-                    name="text"
-                    type="text"
-                    placeholder="text"
-                    data-scene-notes="text"
-                    onChange={this.handleChange}
-                  />
-                </div>
-              </div>
-              <button className="button is-info">Submit</button>
-            </form>
-          </div>
-          <div className="column">
-          </div>
-        </div>
-      </div>
+      <section className="section">
+        <Form
+          handleChange={this.handleChange}
+          handleSubmit={this.handleSubmit}
+        />
+      </section>
     )
   }
 }
