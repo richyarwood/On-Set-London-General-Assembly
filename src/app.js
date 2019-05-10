@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import Home from './components/common/Home'
+import LocationNew from './components/common/LocationNew'
 import { HashRouter as Router, Switch, Route } from 'react-router-dom'
 
 import 'bulma'
@@ -11,6 +12,7 @@ class App extends React.Component{
     return(
       <Router>
         <Switch>
+          <Route path="/new" component={LocationNew} />
           <Route path="/" component={Home} />
         </Switch>
       </Router>
