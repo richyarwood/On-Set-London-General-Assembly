@@ -59,10 +59,18 @@ class LocationNew extends React.Component {
   render(){
     return(
       <section className="section">
-        <Form
-          handleChange={this.handleChange}
-          handleSubmit={this.handleSubmit}
-        />
+        <div className="container">
+          <div className="columns">
+            <div className="column">
+            </div>
+            <Form
+              handleChange={this.handleChange}
+              handleSubmit={this.handleSubmit}
+            />
+            <div className="column">
+            </div>
+          </div>
+        </div>
       </section>
     )
   }
