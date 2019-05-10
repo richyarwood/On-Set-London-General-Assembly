@@ -17,6 +17,7 @@ class Register extends React.Component {
 
   handleChange(e) {
     const data = { ...this.state.data, [e.target.name]: e.target.value }
+    // set the data back on state
     this.setState({ data }) // equivalent to { data: data }
   }
 
@@ -24,7 +25,8 @@ class Register extends React.Component {
     e.preventDefault()
 
     axios.post('/api/register', this.state.data)
-      .then(() => this.props.history.push('/login')) // redirect the user to the login page...
+      .then(() => this.props.history.push('/login'))
+      .then(() => this.props.history.push('/login'))
       .catch(err => this.setState({ errors: err.response.data.errors }))
   }
 
