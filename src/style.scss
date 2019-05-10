@@ -77,12 +77,16 @@ body {
 .map-plus-icon {
   position: fixed;
   display: block;
-  bottom: 16px;
-  right: 16px;
-  padding: 30px;
+  bottom: 40px;
+  right: 40px;
+  border-radius: 50%;
   z-index: 5;
+  background-color: #fff;
+  -webkit-box-shadow: 6px 0px 14px -5px rgba(0,0,0,0.54);
+  -moz-box-shadow: 6px 0px 14px -5px rgba(0,0,0,0.54);
+  box-shadow: 6px 0px 14px -5px rgba(0,0,0,0.54);
 }
 
 .fa-plus-circle {
-  color: #d03252;
+  color: #0336FF;
 }
