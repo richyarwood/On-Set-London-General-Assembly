@@ -1,6 +1,18 @@
 const mongoose = require('mongoose')
 
-const londonAreas = ['Central London', 'North London', 'North Central London', 'Northeast London', 'Northwest London', 'South London', 'South Central London', 'Southeast London', 'Southwest London', 'East London', 'West London']
+const londonAreas = [
+  'Central London',
+  'North London',
+  'North Central London',
+  'Northeast London',
+  'Northwest London',
+  'South London',
+  'South Central London',
+  'Southeast London',
+  'Southwest London',
+  'East London',
+  'West London'
+]
 
 const locationSchema = new mongoose.Schema({
   name: {
@@ -35,8 +47,18 @@ const locationSchema = new mongoose.Schema({
       unique: 'This location already exists'
     }
   },
-  films: [{ type: mongoose.Schema.ObjectId, ref: 'Film' }]
+  films: [{ type: mongoose.Schema.ObjectId, require: true, ref: 'Film' }],
+  sceneNotes: [{
+    text: {
+      type: String
+    },
+    film: {
+      type: mongoose.Schema.ObjectId,
+      ref: 'Film'
+    }
+  }]
 })
+
 
 
 module.exports = mongoose.model('Location', locationSchema)

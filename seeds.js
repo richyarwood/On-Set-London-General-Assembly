@@ -10,13 +10,10 @@ mongoose.connect('mongodb://localhost:27017/on-set-london', (err, db) => {
   db.dropDatabase()
     .then(() => {
       return Film.create([{
-        title: 'Da Vinci Code',
-        sceneNotes: 'This is some text which describes the what happened in the film'
+        title: 'Da Vinci Code'
       },
       {
-        title: 'Lawrence of Arabia',
-        sceneNotes: 'This is some text which describes the what happened in the film'
-
+        title: 'Lawrence of Arabia'
       }])
     })
     .then(films => {
@@ -33,7 +30,11 @@ mongoose.connect('mongodb://localhost:27017/on-set-london', (err, db) => {
         films: [daVinciCode, lawrenceOfArabia],
         areaOfLondon: 'East London',
         streetAddress: '77-82 Whitechapel High St, Shadwell, London',
-        postCode: 'E1 7QX'
+        postCode: 'E1 7QX',
+        sceneNotes: [{
+          text: 'This is some text which describes the what happened in the film',
+          film: daVinciCode
+        }]
       },{
         name: 'Old Spitalfields Market',
         image: 'https://media.timeout.com/images/105172424/630/472/image.jpg',
@@ -44,7 +45,11 @@ mongoose.connect('mongodb://localhost:27017/on-set-london', (err, db) => {
         films: [daVinciCode, lawrenceOfArabia],
         areaOfLondon: 'East London',
         streetAddress: '77-82 Whitechapel High St, Shadwell, London',
-        postCode: 'E1 7QX'
+        postCode: 'E1 7QX',
+        sceneNotes: [{
+          text: 'This is some text which describes the what happened in the film',
+          film: lawrenceOfArabia
+        }]
       }])
     })
     .then(() => mongoose.connection.close())
