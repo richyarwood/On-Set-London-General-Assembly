@@ -1,14 +1,12 @@
 import React from 'react'
-import axios from 'axios'
+// import axios from 'axios'
 
 class LocationIndex extends React.Component {
 
-  constructor(){
-    super()
+  constructor(props){
+    super(props)
 
     this.state = {
-      data: [],
-      locations: [],
       center: {
         lat: '',
         long: ''
@@ -16,11 +14,6 @@ class LocationIndex extends React.Component {
     }
 
     this.handleClick = this.handleClick.bind(this)
-  }
-
-  componentDidMount() {
-    axios.get('/api/locations')
-      .then(res => this.setState({ locations: res.data }))
   }
 
   handleClick(e){
@@ -33,10 +26,11 @@ class LocationIndex extends React.Component {
 
   render() {
     // console.log('data INDEX', this.state.data)
-    // console.log('locations INDEX', this.state.locations)
+    console.log('props INDEX', this.props.data)
+    if (!this.props.data) return <h1>Loading...</h1>
     return (
       <div>
-        {this.state.locations.map((location) =>
+        {this.props.data.map(location =>
           <div key={location._id}>
             <div className="title is-4">{location.name}</div>
             <div className="location-image"

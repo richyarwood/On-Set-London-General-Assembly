@@ -1,5 +1,4 @@
 import React from 'react'
-import axios from 'axios'
 
 import ReactMapboxGl, { Marker } from 'react-mapbox-gl'
 
@@ -9,33 +8,21 @@ const Map = ReactMapboxGl({
 
 class LocationIndex extends React.Component {
 
-  constructor(){
-    super()
+  constructor(props){
+    super(props)
 
     this.state = {
-      data: [],
-      locations: [],
       center: {
         lat: -0.070839,
         long: 51.515619
       }
     }
-
-    this.handleClick = this.handleClick.bind(this)
-  }
-
-  componentDidMount() {
-    axios.get('/api/locations')
-      .then(res => this.setState({ locations: res.data }))
-  }
-
-  handleClick(e){
-    const data = e.target.id.split(',')
-    this.setState( { center: { lat: data[0], long: data[1] } } )
   }
 
   render() {
     // if(this.state.locations[0]) console.log('locations MAP', this.state.locations[0].coordinates)
+    console.log('MAP props', this.props)
+    if (!this.props.locations) return <h1>Loading...</h1>
     return (
       <div className="location">
         <Map
@@ -47,7 +34,7 @@ class LocationIndex extends React.Component {
             width: '100vw'
           }}>
 
-          {this.state.locations.map(marker =>
+          {this.props.data.locations.map(marker =>
             <Marker key={marker._id}
               coordinates={[marker.coordinates.lat, marker.coordinates.long]}
               anchor="bottom">
