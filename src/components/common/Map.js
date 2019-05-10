@@ -12,22 +12,19 @@ class LocationIndex extends React.Component {
     super(props)
 
     this.state = {
-      center: {
-        lat: -0.070839,
-        long: 51.515619
-      }
+      center: this.props.data.center
     }
   }
 
   render() {
     // if(this.state.locations[0]) console.log('locations MAP', this.state.locations[0].coordinates)
-    console.log('MAP props', this.props)
-    if (!this.props.locations) return <h1>Loading...</h1>
+    console.log('MAP props', this.props.data)
+    if (!this.props.data) return <h1>Loading...</h1>
     return (
       <div className="location">
         <Map
           style='mapbox://styles/mapbox/streets-v9'
-          center = {[ this.state.center.lat, this.state.center.long ]}
+          center = {[ this.props.data.center.lat, this.props.data.center.long ]}
           zoom = {[14]}
           containerStyle={{
             height: '100vh',
