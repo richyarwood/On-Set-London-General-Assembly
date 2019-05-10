@@ -1,6 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import Home from './components/common/Home'
+import Login from './components/auth/Login'
+import Register from './components/auth/Register'
 import { HashRouter as Router, Switch, Route } from 'react-router-dom'
 
 import { library } from '@fortawesome/fontawesome-svg-core'
@@ -16,7 +18,9 @@ class App extends React.Component{
     return(
       <Router>
         <Switch>
-          <Route path="/" component={Home} />
+          <Route exact path="/register" component={Register} />
+          <Route exact path="/login" component={Login} />
+          <Route exact path="/" component={Home} />
         </Switch>
       </Router>
     )
