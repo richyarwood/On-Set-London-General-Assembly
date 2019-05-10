@@ -47,7 +47,7 @@ const locationSchema = new mongoose.Schema({
       unique: 'This location already exists'
     }
   },
-  films: [{ type: mongoose.Schema.ObjectId, require: true, ref: 'Film' }],
+  films: [{ type: mongoose.Schema.ObjectId, ref: 'Film' }],
   sceneNotes: [{
     text: {
       type: String
