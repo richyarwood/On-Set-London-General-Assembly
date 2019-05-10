@@ -1,47 +1,36 @@
 import React from 'react'
-import axios from 'axios'
+// import axios from 'axios'
 
-class SideBar extends React.Component {
+class LocationIndex extends React.Component {
 
-  constructor(){
-    super()
+  constructor(props){
+    super(props)
 
     this.state = {
-      data: [],
-      locations: [],
       center: {
-        lat: -0.070839,
-        long: 51.515619
+        lat: '',
+        long: ''
       }
     }
-
-    this.handleClick = this.handleClick.bind(this)
-  }
-
-  componentDidMount() {
-    axios.get('/api/locations')
-      .then(res => this.setState({ locations: res.data }))
-  } // This creates a 504 error
-
-  handleClick(e){
-    const data = e.target.id.split(',')
-    this.setState( { center: { lat: data[0], long: data[1] } } )
   }
 
   render() {
-    console.log(this.state.data)
-    console.log(this.state.locations)
+    // console.log('data INDEX', this.state.data)
+    console.log('props INDEX', this.props.data)
+    // console.log('center INDEX', this.state.center)
+    if (!this.props) return <h1>Loading...</h1>
     return (
       <div>
-        {this.state.data.map(location =>
-          <div key={location.id}>
+        {this.props.data.map(location =>
+          <div key={location._id}>
             <div className="title is-4">{location.name}</div>
             <div className="location-image"
-              id={[location.coordinates.lat, location.coordinates.long]}
-              style={{ backgroundImage: `url(${location.image})` }} onClick={this.handleClick}>
+              data-lat={location.coordinates.lat}
+              data-long={location.coordinates.long}
+              style={{ backgroundImage: `url(${location.image})` }} onClick={this.props.handleClick}>
             </div>
             {location.films.map(film =>
-              <div key={film.id} className="film-title is-1">{film.title}</div>)}
+              <div key={film._id} className="film-title is-1">{film.title}</div>)}
             <hr />
           </div>
         )}
@@ -50,4 +39,4 @@ class SideBar extends React.Component {
   }
 }
 
-export default SideBar
+export default LocationIndex
