@@ -48,6 +48,8 @@ class Home extends React.Component {
     return (
       <main>
         <div className="sidebar">
+          <h1>On Set London</h1>
+          <hr />
           <LocationIndex data={this.state.locations} handleClick={this.handleClick} />
         </div>
         <div className="map">
