@@ -1,4 +1,7 @@
 import React from 'react'
+import Promise from 'bluebird'
+import axios from 'axios'
+
 
 class LocationNew extends React.Component {
 
@@ -8,11 +11,13 @@ class LocationNew extends React.Component {
     this.state = {
       location: {
         coordinates: {},
-        sceneNotes: {}
+        sceneNotes: {},
+        films: []
       },
       film: {
         title: ''
       }
+
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -36,9 +41,21 @@ class LocationNew extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault()
-    console.log(this.state.film, 'film')
-    console.log(this.state.location, 'location')
-    
+    axios.post('api/films', this.state.film)
+      .then(res => {
+        const films = []
+        films.push(res.data)
+        const sceneNotes = {...this.state.location.sceneNotes, film: res.data}
+        const location = {...this.state.location, sceneNotes, films: films}
+        this.setState({ location })
+        console.log(this.state.location)
+      })
+      .then(
+        axios.post('api/locations', this.state.location)
+          .then(res => console.log(res))
+      )
+      .catch(err => console.log(err))
+
   }
 
   render(){
@@ -136,18 +153,6 @@ class LocationNew extends React.Component {
                     type="text"
                     placeholder="Long"
                     data-coordinates="coordinates"
-                    onChange={this.handleChange}
-                  />
-                </div>
-              </div>
-              <div className="field">
-                <label className="label">Film Name</label>
-                <div className="control">
-                  <input className="input"
-                    name="film"
-                    type="text"
-                    placeholder="Titanic"
-                    data-scene-notes="film"
                     onChange={this.handleChange}
                   />
                 </div>
