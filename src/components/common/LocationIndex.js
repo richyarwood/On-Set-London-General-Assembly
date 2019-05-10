@@ -10,8 +10,8 @@ class SideBar extends React.Component {
       data: [],
       locations: [],
       center: {
-        lat: -0.070839,
-        long: 51.515619
+        lat: '',
+        long: ''
       }
     }
 

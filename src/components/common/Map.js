@@ -46,8 +46,8 @@ class LocationIndex extends React.Component {
             width: '100vw'
           }}>
 
-          {this.state.data.map(marker =>
-            <Marker key={marker.id}
+          {this.state.locations.map(marker =>
+            <Marker key={marker._id}
               coordinates={[marker.coordinates.lat, marker.coordinates.long]}
               anchor="bottom">
               <img src='https://i.pinimg.com/originals/30/98/49/309849c5815761081926477e5e872f1e.png' width='30px'/>
