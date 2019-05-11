@@ -90,3 +90,19 @@ body {
 .fa-plus-circle {
   color: #0336FF;
 }
+
+.mapboxgl-popup-content {
+  height: 80px;
+  width: 250px;
+}
+
+.marker-popup-content {
+  height: 60px;
+  display: flex;
+  flex-direction: row;
+
+  img {
+    max-height: 100%;
+    padding-right: 10px;
+  }
+}
