@@ -12,14 +12,17 @@ class LocationIndex extends React.Component {
 
     this.state = {
       center: this.props.data.center,
-      marker: undefined
+      marker: {},
+      hover: false
     }
 
     this.popUpShow = this.popUpShow.bind(this)
+    this.popUpHide = this.popUpHide.bind(this)
   }
 
   popUpShow(e){
-    this.setState({marker: {
+    this.setState({ hover: true })
+    this.setState({ marker: {
       lat: e.target.dataset.lat,
       long: e.target.dataset.long,
       image: e.target.dataset.image,
@@ -28,9 +31,12 @@ class LocationIndex extends React.Component {
     }})
   }
 
+  popUpHide(){
+    this.setState({ hover: false})
+  }
+
   render() {
     if (!this.props.data) return <h1>Loading...</h1>
-    console.log(this.props.data.center)
     return (
       <div className="location">
         <Map
@@ -47,6 +53,7 @@ class LocationIndex extends React.Component {
               coordinates={[marker.coordinates.long, marker.coordinates.lat]}
               anchor="bottom">
               <img src='https://i.pinimg.com/originals/30/98/49/309849c5815761081926477e5e872f1e.png' width='30px' onMouseOver={this.popUpShow}
+                onMouseOut={this.popUpHide}
                 data-lat={marker.coordinates.lat}
                 data-long={marker.coordinates.long}
                 data-image={marker.image}
@@ -56,7 +63,7 @@ class LocationIndex extends React.Component {
             </Marker>
           )}
 
-          {this.state.marker && <Popup
+          {this.state.hover && <Popup
             coordinates={[this.state.marker.long, this.state.marker.lat]}
             assName="marker-popup"
             offset={{
