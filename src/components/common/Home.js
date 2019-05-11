@@ -43,7 +43,6 @@ class Home extends React.Component {
     // console.log('center HOME', this.state.center)
     // console.log('coordinates INDEX', data)
     this.toggleSidebarClick = this.toggleSidebarClick.bind(this)
-    console.log('e.target', e.target)
   }
 
   toggleSidebarClick(){

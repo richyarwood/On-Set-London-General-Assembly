@@ -53,24 +53,14 @@ class LocationIndex extends React.Component {
             {location.films.map(film =>
               <div key={film._id}>
                 <div className="film-title is-1">{film.title}</div>
-                <div className="film-info">
-                  <p>Film info</p>
-                  {// <p>{film.sceneNote}</p>
-                  }
-                  { console.log('sceneNote', film) }
-                </div>
               </div>
             )}
-            {// {location.films.sceneNotes.map(note =>
-            //   <div key={note._id}>
-            //     <div className="note-info">
-            //       <p>Film info</p>
-            //       <p>{note.sceneNote}</p>
-            //       { console.log('sceneNote', note.sceneNote) }
-            //     </div>
-            //   </div>
-            // )}
-            }
+            {location.sceneNotes.map(note =>
+              <div key={note._id}>
+                <div className="sub-title is-5">{note.text}</div>
+                { console.log(note.text) }
+              </div>
+            )}
             <hr />
           </div>
         )}
