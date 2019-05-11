@@ -19,8 +19,13 @@ class LocationIndex extends React.Component {
 
   toggleActiveLocation() {
     const currentState = this.state.activeIndex
-    this.setState({ activeIndex: !currentState })
+    this.setState({ activeIndex: !currentState})
   }
+
+  // toggleActiveLocation() {
+  //   const currentState = this.state.activeIndex
+  //   this.setState({ activeIndex: !currentState })
+  // }
 
   render() {
     // console.log('data INDEX', this.state.data)
@@ -71,10 +76,11 @@ class LocationIndex extends React.Component {
                   <p className="level-right has-text-right is-size-6"> {location.areaOfLondon} </p>
                 </div>
               </div>
+              <hr />
               {location.sceneNotes.map(note =>
                 <div key={note._id}>
-                  <div className="sub-title is-5">{note.film.title}</div>
-                  <div className="sub-title is-5">{note.text}</div>
+                  <div className="sub-title film-title is-5">{note.film.title}</div>
+                  <div className="sub-title scene-note is-5">{note.text}</div>
                 </div>
               )}
             </div>
