@@ -89,7 +89,7 @@ class Register extends React.Component {
                   </div>
                   {this.state.errors.passwordConfirmation && <div className="help is-danger">{this.state.errors.passwordConfirmation}</div>}
                 </div>
-                <button className="button is-primary">Submit</button>
+                <button className="button">Submit</button>
               </form>
             </div>
           </div>
