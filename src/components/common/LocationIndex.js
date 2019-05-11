@@ -14,7 +14,7 @@ class LocationIndex extends React.Component {
       activeIndex: true
     }
 
-    this.toggleActiveLocation = this.toggleActiveLocation.bind(this)
+    // this.toggleActiveLocation = this.toggleActiveLocation.bind(this)
   }
 
   toggleActiveLocation() {
@@ -30,14 +30,13 @@ class LocationIndex extends React.Component {
     return (
       <div>
         {this.props.data.map(location =>
-          <div
-            key={location._id}
-            // data-lat={location.coordinates.lat}
-            // data-long={location.coordinates.long}
-            // onClick={this.props.handleClick} >
-          >
+          <div key={location._id} >
+            {// -----ITEMS ARE ALWAYS VISIBILE-----}
+            }
             <div
-              onClick={this.toggleActiveLocation}
+              onClick={this.toggleActiveLocation.bind(this)}
+              // onClick={() => this.toggleActiveLocation()}
+              // onClick={this.toggleActiveLocation}
             >
               <div className="title is-4">{location.name}</div>
               <div className="location-image"
@@ -47,9 +46,23 @@ class LocationIndex extends React.Component {
                 style={{ backgroundImage: `url(${location.image})` }} >
               </div>
             </div>
+            {// -----ITEMS ARE VISIBILE ON LOAD AND DISAPPEAR ON CLICK-----
+            }
+            <div
+              className={this.state.activeIndex ? null : 'hidden' }
+              onClick={this.toggleActiveLocation.bind(this)}
+            >
+              {location.films.map(film =>
+                <div key={film._id}>
+                  <div className="film-title is-1">{film.title}</div>
+                </div>
+              )}
+            </div>
+            {// -----ITEMS ARE NOT VISIBILE ON LOAD AND APPEAR ON CLICK-----
+            }
             <div
               className={!this.state.activeIndex ? null : 'hidden' }
-              onClick={this.toggleActiveLocation}
+              onClick={this.toggleActiveLocation.bind(this)}
             >
               <div className="adress">
                 <p className="is-size-5"> {location.streetAddress} </p>
@@ -58,16 +71,10 @@ class LocationIndex extends React.Component {
                   <p className="level-right has-text-right is-size-6"> {location.areaOfLondon} </p>
                 </div>
               </div>
-              {location.films.map(film =>
-                <div key={film._id}>
-                  <div className="film-title is-1">{film.title}</div>
-                </div>
-              )}
               {location.sceneNotes.map(note =>
                 <div key={note._id}>
                   <div className="sub-title is-5">{note.film.title}</div>
                   <div className="sub-title is-5">{note.text}</div>
-                  { console.log(note.text) }
                 </div>
               )}
             </div>
@@ -83,9 +90,12 @@ class LocationIndex extends React.Component {
 export default LocationIndex
 
 
+
+// onClick={this.toggleActiveLocation}
+
 // { console.log('clicked location', this.props.data) }
 
 // <div
 //  className={this.state.activeIndex ? null : 'hidden' }
-//  onClick={this.toggleActiveLocation}
+//  onClick={this.toggleClass}
 // >
