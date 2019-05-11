@@ -11,33 +11,23 @@ class LocationIndex extends React.Component {
         lat: '',
         long: ''
       },
-      // selected: {}
-      activeIndex: {} // how do I make this global value only affect the single mapped location click
-      // activeIndex: true
+      activeIndex: true // how do I make this global value only affect the single mapped location click
     }
-    // this.selectItem = this.selectItem.bind(this)
-    // this.renderItem = this.renderItem.bind(this)
     // this.toggleActiveLocation = this.toggleActiveLocation.bind(this)
   }
 
   toggleActiveLocation(index){
     const currentState = this.state.activeIndex
+    // currentState[index] = !currentState[index]
+    // console.log('currentState INDEX', currentState[index])
+
+    // if(currentState[index] === this.props[index]) {
     this.setState({ activeIndex: !currentState })
     console.log('INDEX', index)
-  }
-  //
-  // selectItem(el){
-  //   const selected = this.state.selected
-  //   selected[el] = !selected[el]
-  //   this.setState({selected: selected})
-  // }
+    console.log('currentState', currentState)
 
-  // renderItem(el){
-  // const className = this.state.selected[el] ? null : 'hidden'
-  // const onClick = this.selectItem.bind(this, el)
-  // const onClick={this.toggleActiveLocation.bind(this)}
-  // return <li key={el} className={className} onClick={onClick}>{el}</li>
-  // }
+    // }
+  }
 
   // toggleActiveLocation() {
   //   const currentState = this.state.activeIndex
@@ -57,9 +47,6 @@ class LocationIndex extends React.Component {
             }
             <div
               onClick={this.toggleActiveLocation.bind(this, index)}
-              // onClick={this.toggleActiveLocation.bind(this, el)}
-              // onClick={() => this.toggleActiveLocation()}
-              // onClick={this.toggleActiveLocation}
             >
               <div className="title is-4">{location.name}</div>
               <div className="location-image"
@@ -73,7 +60,7 @@ class LocationIndex extends React.Component {
             {// -----ITEMS ARE VISIBILE ON LOAD AND DISAPPEAR ON CLICK-----
             }
             <div
-              className={this.state.activeIndex ? null : 'hidden' }
+              className={this.state.activeIndex ? 'null' : 'hidden' }
               onClick={this.toggleActiveLocation.bind(this, index)}
             >
               {location.films.map(film =>
@@ -86,7 +73,7 @@ class LocationIndex extends React.Component {
             {// -----ITEMS ARE NOT VISIBILE ON LOAD AND APPEAR ON CLICK-----
             }
             <div
-              className={!this.state.activeIndex ? null : 'hidden' }
+              className={!this.state.activeIndex ? 'null' : 'hidden' }
               onClick={this.toggleActiveLocation.bind(this, index)}
             >
               <div className="adress">
