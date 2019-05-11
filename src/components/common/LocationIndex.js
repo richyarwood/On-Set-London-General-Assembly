@@ -36,31 +36,41 @@ class LocationIndex extends React.Component {
             // data-long={location.coordinates.long}
             // onClick={this.props.handleClick} >
           >
-            <div className="title is-4">{location.name}</div>
-            <div className="location-image"
-              data-lat={location.coordinates.lat}
-              data-long={location.coordinates.long}
-              onClick={this.props.handleClick}
-              style={{ backgroundImage: `url(${location.image})` }} >
-            </div>
-            <div className="adress">
-              <p className="is-size-5"> {location.streetAddress} </p>
-              <div className="level is-mobile">
-                <p className="level-left has-text-left is-size-6"> {location.postCode} </p>
-                <p className="level-right has-text-right is-size-6"> {location.areaOfLondon} </p>
+            <div
+              onClick={this.toggleActiveLocation}
+            >
+              <div className="title is-4">{location.name}</div>
+              <div className="location-image"
+                data-lat={location.coordinates.lat}
+                data-long={location.coordinates.long}
+                onClick={this.props.handleClick}
+                style={{ backgroundImage: `url(${location.image})` }} >
               </div>
             </div>
-            {location.films.map(film =>
-              <div key={film._id}>
-                <div className="film-title is-1">{film.title}</div>
+            <div
+              className={!this.state.activeIndex ? null : 'hidden' }
+              onClick={this.toggleActiveLocation}
+            >
+              <div className="adress">
+                <p className="is-size-5"> {location.streetAddress} </p>
+                <div className="level is-mobile">
+                  <p className="level-left has-text-left is-size-6"> {location.postCode} </p>
+                  <p className="level-right has-text-right is-size-6"> {location.areaOfLondon} </p>
+                </div>
               </div>
-            )}
-            {location.sceneNotes.map(note =>
-              <div key={note._id}>
-                <div className="sub-title is-5">{note.text}</div>
-                { console.log(note.text) }
-              </div>
-            )}
+              {location.films.map(film =>
+                <div key={film._id}>
+                  <div className="film-title is-1">{film.title}</div>
+                </div>
+              )}
+              {location.sceneNotes.map(note =>
+                <div key={note._id}>
+                  <div className="sub-title is-5">{note.film.title}</div>
+                  <div className="sub-title is-5">{note.text}</div>
+                  { console.log(note.text) }
+                </div>
+              )}
+            </div>
             <hr />
           </div>
         )}
@@ -77,14 +87,5 @@ export default LocationIndex
 
 // <div
 //  className={this.state.activeIndex ? null : 'hidden' }
-//  onClick={this.toggleClass}
+//  onClick={this.toggleActiveLocation}
 // >
-
-
-
-// {film.sceneNotes.map(sceneNote =>
-  //   <div
-  //     key={sceneNote._id} >
-  //     <h1>WOO</h1>
-  //   </div>
-  // )}
