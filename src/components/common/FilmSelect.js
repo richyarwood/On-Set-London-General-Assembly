@@ -4,30 +4,28 @@ import CreatableSelect from 'react-select/lib/Creatable'
 
 let films = []
 
-const createOption = () => {
-
-}
-
-const defaultOptions = [
-  createOption()
-]
-
 export default class FilmSelect extends React.Component {
   constructor(props){
     super(props)
     this.state = {
-      isLoading: true,
-      options: defaultOptions,
-      value: null
+      options: null
     }
-
     this.handleCreate = this.handleCreate.bind(this)
   }
 
 
-  handleCreate () {
-    console.log(this.state)
+  handleCreate(inputValue){
+
+    const { options } = this.state
+    axios.post('api/films', {title: inputValue})
+      .then(res => {
+        const newFilm = { value: res.data._id, label: res.data.title }
+        this.setState({
+          options: [...options, newFilm]
+        })
+      })
   }
+
 
   componentDidMount() {
     axios.get('api/films')
@@ -41,16 +39,15 @@ export default class FilmSelect extends React.Component {
       })
       .then(res => this.setState({isLoading: false, options: res}))
   }
+
   render() {
-    if(this.state.isLoading) return null
     return (
       <CreatableSelect
         isClearable
-        isDisabled={this.state.isLoading}
-        isLoading={this.state.isLoading}
         onCreateOption={this.handleCreate}
         onChange={this.props.handleChange}
         options={this.state.options}
+        value={this.state.value}
       />
     )
   }
