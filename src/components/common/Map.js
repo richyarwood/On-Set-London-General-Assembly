@@ -57,7 +57,7 @@ class LocationIndex extends React.Component {
           )}
 
           {this.state.marker && <Popup
-            coordinates={[this.state.marker.lat, this.state.marker.long]}
+            coordinates={[this.state.marker.long, this.state.marker.lat]}
             assName="marker-popup"
             offset={{
               'bottom-left': [20, -38],  'bottom': [0, -38], 'bottom-right': [-20, -38]
