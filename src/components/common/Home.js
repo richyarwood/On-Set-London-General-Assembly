@@ -1,16 +1,13 @@
-// This is the base template
-// Components are referenced within this.
-// It is a classical component as we need a constructor
-// Renders the map and includes the sidebar, add location button, register/login
-
 import React from 'react'
 import axios from 'axios'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import Map from './Map'
 import LocationIndex from './LocationIndex'
-// import LocationShow from './LocationShow'
 
+import { Link, withRouter } from 'react-router-dom'
 
+import Auth from '../../lib/Auth'
 
 class Home extends React.Component {
 
@@ -50,6 +47,10 @@ class Home extends React.Component {
     this.setState({ toggleSidebar: !this.state.toggleSidebar})
   }
 
+  logout() {
+    Auth.removeToken()
+  }
+
   render() {
     console.log('HOME locations', this.state.locations)
     if (!this.state.locations) return <h1>Loading...</h1>
@@ -70,10 +71,19 @@ class Home extends React.Component {
         <div className="map">
           <Map data={this.state} />
         </div>
+        <div className="map-plus-icon">
+          <FontAwesomeIcon icon="plus-circle" size="4x"/>
+        </div>
+        {!Auth.isAuthenticated() && <Link to='/login'><button className="button is-normal login">
+          Login
+        </button></Link>}
+        {Auth.isAuthenticated() && <button className="button is-normal logout" onClick={this.logout}>
+          Logout
+        </button>}
       </main>
 
     )
   }
 }
 
-export default Home
+export default withRouter(Home)

@@ -57,6 +57,7 @@ class LocationNew extends React.Component {
   }
 
   render(){
+    console.log(this.state)
     return(
       <section className="section">
         <div className="container">

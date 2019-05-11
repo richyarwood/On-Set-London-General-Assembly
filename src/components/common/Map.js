@@ -1,6 +1,4 @@
 import React from 'react'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-
 import ReactMapboxGl, { Marker, Popup } from 'react-mapbox-gl'
 
 const Map = ReactMapboxGl({
@@ -32,8 +30,7 @@ class LocationIndex extends React.Component {
 
   render() {
     if (!this.props.data) return <h1>Loading...</h1>
-    console.log(this.state.popUpShow)
-    console.log(this.state.marker)
+    console.log(this.props.data.center)
     return (
       <div className="location">
         <Map
@@ -75,9 +72,6 @@ class LocationIndex extends React.Component {
           </Popup>}
 
         </Map>
-        <div className="map-plus-icon">
-          <FontAwesomeIcon icon="plus-circle" size="4x"/>
-        </div>
       </div>
     )
   }

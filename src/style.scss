@@ -1,3 +1,7 @@
+$primary-color: #0d47a1;
+$button-hover-color: #1565c0;
+$secondary-color: #9E9E9E;
+
 body {
   margin: 0;
   padding: 0;
@@ -82,13 +86,25 @@ body {
   border-radius: 50%;
   z-index: 5;
   background-color: #fff;
-  -webkit-box-shadow: 6px 0px 14px -5px rgba(0,0,0,0.54);
-  -moz-box-shadow: 6px 0px 14px -5px rgba(0,0,0,0.54);
-  box-shadow: 6px 0px 14px -5px rgba(0,0,0,0.54);
+  -webkit-box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  -moz-box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+
+  &:hover {
+    color: #fff;
+    -webkit-box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+    -moz-box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+  }
 }
 
 .fa-plus-circle {
-  color: #0336FF;
+  color: $primary-color;
+
+  :hover {
+    color: $button-hover-color;
+  }
+
 }
 
 .mapboxgl-popup-content {
@@ -104,5 +120,38 @@ body {
   img {
     max-height: 100%;
     padding-right: 10px;
+  }
+}
+
+.button {
+  background-color: $primary-color;
+  color: #fff;
+  -webkit-box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  -moz-box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+
+  &:hover {
+    color: #fff;
+    background-color: $button-hover-color;
+    -webkit-box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+    -moz-box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+  }
+
+  &:focus {
+    color: #fff;
+  }
+
+  &.login{
+    position: fixed;
+    top: 40px;
+    right: 40px;
+  }
+
+  &.logout{
+    position: fixed;
+    top: 40px;
+    right: 40px;
+    background-color: $secondary-color;
   }
 }
