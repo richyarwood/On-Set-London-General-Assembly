@@ -20,9 +20,10 @@ class LocationIndex extends React.Component {
     // this.toggleActiveLocation = this.toggleActiveLocation.bind(this)
   }
 
-  toggleActiveLocation(){
+  toggleActiveLocation(index){
     const currentState = this.state.activeIndex
     this.setState({ activeIndex: !currentState })
+    console.log('INDEX', index)
   }
   //
   // selectItem(el){
@@ -50,12 +51,12 @@ class LocationIndex extends React.Component {
     if (!this.props) return <h1>Loading...</h1>
     return (
       <div>
-        {this.props.data.map(location =>
+        {this.props.data.map((location, index) =>
           <div key={location._id} >
             {// -----ITEMS ARE ALWAYS VISIBILE-----}
             }
             <div
-              onClick={this.toggleActiveLocation.bind(this)}
+              onClick={this.toggleActiveLocation.bind(this, index)}
               // onClick={this.toggleActiveLocation.bind(this, el)}
               // onClick={() => this.toggleActiveLocation()}
               // onClick={this.toggleActiveLocation}
@@ -73,7 +74,7 @@ class LocationIndex extends React.Component {
             }
             <div
               className={this.state.activeIndex ? null : 'hidden' }
-              onClick={this.toggleActiveLocation.bind(this)}
+              onClick={this.toggleActiveLocation.bind(this, index)}
             >
               {location.films.map(film =>
                 <div key={film._id}>
@@ -86,7 +87,7 @@ class LocationIndex extends React.Component {
             }
             <div
               className={!this.state.activeIndex ? null : 'hidden' }
-              onClick={this.toggleActiveLocation.bind(this)}
+              onClick={this.toggleActiveLocation.bind(this, index)}
             >
               <div className="adress">
                 <p className="is-size-5"> {location.streetAddress} </p>
