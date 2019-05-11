@@ -1,4 +1,5 @@
 import React from 'react'
+import Select from 'react-select'
 
 const Form = ({handleChange, handleSubmit}) => {
   return(
@@ -29,12 +30,10 @@ const Form = ({handleChange, handleSubmit}) => {
         <div className="field">
           <label className="label">Film name</label>
           <div className="control">
-            <input className="input"
-              name="title"
-              type="text"
-              placeholder="e.g. Relay Building"
-              data-film="film"
-              onChange={handleChange}
+            <Select options={
+              { value: 'chocolate', label: 'Chocolate' },
+              { value: 'strawberry', label: 'Strawberry' },
+              { value: 'vanilla', label: 'Vanilla' }}
             />
           </div>
         </div>
@@ -114,3 +113,13 @@ const Form = ({handleChange, handleSubmit}) => {
 }
 
 export default Form
+
+
+
+//   <input className="input"
+//     name="title"
+//     type="text"
+//     placeholder="e.g. Relay Building"
+//     data-film="film"
+//     onChange={handleChange}
+//   />
