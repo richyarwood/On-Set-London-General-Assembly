@@ -40,9 +40,10 @@ class Home extends React.Component {
     const lat = e.target.dataset.lat
     const long = e.target.dataset.long
     this.setState( { center: { lat: lat, long: long } } )
-    console.log('center HOME', this.state.center)
+    // console.log('center HOME', this.state.center)
     // console.log('coordinates INDEX', data)
     this.toggleSidebarClick = this.toggleSidebarClick.bind(this)
+    console.log('e.target', e.target)
   }
 
   toggleSidebarClick(){
@@ -51,7 +52,7 @@ class Home extends React.Component {
   }
 
   render() {
-    console.log('HOME locations', this.state.locations)
+    // console.log('HOME locations', this.state.locations)
     if (!this.state.locations) return <h1>Loading...</h1>
     return (
       <main>
