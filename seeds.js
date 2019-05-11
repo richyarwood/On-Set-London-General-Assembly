@@ -24,8 +24,8 @@ mongoose.connect('mongodb://localhost:27017/on-set-london', (err, db) => {
         name: 'Whitechapel Gallery',
         image: 'https://www.whitechapelgallery.org/wp-content/uploads/2015/01/Whitechapel-Gallery-Photo-Guy-Montagu-Pollock-at-Arcaid-Courtesy-Whitechapel-Gallery-2.jpg',
         coordinates: {
-          lat: '-0.072650',
-          long: '51.513828'
+          lat: '51.513828',
+          long: '-0.072650'
         },
         films: [daVinciCode, lawrenceOfArabia],
         areaOfLondon: 'East London',
@@ -39,8 +39,8 @@ mongoose.connect('mongodb://localhost:27017/on-set-london', (err, db) => {
         name: 'Old Spitalfields Market',
         image: 'https://media.timeout.com/images/105172424/630/472/image.jpg',
         coordinates: {
-          lat: '-0.075336',
-          long: '51.518581'
+          lat: '51.518581',
+          long: '-0.075336'
         },
         films: [daVinciCode, lawrenceOfArabia],
         areaOfLondon: 'East London',
