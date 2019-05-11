@@ -1,5 +1,4 @@
 import React from 'react'
-// import axios from 'axios'
 
 class LocationIndex extends React.Component {
 
@@ -7,10 +6,6 @@ class LocationIndex extends React.Component {
     super(props)
 
     this.state = {
-      center: {
-        lat: '',
-        long: ''
-      },
       activeIndex: true // how do I make this global value only affect the single mapped location click
     }
     // this.toggleActiveLocation = this.toggleActiveLocation.bind(this)
@@ -25,19 +20,13 @@ class LocationIndex extends React.Component {
     this.setState({ activeIndex: !currentState })
     console.log('INDEX', index)
     console.log('currentState', currentState)
-
     // }
   }
 
-  // toggleActiveLocation() {
-  //   const currentState = this.state.activeIndex
-  //   this.setState({ activeIndex: !currentState})
-  // }
 
   render() {
     // console.log('data INDEX', this.state.data)
     console.log('props INDEX', this.props.data)
-    // console.log('center INDEX', this.state.center)
     if (!this.props) return <h1>Loading...</h1>
     return (
       <div>
@@ -104,6 +93,8 @@ export default LocationIndex
 
 
 
+
+
 // onClick={this.toggleActiveLocation}
 
 // { console.log('clicked location', this.props.data) }
@@ -112,3 +103,8 @@ export default LocationIndex
 //  className={this.state.activeIndex ? null : 'hidden' }
 //  onClick={this.toggleClass}
 // >
+
+// toggleActiveLocation() {
+//   const currentState = this.state.activeIndex
+//   this.setState({ activeIndex: !currentState})
+// }
