@@ -49,7 +49,7 @@ class LocationIndex extends React.Component {
             <Marker key={marker._id}
               coordinates={[marker.coordinates.lat, marker.coordinates.long]}
               anchor="bottom">
-              <img src='https://i.pinimg.com/originals/30/98/49/309849c5815761081926477e5e872f1e.png' width='30px' onClick={this.popUpShow}
+              <img src='https://i.pinimg.com/originals/30/98/49/309849c5815761081926477e5e872f1e.png' width='30px' onMouseOver={this.popUpShow}
                 data-lat={marker.coordinates.lat}
                 data-long={marker.coordinates.long}
                 data-image={marker.image}
