@@ -4,10 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import Map from './Map'
 import LocationIndex from './LocationIndex'
-
-import { Link, withRouter } from 'react-router-dom'
-
-import Auth from '../../lib/Auth'
+import LoginLogout from './LoginLogout'
 
 class Home extends React.Component {
 
@@ -37,8 +34,6 @@ class Home extends React.Component {
     const lat = e.target.dataset.lat
     const long = e.target.dataset.long
     this.setState( { center: { lat: lat, long: long } } )
-    console.log('center HOME', this.state.center)
-    // console.log('coordinates INDEX', data)
     this.toggleSidebarClick = this.toggleSidebarClick.bind(this)
   }
 
@@ -47,12 +42,7 @@ class Home extends React.Component {
     this.setState({ toggleSidebar: !this.state.toggleSidebar})
   }
 
-  logout() {
-    Auth.removeToken()
-  }
-
   render() {
-    console.log('HOME locations', this.state.locations)
     if (!this.state.locations) return <h1>Loading...</h1>
     return (
       <main>
@@ -74,16 +64,11 @@ class Home extends React.Component {
         <div className="map-plus-icon">
           <FontAwesomeIcon icon="plus-circle" size="4x"/>
         </div>
-        {!Auth.isAuthenticated() && <Link to='/login'><button className="button is-normal login">
-          Login
-        </button></Link>}
-        {Auth.isAuthenticated() && <button className="button is-normal logout" onClick={this.logout}>
-          Logout
-        </button>}
+        <LoginLogout />
       </main>
 
     )
   }
 }
 
-export default withRouter(Home)
+export default Home

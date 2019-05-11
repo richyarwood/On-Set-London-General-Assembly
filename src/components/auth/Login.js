@@ -28,13 +28,13 @@ class Login extends React.Component {
     axios.post('/api/login', this.state.data)
       .then(res => {
         Auth.setToken(res.data.token)
+        console.log(res.data.token)
         this.props.history.push('/')
       })
       .catch(() => this.setState({ error: 'Invalid credentials' }))
   }
 
   render() {
-    console.log(this.state)
     return (
       <section className="section">
         <div className="container">

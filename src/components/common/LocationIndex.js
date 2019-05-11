@@ -15,7 +15,6 @@ class LocationIndex extends React.Component {
   }
 
   render() {
-    console.log('props', this.props.data)
     if (!this.props) return <h1>Loading...</h1>
     return (
       <div>
