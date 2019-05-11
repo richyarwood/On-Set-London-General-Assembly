@@ -1,7 +1,7 @@
 import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-import ReactMapboxGl, { Marker } from 'react-mapbox-gl'
+import ReactMapboxGl, { Marker, Popup } from 'react-mapbox-gl'
 
 const Map = ReactMapboxGl({
   accessToken: process.env.MAPBOX_API_TOKEN
@@ -13,14 +13,27 @@ class LocationIndex extends React.Component {
     super(props)
 
     this.state = {
-      center: this.props.data.center
+      center: this.props.data.center,
+      marker: undefined
     }
+
+    this.popUpShow = this.popUpShow.bind(this)
+  }
+
+  popUpShow(e){
+    this.setState({marker: {
+      lat: e.target.dataset.lat,
+      long: e.target.dataset.long,
+      image: e.target.dataset.image,
+      name: e.target.dataset.name,
+      address: e.target.dataset.address
+    }})
   }
 
   render() {
-    // if(this.state.locations[0]) console.log('locations MAP', this.state.locations[0].coordinates)
-    console.log('MAP props', this.props.data)
     if (!this.props.data) return <h1>Loading...</h1>
+    console.log(this.state.popUpShow)
+    console.log(this.state.marker)
     return (
       <div className="location">
         <Map
@@ -36,9 +49,31 @@ class LocationIndex extends React.Component {
             <Marker key={marker._id}
               coordinates={[marker.coordinates.lat, marker.coordinates.long]}
               anchor="bottom">
-              <img src='https://i.pinimg.com/originals/30/98/49/309849c5815761081926477e5e872f1e.png' width='30px'/>
+              <img src='https://i.pinimg.com/originals/30/98/49/309849c5815761081926477e5e872f1e.png' width='30px' onClick={this.popUpShow}
+                data-lat={marker.coordinates.lat}
+                data-long={marker.coordinates.long}
+                data-image={marker.image}
+                data-name={marker.name}
+                data-address={marker.streetAddress}
+              />
             </Marker>
           )}
+
+          {this.state.marker && <Popup
+            coordinates={[this.state.marker.lat, this.state.marker.long]}
+            assName="marker-popup"
+            offset={{
+              'bottom-left': [20, -38],  'bottom': [0, -38], 'bottom-right': [-20, -38]
+            }}>
+            <div className="marker-popup-content">
+              <img src={this.state.marker.image} alt={this.state.marker.name}/>
+              <div>
+                <div><strong>{this.state.marker.name}</strong></div>
+                <div>{this.state.marker.address}</div>
+              </div>
+            </div>
+          </Popup>}
+
         </Map>
         <div className="map-plus-icon">
           <FontAwesomeIcon icon="plus-circle" size="4x"/>
