@@ -20,8 +20,8 @@ class Home extends React.Component {
     this.state = {
       locations: null,
       center: {
-        lat: -0.070839,
-        long: 51.515619
+        lat: 51.515619,
+        long: -0.070839
       },
       toggleSidebar: false
     }

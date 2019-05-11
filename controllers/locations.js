@@ -1,23 +1,23 @@
 const Location = require('../models/Location')
 
-function indexRoute(req, res) {
+function indexRoute(req, res, next) {
   Location.find()
     .populate('films sceneNotes.film')
     .then(locations => res.json(locations))
-    .catch(() => res.status(500).json({ message: 'Server error'}))
+    .catch(next)
 }
 
-function showRoute(req, res) {
+function showRoute(req, res, next) {
   Location.findById(req.params.id)
     .then(location => res.json(location))
-    .catch(() => res.status(404).json({ message: 'Location does not exist'}))
+    .catch(next)
 }
 
-function createRoute(req, res) {
+function createRoute(req, res, next) {
   req.body.createdBy = req.currentUser
   Location.create(req.body)
     .then(location => res.status(201).json(location))
-    .catch(err => res.json(err))
+    .catch(next)
 }
 
 module.exports = {

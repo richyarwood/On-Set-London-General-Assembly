@@ -25,7 +25,7 @@ class LocationIndex extends React.Component {
       <div className="location">
         <Map
           style='mapbox://styles/mapbox/streets-v9'
-          center = {[ this.props.data.center.lat, this.props.data.center.long ]}
+          center = {[ this.props.data.center.long, this.props.data.center.lat ]}
           zoom = {[14]}
           containerStyle={{
             height: '100vh',
@@ -34,7 +34,7 @@ class LocationIndex extends React.Component {
 
           {this.props.data.locations.map(marker =>
             <Marker key={marker._id}
-              coordinates={[marker.coordinates.lat, marker.coordinates.long]}
+              coordinates={[marker.coordinates.long, marker.coordinates.lat]}
               anchor="bottom">
               <img src='https://i.pinimg.com/originals/30/98/49/309849c5815761081926477e5e872f1e.png' width='30px'/>
             </Marker>

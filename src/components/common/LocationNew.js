@@ -10,8 +10,7 @@ class LocationNew extends React.Component {
     this.state = {
       location: {
         coordinates: {},
-        sceneNotes: {},
-        films: []
+        sceneNotes: {}
       },
       film: {
         title: ''
@@ -42,15 +41,16 @@ class LocationNew extends React.Component {
     e.preventDefault()
     axios.post('api/films', this.state.film)
       .then(res => {
-        const films = []
-        films.push(res.data)
         const sceneNotes = {...this.state.location.sceneNotes, film: res.data}
-        const location = {...this.state.location, sceneNotes, films: films}
+        const location = {...this.state.location, sceneNotes, film: res.data}
         this.setState({ location })
+        console.log(this.state.location)
       })
       .then(
+        // console.log(this.state.location)
         axios.post('api/locations', this.state.location)
           .then(res => console.log(res))
+          // .then(() => this.props.history.push('/'))
       )
       .catch(err => console.log(err))
 
