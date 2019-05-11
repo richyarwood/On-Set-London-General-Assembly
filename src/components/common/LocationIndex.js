@@ -11,20 +11,36 @@ class LocationIndex extends React.Component {
         lat: '',
         long: ''
       },
-      activeIndex: true
+      // selected: {}
+      activeIndex: {} // how do I make this global value only affect the single mapped location click
+      // activeIndex: true
     }
-
+    // this.selectItem = this.selectItem.bind(this)
+    // this.renderItem = this.renderItem.bind(this)
     // this.toggleActiveLocation = this.toggleActiveLocation.bind(this)
   }
 
-  toggleActiveLocation() {
+  toggleActiveLocation(){
     const currentState = this.state.activeIndex
-    this.setState({ activeIndex: !currentState})
+    this.setState({ activeIndex: !currentState })
   }
+  //
+  // selectItem(el){
+  //   const selected = this.state.selected
+  //   selected[el] = !selected[el]
+  //   this.setState({selected: selected})
+  // }
+
+  // renderItem(el){
+  // const className = this.state.selected[el] ? null : 'hidden'
+  // const onClick = this.selectItem.bind(this, el)
+  // const onClick={this.toggleActiveLocation.bind(this)}
+  // return <li key={el} className={className} onClick={onClick}>{el}</li>
+  // }
 
   // toggleActiveLocation() {
   //   const currentState = this.state.activeIndex
-  //   this.setState({ activeIndex: !currentState })
+  //   this.setState({ activeIndex: !currentState})
   // }
 
   render() {
@@ -40,6 +56,7 @@ class LocationIndex extends React.Component {
             }
             <div
               onClick={this.toggleActiveLocation.bind(this)}
+              // onClick={this.toggleActiveLocation.bind(this, el)}
               // onClick={() => this.toggleActiveLocation()}
               // onClick={this.toggleActiveLocation}
             >
@@ -51,6 +68,7 @@ class LocationIndex extends React.Component {
                 style={{ backgroundImage: `url(${location.image})` }} >
               </div>
             </div>
+
             {// -----ITEMS ARE VISIBILE ON LOAD AND DISAPPEAR ON CLICK-----
             }
             <div
@@ -63,6 +81,7 @@ class LocationIndex extends React.Component {
                 </div>
               )}
             </div>
+
             {// -----ITEMS ARE NOT VISIBILE ON LOAD AND APPEAR ON CLICK-----
             }
             <div
@@ -84,7 +103,7 @@ class LocationIndex extends React.Component {
                 </div>
               )}
             </div>
-            <hr />
+            <hr className="divider" />
           </div>
         )}
       </div>
