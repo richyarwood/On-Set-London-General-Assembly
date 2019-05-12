@@ -25,7 +25,7 @@ class LocationIndex extends React.Component {
     this.props.data.center.lat = e.target.dataset.lat
     this.props.data.center.long = e.target.dataset.long
 
-    this.setState({ hover: true })
+    this.setState({ hover: !this.state.hover })
     this.setState({ marker: {
       lat: e.target.dataset.lat,
       long: e.target.dataset.long,
