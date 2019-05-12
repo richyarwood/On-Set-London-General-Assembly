@@ -11,43 +11,45 @@ export default class FilmSelect extends React.Component {
       options: null
     }
     this.handleCreate = this.handleCreate.bind(this)
+    this.handleChange = this.handleChange.bind(this)
   }
 
 
   handleCreate(inputValue){
-
     const { options } = this.state
     axios.post('api/films', {title: inputValue})
       .then(res => {
         const newFilm = { value: res.data._id, label: res.data.title }
         this.setState({
-          options: [...options, newFilm]
+          options: [...options, newFilm],
+          label: newFilm.label,
+          value: newFilm.value
         })
       })
   }
 
+  handleChange(e){
+    console.log(this.state)
+    this.props.handleChange(e)
+  }
 
   componentDidMount() {
     axios.get('api/films')
       .then(res => {
-        console.log(res.data)
         films = res.data.map(film => {
           return { value: film._id, label: film.title }
         })
-        console.log(films)
         return films
       })
-      .then(res => this.setState({isLoading: false, options: res}))
+      .then(res => this.setState({isLoading: false, options: res }))
   }
 
   render() {
     return (
       <CreatableSelect
-        isClearable
         onCreateOption={this.handleCreate}
-        onChange={this.props.handleChange}
+        onChange={this.handleChange}
         options={this.state.options}
-        value={this.state.value}
       />
     )
   }

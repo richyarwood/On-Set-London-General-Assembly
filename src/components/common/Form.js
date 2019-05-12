@@ -31,6 +31,7 @@ class Form extends React.Component {
             <div className="control">
               <FilmSelect
                 handleChange={this.props.getExistingFilm}
+                value={this.props.valueSelect}
               />
             </div>
           </div>

@@ -20,14 +20,13 @@ class LocationNew extends React.Component {
   }
 
   getExistingFilm(e){
-    console.log(e.value)
+    console.log('still works')
     axios.get(`/api/films/${e.value}`)
       .then(res => {
         const films = []
         films.push(res.data)
         const location = {...this.state.location, films, sceneNotes: {...this.state.location.sceneNotes, film: res.data}}
         this.setState({ location })
-        console.log(this.state)
       })
   }
 
@@ -46,13 +45,11 @@ class LocationNew extends React.Component {
   handleSubmit(e) {
     e.preventDefault()
     axios.post('api/locations', this.state.location)
-      .then(res => console.log(res))
       .then(() => this.props.history.push('/'))
       .catch(err => console.log(err))
   }
 
   render(){
-    console.log(this.state)
     return(
       <section className="section">
         <div className="container">
