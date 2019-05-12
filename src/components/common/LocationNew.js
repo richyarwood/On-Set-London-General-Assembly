@@ -30,11 +30,11 @@ class LocationNew extends React.Component {
       })
   }
 
+
   handleChange(e){
     let location = this.state.location
     switch(true){
       case (e.name === 'areaOfLondon'):
-        console.log('areaoflondon')
         location = {...this.state.location, [e.name]: e.value}
         break
       case (!!e.target.dataset.coordinates):
@@ -52,9 +52,16 @@ class LocationNew extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault()
-    axios.post('api/locations', this.state.location)
-      .then(() => this.props.history.push('/'))
-      .catch(err => this.setState({errors: err.response.data.errors}))
+    axios.get(`https://cors-anywhere.herokuapp.com/api.mapbox.com/geocoding/v5/mapbox.places/${this.state.location.streetAddress}.json?types=address&proximity=-0.127758,51.507351&limit=1&access_token=${process.env.MAPBOX_API_TOKEN}`)
+      .then(res => {
+        const location = {...this.state.location, coordinates: {long: `${res.data.features[0].center[0]}`, lat: `${res.data.features[0].center[1]}`}}
+        this.setState({ location })
+      })
+      .then(() => {
+        axios.post('api/locations', this.state.location)
+          .then(() => this.props.history.push('/'))
+          .catch(err => this.setState({errors: err.response.data.errors}))
+      })
   }
 
   render(){
@@ -69,6 +76,7 @@ class LocationNew extends React.Component {
               handleSubmit={this.handleSubmit}
               getExistingFilm={this.getExistingFilm}
               errors={this.state.errors}
+              addressLookup={this.addressLookup}
             />
             <div className="column">
             </div>
