@@ -1,7 +1,7 @@
 import React from 'react'
 import FilmSelect from './FilmSelect'
-
-
+import Auth from '../../lib/Auth'
+import { Link } from 'react-router-dom'
 
 class Form extends React.Component {
 
@@ -14,7 +14,14 @@ class Form extends React.Component {
   render(){
     return(
       <div className="column">
-        <form onSubmit={this.props.handleSubmit}>
+        <div className="title is-4">Create a new film location</div>
+        {!Auth.isAuthenticated() &&
+          <div>
+            <p className="content">You need to be logged in to create a new film location</p>
+            <Link to="/login"><p>Log in now</p></Link>
+          </div>
+        }
+        {Auth.isAuthenticated() && <form onSubmit={this.props.handleSubmit}>
           <div className="field">
             <label className="label">Name</label>
             <div className="control">
@@ -115,8 +122,9 @@ class Form extends React.Component {
               />
             </div>
           </div>
-          <button className="button is-info">Submit</button>
+          <button className="button">Submit</button>
         </form>
+        }
       </div>
     )
   }

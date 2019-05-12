@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import axios from 'axios'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
@@ -14,8 +15,8 @@ class Home extends React.Component {
     this.state = {
       locations: null,
       center: {
-        lat: 51.515619,
-        long: -0.070839
+        lat: 51.520119,
+        long: -0.098549
       },
       toggleSidebar: false
     }
@@ -61,9 +62,9 @@ class Home extends React.Component {
         <div className="map">
           <Map data={this.state} />
         </div>
-        <div className="map-plus-icon">
+        <Link to="/new"><div className="map-plus-icon">
           <FontAwesomeIcon icon="plus-circle" size="4x"/>
-        </div>
+        </div></Link>
         <LoginLogout />
       </main>
 
