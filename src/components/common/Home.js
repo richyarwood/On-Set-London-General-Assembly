@@ -50,7 +50,7 @@ class Home extends React.Component {
         <div>
           <div className={`sidebar-wrapper${this.state.toggleSidebar ? ' close': ''}`}>
             <div className="sidebar">
-              <img src="../images/on-set-london-logo.jpg" alt="On Set London movie Location database" />
+              <img src="./images/on-set-london-logo.jpg" alt="On Set London movie Location database" />
               <hr />
               <LocationIndex data={this.state.locations} handleClick={this.handleClick} />
             </div>
