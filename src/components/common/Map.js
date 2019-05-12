@@ -1,8 +1,10 @@
 import React from 'react'
 import ReactMapboxGl, { Marker, Popup } from 'react-mapbox-gl'
 
+const { mapAPI } = require('../../../config/environment')
+
 const Map = ReactMapboxGl({
-  accessToken: process.env.MAPBOX_API_TOKEN
+  accessToken: process.env.MAPBOX_API_TOKEN || mapAPI
 })
 
 class LocationIndex extends React.Component {
