@@ -13,7 +13,6 @@ class LocationIndex extends React.Component {
     super(props)
 
     this.state = {
-      center: this.props.data.center,
       marker: {},
       hover: false
     }
@@ -23,6 +22,9 @@ class LocationIndex extends React.Component {
   }
 
   popUpShow(e){
+    this.props.data.center.lat = e.target.dataset.lat
+    this.props.data.center.long = e.target.dataset.long
+
     this.setState({ hover: true })
     this.setState({ marker: {
       lat: e.target.dataset.lat,
@@ -39,10 +41,11 @@ class LocationIndex extends React.Component {
 
   render() {
     if (!this.props.data) return <h1>Loading...</h1>
+    console.log(this.props.data.center)
     return (
       <div className="location">
         <Map
-          style='mapbox://styles/mapbox/streets-v9'
+          style='mapbox://styles/mapbox/streets-v10'
           center = {[ this.props.data.center.long, this.props.data.center.lat ]}
           zoom = {[14]}
           containerStyle={{
@@ -54,8 +57,7 @@ class LocationIndex extends React.Component {
             <Marker key={marker._id}
               coordinates={[marker.coordinates.long, marker.coordinates.lat]}
               anchor="bottom">
-              <img src='https://i.pinimg.com/originals/30/98/49/309849c5815761081926477e5e872f1e.png' width='30px' onMouseOver={this.popUpShow}
-                onMouseOut={this.popUpHide}
+              <img src='https://i.pinimg.com/originals/30/98/49/309849c5815761081926477e5e872f1e.png' width='30px' onClick={this.popUpShow}
                 data-lat={marker.coordinates.lat}
                 data-long={marker.coordinates.long}
                 data-image={marker.image}

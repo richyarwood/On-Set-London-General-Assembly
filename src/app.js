@@ -9,9 +9,9 @@ import LocationNew from './components/common/LocationNew'
 import { HashRouter as Router, Switch, Route } from 'react-router-dom'
 
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faPlusCircle } from '@fortawesome/free-solid-svg-icons'
+import { faPlusCircle, faTimesCircle } from '@fortawesome/free-solid-svg-icons'
 
-library.add(faPlusCircle)
+library.add(faPlusCircle, faTimesCircle)
 
 import 'bulma'
 

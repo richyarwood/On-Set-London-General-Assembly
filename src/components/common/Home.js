@@ -15,8 +15,8 @@ class Home extends React.Component {
     this.state = {
       locations: null,
       center: {
-        lat: 51.520119,
-        long: -0.098549
+        lat: '51.520119',
+        long: '-0.098549'
       },
       toggleSidebar: false,
       toggleRightBar: false
@@ -70,7 +70,9 @@ class Home extends React.Component {
         <div>
 
           <div className={`right-sidebar-wrapper${this.state.toggleRightBar ? ' open': ''}`}>
-            <button className="button right-bar" onClick={this.toggleRightBar}>Cancel</button>
+            <div className="map-icon cancel" onClick={this.toggleRightBar}>
+              <FontAwesomeIcon icon="times-circle" size="4x"/>
+            </div>
             <div className="sidebar">
               <LocationNew />
             </div>
@@ -79,7 +81,7 @@ class Home extends React.Component {
         <div className="map">
           <Map data={this.state} />
         </div>
-        <div className="map-plus-icon" onClick={this.toggleRightBar}>
+        <div className="map-icon" onClick={this.toggleRightBar}>
           <FontAwesomeIcon icon="plus-circle" size="4x"/>
         </div>
         <LoginLogout />
