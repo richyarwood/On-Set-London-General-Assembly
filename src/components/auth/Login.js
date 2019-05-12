@@ -1,5 +1,6 @@
 import React from 'react'
 import axios from 'axios'
+import { Link } from 'react-router-dom'
 
 import Auth from '../../lib/Auth'
 
@@ -28,18 +29,19 @@ class Login extends React.Component {
     axios.post('/api/login', this.state.data)
       .then(res => {
         Auth.setToken(res.data.token)
+        console.log(res.data.token)
         this.props.history.push('/')
       })
       .catch(() => this.setState({ error: 'Invalid credentials' }))
   }
 
   render() {
-    console.log(this.state)
     return (
       <section className="section">
         <div className="container">
           <div className="columns is-centered">
             <div className="column is-half-desktop is-two-thirds-tablet">
+              <div className="title is-3">Login</div>
               <form onSubmit={this.handleSubmit}>
                 <div className="field">
                   <label className="label">Email</label>
@@ -67,8 +69,11 @@ class Login extends React.Component {
                   {this.state.error && <div className="help is-danger">{this.state.error}</div>}
                 </div>
 
-                <button className="button is-primary">Submit</button>
+                <button className="button">Submit</button>
               </form>
+              <div className="section has-text-centered">
+                <p className="is-size-5">Need an account? <Link to='/register'>Register</Link> now to add a location</p>
+              </div>
             </div>
           </div>
         </div>

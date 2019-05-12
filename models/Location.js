@@ -11,7 +11,8 @@ const londonAreas = [
   'Southeast London',
   'Southwest London',
   'East London',
-  'West London'
+  'West London',
+  'The City of London'
 ]
 
 const locationSchema = new mongoose.Schema({
