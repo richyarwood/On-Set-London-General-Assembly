@@ -6,7 +6,7 @@ class LocationIndex extends React.Component {
     super(props)
 
     this.state = {
-      activeIndex: true // how do I make this global value only affect the single mapped location click
+      activeIndex: '' // how do I make this global value only affect the single mapped location click
     }
     // this.toggleActiveLocation = this.toggleActiveLocation.bind(this)
   }
@@ -17,16 +17,16 @@ class LocationIndex extends React.Component {
     // console.log('currentState INDEX', currentState[index])
 
     // if(currentState[index] === this.props[index]) {
+    // if(currentState[index])
     this.setState({ activeIndex: !currentState })
     console.log('INDEX', index)
     console.log('currentState', currentState)
-    // }
   }
 
 
   render() {
     // console.log('data INDEX', this.state.data)
-    console.log('props INDEX', this.props.data)
+    // console.log('props INDEX', this.props.data)
     if (!this.props) return <h1>Loading...</h1>
     return (
       <div>
@@ -49,7 +49,7 @@ class LocationIndex extends React.Component {
             {// -----ITEMS ARE VISIBILE ON LOAD AND DISAPPEAR ON CLICK-----
             }
             <div
-              className={this.state.activeIndex ? 'null' : 'hidden' }
+              className={this.state.activeIndex ? 'active' : 'hidden' }
               onClick={this.toggleActiveLocation.bind(this, index)}
             >
               {location.films.map(film =>
@@ -62,7 +62,7 @@ class LocationIndex extends React.Component {
             {// -----ITEMS ARE NOT VISIBILE ON LOAD AND APPEAR ON CLICK-----
             }
             <div
-              className={!this.state.activeIndex ? 'null' : 'hidden' }
+              className={!this.state.activeIndex ? 'active' : 'hidden' }
               onClick={this.toggleActiveLocation.bind(this, index)}
             >
               <div className="adress">
