@@ -66,22 +66,16 @@ class LocationNew extends React.Component {
 
   render(){
     return(
-      <section className="section">
-        <div className="container">
-          <div className="columns">
-            <div className="column">
-            </div>
-            <Form
-              handleChange={this.handleChange}
-              handleSubmit={this.handleSubmit}
-              getExistingFilm={this.getExistingFilm}
-              errors={this.state.errors}
-              addressLookup={this.addressLookup}
-            />
-            <div className="column">
-            </div>
-          </div>
-        </div>
+      <section>
+
+        <Form
+          handleChange={this.handleChange}
+          handleSubmit={this.handleSubmit}
+          getExistingFilm={this.getExistingFilm}
+          errors={this.state.errors}
+          addressLookup={this.addressLookup}
+        />
+
       </section>
     )
   }
