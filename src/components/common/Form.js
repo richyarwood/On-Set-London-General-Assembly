@@ -93,35 +93,10 @@ class Form extends React.Component {
                 name="postCode"
                 type="text"
                 placeholder="E1 7PT"
-                onChange={this.props.handleChange}
               />
             </div>
             <div>
               {this.props.errors.postCode &&<div className="help is-danger">{this.props.errors.postCode}</div>}
-            </div>
-          </div>
-          <div className="field">
-            <label className="label">Latitude</label>
-            <div className="control">
-              <input className="input"
-                name="lat"
-                type="text"
-                placeholder="Lat"
-                data-coordinates="coordinates"
-                onChange={this.props.handleChange}
-              />
-            </div>
-          </div>
-          <div className="field">
-            <label className="label">Longitude</label>
-            <div className="control">
-              <input className="input"
-                name="long"
-                type="text"
-                placeholder="Long"
-                data-coordinates="coordinates"
-                onChange={this.props.handleChange}
-              />
             </div>
           </div>
           <div className="field">
@@ -145,3 +120,30 @@ class Form extends React.Component {
 }
 
 export default Form
+
+
+
+// <div className="field">
+//   <label className="label">Latitude</label>
+//   <div className="control">
+//     <input className="input"
+//       name="lat"
+//       type="text"
+//       placeholder="Lat"
+//       data-coordinates="coordinates"
+//       onChange={this.props.handleChange}
+//     />
+//   </div>
+// </div>
+// <div className="field">
+//   <label className="label">Longitude</label>
+//   <div className="control">
+//     <input className="input"
+//       name="long"
+//       type="text"
+//       placeholder="Long"
+//       data-coordinates="coordinates"
+//       onChange={this.props.handleChange}
+//     />
+//   </div>
+// </div>
