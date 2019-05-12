@@ -11,16 +11,9 @@ class LocationIndex extends React.Component {
     // this.toggleActiveLocation = this.toggleActiveLocation.bind(this)
   }
 
-  toggleActiveLocation(index){
+  toggleActiveLocation(){
     const currentState = this.state.activeIndex
-    // currentState[index] = !currentState[index]
-    // console.log('currentState INDEX', currentState[index])
-
-    // if(currentState[index] === this.props[index]) {
-    // if(currentState[index])
     this.setState({ activeIndex: !currentState })
-    console.log('INDEX', index)
-    console.log('currentState', currentState)
   }
 
 
