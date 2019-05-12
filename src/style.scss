@@ -84,7 +84,7 @@ body {
   bottom: 40px;
   right: 40px;
   border-radius: 50%;
-  z-index: 5;
+  z-index: 4;
   background-color: #fff;
   -webkit-box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
   -moz-box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
@@ -152,4 +152,5 @@ body {
   position: fixed;
   top: 40px;
   right: 40px;
+  z-index: 4;
 }
