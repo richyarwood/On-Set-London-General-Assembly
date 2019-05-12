@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const londonAreas = [
+const areasOfLondon = [
   'Central London',
   'North London',
   'North Central London',
@@ -23,29 +23,29 @@ const locationSchema = new mongoose.Schema({
   },
   image: {
     type: String,
-    required: 'Please enter a location name'
+    required: 'Please enter an image'
   },
   areaOfLondon: {
     type: String,
-    required: true,
-    enum: londonAreas
+    required: 'Please select an area of London',
+    enum: areasOfLondon
   },
   streetAddress: {
     type: String,
-    required: 'Please enter a location name'
+    required: 'Please enter street address'
   },
   postCode: {
     type: String,
-    required: 'Please enter a location name'
+    required: 'Please enter postcode'
   },
   coordinates: {
     lat: {
       type: String,
-      unique: 'This location already exists'
+      unique: 'A location with this latitude already exists'
     },
     long: {
       type: String,
-      unique: 'This location already exists'
+      unique: 'A location with this longitude already exists'
     }
   },
   films: [{ type: mongoose.Schema.ObjectId, ref: 'Film' }],

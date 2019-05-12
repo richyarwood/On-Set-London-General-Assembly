@@ -11,7 +11,8 @@ class LocationNew extends React.Component {
       location: {
         coordinates: {},
         sceneNotes: {}
-      }
+      },
+      errors: {}
     }
 
     this.handleChange = this.handleChange.bind(this)
@@ -20,7 +21,6 @@ class LocationNew extends React.Component {
   }
 
   getExistingFilm(e){
-    console.log('still works')
     axios.get(`/api/films/${e.value}`)
       .then(res => {
         const films = []
@@ -32,21 +32,29 @@ class LocationNew extends React.Component {
 
   handleChange(e){
     let location = this.state.location
-    if(e.target.dataset.coordinates) {
-      location = {...this.state.location, coordinates: {...this.state.location.coordinates, [e.target.name]: e.target.value}}
-    } else if(e.target.dataset.sceneNotes) {
-      location = {...this.state.location, sceneNotes: {...this.state.location.sceneNotes, [e.target.name]: e.target.value}}
-    } else {
-      location = {...this.state.location, [e.target.name]: e.target.value}
+    switch(true){
+      case (e.name === 'areaOfLondon'):
+        console.log('areaoflondon')
+        location = {...this.state.location, [e.name]: e.value}
+        break
+      case (!!e.target.dataset.coordinates):
+        location = {...this.state.location, coordinates: {...this.state.location.coordinates, [e.target.name]: e.target.value}}
+        break
+      case (!!e.target.dataset.sceneNotes):
+        location = {...this.state.location, sceneNotes: {...this.state.location.sceneNotes, [e.target.name]: e.target.value}}
+        break
+      default:
+        location = {...this.state.location, [e.target.name]: e.target.value}
     }
     this.setState({ location })
   }
+
 
   handleSubmit(e) {
     e.preventDefault()
     axios.post('api/locations', this.state.location)
       .then(() => this.props.history.push('/'))
-      .catch(err => console.log(err))
+      .catch(err => this.setState({errors: err.response.data.errors}))
   }
 
   render(){
@@ -60,6 +68,7 @@ class LocationNew extends React.Component {
               handleChange={this.handleChange}
               handleSubmit={this.handleSubmit}
               getExistingFilm={this.getExistingFilm}
+              errors={this.state.errors}
             />
             <div className="column">
             </div>

@@ -11,7 +11,6 @@ export default class FilmSelect extends React.Component {
       options: null
     }
     this.handleCreate = this.handleCreate.bind(this)
-    this.handleChange = this.handleChange.bind(this)
   }
 
 
@@ -21,17 +20,11 @@ export default class FilmSelect extends React.Component {
       .then(res => {
         const newFilm = { value: res.data._id, label: res.data.title }
         this.setState({
-          options: [...options, newFilm],
-          label: newFilm.label,
-          value: newFilm.value
+          options: [...options, newFilm]
         })
       })
   }
 
-  handleChange(e){
-    console.log(this.state)
-    this.props.handleChange(e)
-  }
 
   componentDidMount() {
     axios.get('api/films')
@@ -48,7 +41,7 @@ export default class FilmSelect extends React.Component {
     return (
       <CreatableSelect
         onCreateOption={this.handleCreate}
-        onChange={this.handleChange}
+        onChange={this.props.handleChange}
         options={this.state.options}
       />
     )
