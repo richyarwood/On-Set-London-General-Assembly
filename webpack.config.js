@@ -49,9 +49,7 @@ module.exports = {
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
-    new Dotenv({
-      path: path.resolve(__dirname, '.env')
-    }),
+    new Dotenv(),
     new HtmlWebpackPlugin({
       template: 'src/index.html',
       filename: 'index.html',

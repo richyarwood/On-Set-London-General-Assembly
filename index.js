@@ -4,6 +4,8 @@ const mongoose = require('mongoose')
 const routes = require('./config/routes')
 const errorHandler = require('./lib/errorHandler')
 const { port, dbUri } = require('./config/environment')
+require('dotenv').config()
+
 
 const app = express()
 
