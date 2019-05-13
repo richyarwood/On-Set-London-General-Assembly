@@ -6,7 +6,6 @@ import Map from './Map'
 import LocationIndex from './LocationIndex'
 import LoginLogout from './LoginLogout'
 import LocationNew from './LocationNew'
-
 class Home extends React.Component {
 
   constructor(){
@@ -19,8 +18,7 @@ class Home extends React.Component {
         long: '-0.098549'
       },
       toggleSidebar: false,
-      toggleRightBar: false,
-      message: ''
+      toggleRightBar: false
     }
 
     this.handleClick = this.handleClick.bind(this)
@@ -54,7 +52,6 @@ class Home extends React.Component {
 
   render() {
     if (!this.state.locations) return <h1>Loading...</h1>
-    console.log(this.state.toggleRightBar)
     return (
       <main>
         <div>

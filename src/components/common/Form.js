@@ -2,7 +2,7 @@ import React from 'react'
 import FilmSelect from './FilmSelect'
 import Auth from '../../lib/Auth'
 import { Link } from 'react-router-dom'
-import Select from 'react-select/lib/Creatable'
+import Select from 'react-select'
 import areasOfLondon from './areasOfLondon'
 
 class Form extends React.Component {
@@ -41,28 +41,9 @@ class Form extends React.Component {
               {this.props.errors.name &&<div className="help is-danger">{this.props.errors.name}</div>}
             </div>
           </div>
-          <div className="field">
-            <label className="label">Film name</label>
-            <div className="control">
-              <FilmSelect
-                handleChange={this.props.getExistingFilm}
-              />
-            </div>
-          </div>
-          <div className="field">
-            <label className="label">Image</label>
-            <div className="control">
-              <input className="input"
-                name="image"
-                type="text"
-                placeholder="e.g. www.hondo-enterprises.com/the-relay-building-entrance-all.jpg"
-                onChange={this.props.handleChange}
-              />
-            </div>
-            <div>
-              {this.props.errors.image &&<div className="help is-danger">{this.props.errors.image}</div>}
-            </div>
-          </div>
+          <FilmSelect
+            handleChange={this.props.getExistingFilm}
+          />
           <div className="field">
             <label className="label">Area of London</label>
             <Select
@@ -93,10 +74,25 @@ class Form extends React.Component {
                 name="postCode"
                 type="text"
                 placeholder="E1 7PT"
+                onChange={this.props.handleChange}
               />
             </div>
             <div>
               {this.props.errors.postCode &&<div className="help is-danger">{this.props.errors.postCode}</div>}
+            </div>
+          </div>
+          <div className="field">
+            <label className="label">Image</label>
+            <div className="control">
+              <input className="input"
+                name="image"
+                type="text"
+                placeholder="e.g. www.hondo-enterprises.com/the-relay-building-entrance-all.jpg"
+                onChange={this.props.handleChange}
+              />
+            </div>
+            <div>
+              {this.props.errors.image &&<div className="help is-danger">{this.props.errors.image}</div>}
             </div>
           </div>
           <div className="field">
@@ -120,30 +116,3 @@ class Form extends React.Component {
 }
 
 export default Form
-
-
-
-// <div className="field">
-//   <label className="label">Latitude</label>
-//   <div className="control">
-//     <input className="input"
-//       name="lat"
-//       type="text"
-//       placeholder="Lat"
-//       data-coordinates="coordinates"
-//       onChange={this.props.handleChange}
-//     />
-//   </div>
-// </div>
-// <div className="field">
-//   <label className="label">Longitude</label>
-//   <div className="control">
-//     <input className="input"
-//       name="long"
-//       type="text"
-//       placeholder="Long"
-//       data-coordinates="coordinates"
-//       onChange={this.props.handleChange}
-//     />
-//   </div>
-// </div>
