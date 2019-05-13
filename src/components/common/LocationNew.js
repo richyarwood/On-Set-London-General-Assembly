@@ -92,6 +92,7 @@ class LocationNew extends React.Component {
           getExistingFilm={this.getExistingFilm}
           errors={this.state.errors}
           addressLookup={this.addressLookup}
+          newFilm={this.state.newFilm}
         />
 
         {this.state.message && <div className="notification is-success">{this.state.message}</div>}

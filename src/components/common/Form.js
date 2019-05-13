@@ -41,28 +41,9 @@ class Form extends React.Component {
               {this.props.errors.name &&<div className="help is-danger">{this.props.errors.name}</div>}
             </div>
           </div>
-          <div className="field">
-            <label className="label">Film name</label>
-            <div className="control">
-              <FilmSelect
-                handleChange={this.props.getExistingFilm}
-              />
-            </div>
-          </div>
-          <div className="field">
-            <label className="label">Image</label>
-            <div className="control">
-              <input className="input"
-                name="image"
-                type="text"
-                placeholder="e.g. www.hondo-enterprises.com/the-relay-building-entrance-all.jpg"
-                onChange={this.props.handleChange}
-              />
-            </div>
-            <div>
-              {this.props.errors.image &&<div className="help is-danger">{this.props.errors.image}</div>}
-            </div>
-          </div>
+          <FilmSelect
+            handleChange={this.props.getExistingFilm}
+          />
           <div className="field">
             <label className="label">Area of London</label>
             <Select
@@ -98,6 +79,20 @@ class Form extends React.Component {
             </div>
             <div>
               {this.props.errors.postCode &&<div className="help is-danger">{this.props.errors.postCode}</div>}
+            </div>
+          </div>
+          <div className="field">
+            <label className="label">Image</label>
+            <div className="control">
+              <input className="input"
+                name="image"
+                type="text"
+                placeholder="e.g. www.hondo-enterprises.com/the-relay-building-entrance-all.jpg"
+                onChange={this.props.handleChange}
+              />
+            </div>
+            <div>
+              {this.props.errors.image &&<div className="help is-danger">{this.props.errors.image}</div>}
             </div>
           </div>
           <div className="field">
