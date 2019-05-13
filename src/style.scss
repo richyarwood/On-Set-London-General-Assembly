@@ -61,7 +61,8 @@ body {
 
 .togglewrapper {
   opacity: 1;
-  display: block;
+  display: flex;
+  align-items: center;
   position: absolute;
   top: 0;
   left: 100%;
@@ -73,12 +74,12 @@ body {
 
 .togglebutton {
   position: absolute;
-  width: 25px;
+  width: 35px;
   height: 50px;
   background-color: #fff;
   top: 8px;
   left: 100%;
-  padding: 10px;
+  padding: 12px 10px 10px 10px;
 }
 
 .location-image {

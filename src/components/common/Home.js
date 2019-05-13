@@ -62,7 +62,7 @@ class Home extends React.Component {
               <LocationIndex data={this.state.locations} handleClick={this.handleClick} />
             </div>
             <div className="togglewrapper">
-              <a role="button" className="togglebutton" onClick={this.toggleSidebarClick}>x</a>
+              <div className="togglebutton" onClick={this.toggleSidebarClick}><FontAwesomeIcon icon="exchange-alt" size="1x"/></div>
             </div>
           </div>
         </div>
