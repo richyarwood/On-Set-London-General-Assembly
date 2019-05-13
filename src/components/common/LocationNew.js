@@ -4,8 +4,8 @@ import axios from 'axios'
 
 class LocationNew extends React.Component {
 
-  constructor(){
-    super()
+  constructor(props){
+    super(props)
 
     this.state = {
       location: {
@@ -37,9 +37,6 @@ class LocationNew extends React.Component {
       case (e.name === 'areaOfLondon'):
         location = {...this.state.location, [e.name]: e.value}
         break
-      case (!!e.target.dataset.coordinates):
-        location = {...this.state.location, coordinates: {...this.state.location.coordinates, [e.target.name]: e.target.value}}
-        break
       case (!!e.target.dataset.sceneNotes):
         location = {...this.state.location, sceneNotes: {...this.state.location.sceneNotes, [e.target.name]: e.target.value}}
         break
@@ -66,8 +63,8 @@ class LocationNew extends React.Component {
       })
       .then(() => {
         axios.post('api/locations', this.state.location)
-          .then(() => this.props.history.push('/'))
-          .catch(err => this.setState({errors: err.response.data.errors}))
+          .then(res => console.log(res))
+          .catch(err => console.log(err))
       })
   }
 
