@@ -15,10 +15,11 @@ export default class FilmSelect extends React.Component {
   }
 
 
+
   handleCreate(inputValue){
     const token = Auth.getToken()
     const { options } = this.state
-    axios.post('api/films', {title: inputValue},  {
+    axios.post('/api/films', {title: inputValue},  {
       headers: { 'Authorization': `Bearer ${token}` }
     })
       .then(res => {
@@ -31,8 +32,16 @@ export default class FilmSelect extends React.Component {
   }
 
 
+  handleInputChange(inputValue){
+    console.log(inputValue, 'input')
+    console.log(this.state.selectedFilm, 'value')
+    this.setState({selectedFilm: inputValue })
+    console.log(this.state.selectedFilm, 'value')
+  }
+
+
   componentDidMount() {
-    axios.get('api/films')
+    axios.get('/api/films')
       .then(res => {
         films = res.data.map(film => {
           return { value: film._id, label: film.title }
@@ -47,7 +56,7 @@ export default class FilmSelect extends React.Component {
     return (
       <div>
         <div className="field">
-          <label className="label">Film name</label>
+          <label className="label">Film title</label>
           <div className="control">
             <CreatableSelect
               onCreateOption={this.handleCreate}
@@ -56,17 +65,19 @@ export default class FilmSelect extends React.Component {
             />
           </div>
         </div>
-        {this.state.newFilm && <div className="field">
+        {this.state.newFilm &&
+        <div className="field">
           <label className="label">Film image</label>
           <div className="control">
             <input className="input"
               name="filmImage"
               type="text"
               placeholder="e.g. www.hondo-enterprises.com/the-relay-building-entrance-all.jpg"
-              onChange={this.props.handleChange}
+              onChange={this.handleFilmImage}
             />
           </div>
-        </div>}
+        </div>
+        }
       </div>
     )
   }
