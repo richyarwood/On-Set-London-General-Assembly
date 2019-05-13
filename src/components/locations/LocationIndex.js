@@ -48,7 +48,7 @@ class LocationIndex extends React.Component {
             }
             <div
               className={`locationShow${this.state.activeLocation !== location ? '' : ' show' }`}>
-              <hr />
+
               <div className="subtitle is-size-6">Films and notes</div>
               {location.sceneNotes.map(note =>
                 <div key={note._id} className="note-wrapper">
