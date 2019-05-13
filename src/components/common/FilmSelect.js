@@ -15,10 +15,11 @@ export default class FilmSelect extends React.Component {
   }
 
 
+
   handleCreate(inputValue){
     const token = Auth.getToken()
     const { options } = this.state
-    axios.post('api/films', {title: inputValue},  {
+    axios.post('/api/films', {title: inputValue},  {
       headers: { 'Authorization': `Bearer ${token}` }
     })
       .then(res => {
@@ -32,7 +33,7 @@ export default class FilmSelect extends React.Component {
 
 
   componentDidMount() {
-    axios.get('api/films')
+    axios.get('/api/films')
       .then(res => {
         films = res.data.map(film => {
           return { value: film._id, label: film.title }
@@ -63,7 +64,7 @@ export default class FilmSelect extends React.Component {
               name="filmImage"
               type="text"
               placeholder="e.g. www.hondo-enterprises.com/the-relay-building-entrance-all.jpg"
-              onChange={this.props.handleChange}
+              onChange={this.handleFilmImage}
             />
           </div>
         </div>}
