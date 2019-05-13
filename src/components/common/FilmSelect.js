@@ -31,6 +31,14 @@ export default class FilmSelect extends React.Component {
   }
 
 
+  handleInputChange(inputValue){
+    console.log(inputValue, 'input')
+    console.log(this.state.selectedFilm, 'value')
+    this.setState({selectedFilm: inputValue })
+    console.log(this.state.selectedFilm, 'value')
+  }
+
+
   componentDidMount() {
     axios.get('api/films')
       .then(res => {
@@ -47,7 +55,7 @@ export default class FilmSelect extends React.Component {
     return (
       <div>
         <div className="field">
-          <label className="label">Film name</label>
+          <label className="label">Film title</label>
           <div className="control">
             <CreatableSelect
               onCreateOption={this.handleCreate}
@@ -56,7 +64,8 @@ export default class FilmSelect extends React.Component {
             />
           </div>
         </div>
-        {this.state.newFilm && <div className="field">
+        {this.state.newFilm &&
+        <div className="field">
           <label className="label">Film image</label>
           <div className="control">
             <input className="input"
@@ -66,7 +75,8 @@ export default class FilmSelect extends React.Component {
               onChange={this.props.handleChange}
             />
           </div>
-        </div>}
+        </div>
+        }
       </div>
     )
   }

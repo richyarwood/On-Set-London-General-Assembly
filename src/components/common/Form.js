@@ -47,7 +47,6 @@ class Form extends React.Component {
           <div className="field">
             <label className="label">Area of London</label>
             <Select
-              defaultValue={areasOfLondon[0]}
               options={areasOfLondon}
               name="areaOfLondon"
               onChange={this.props.handleChange}
