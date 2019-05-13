@@ -64,7 +64,7 @@ class LocationNew extends React.Component {
       .then(() => {
         axios.post('api/locations', this.state.location)
           .then(res => {
-            this.props.toggleSidebar(res.data)
+            this.props.toggleRightBar(res.data.message)
           })
           .catch(err => console.log(err))
       })

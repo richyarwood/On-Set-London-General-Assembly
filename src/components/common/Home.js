@@ -20,7 +20,7 @@ class Home extends React.Component {
       },
       toggleSidebar: false,
       toggleRightBar: false,
-      formMessage: ''
+      message: ''
     }
 
     this.handleClick = this.handleClick.bind(this)
@@ -41,13 +41,15 @@ class Home extends React.Component {
     this.toggleSidebarClick = this.toggleSidebarClick.bind(this)
   }
 
-  toggleSidebarClick(message){
+  toggleSidebarClick(){
     console.log('clicked')
-    this.setState({ toggleSidebar: !this.state.toggleSidebar, formMessage: message })
+    this.setState({ toggleSidebar: !this.state.toggleSidebar})
   }
 
-  toggleRightBar() {
-    this.setState({ toggleRightBar: !this.state.toggleRightBar })
+  toggleRightBar(message) {
+    console.log(message)
+    this.setState({ toggleRightBar: !this.state.toggleRightBar, message: message })
+    console.log(this.state.message)
   }
 
   render() {
@@ -75,7 +77,8 @@ class Home extends React.Component {
               <FontAwesomeIcon icon="times-circle" size="4x"/>
             </div>
             <div className="sidebar">
-              <LocationNew />
+              <LocationNew
+                toggleRightBar={this.toggleRightBar}/>
             </div>
           </div>
         </div>
