@@ -77,8 +77,7 @@ mongoose.connect(dbUri, (err, db) => {
         }
       ])
         .then(films => {
-
-<<<<<<< HEAD
+          
       const [ theElephantMan, laraCroft, vForVendetta, lawrenceOfArabia, greatExpectations, theWorldIsNotEnough, harryPotterPS, blackWindmill, earthCaughtFire, manTooMuch, fourWeddings, bDiary, eastEast, goldenEye, theSaint ] = films
 
       return Location.create([{
