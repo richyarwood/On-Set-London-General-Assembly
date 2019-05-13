@@ -25,7 +25,8 @@ const userSchema = new mongoose.Schema({
       delete json.__v
       return json
     }
-  }
+  },
+  toObject: { virtuals: true }
 })
 
 
@@ -38,11 +39,11 @@ userSchema.virtual('locations', {
   ref: 'Location'
 })
 
-userSchema.virtual('films', {
-  localField: '_id',
-  foreignField: 'createdBy',
-  ref: 'Film'
-})
+// userSchema.virtual('films', {
+//   localField: '_id',
+//   foreignField: 'createdBy',
+//   ref: 'Film'
+// })
 
 userSchema.virtual('passwordConfirmation')
   .set(function setPasswordConfirmation(plaintext) {

@@ -9,6 +9,10 @@ const filmSchema = new mongoose.Schema({
   },
   image: {
     type: String
+  },
+  createdBy: {
+    type: mongoose.Schema.ObjectId,
+    ref: 'User'
   }
 })
 
