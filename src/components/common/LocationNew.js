@@ -62,7 +62,7 @@ class LocationNew extends React.Component {
       }
     })
       .then(res => {
-        const location = {...this.state.location, coordinates: {long: `${res.data.features[0].center[0]}`, lat: `${res.data.features[0].center[1]}`}}
+        const location = {...this.state.location, coordinates: {lng: `${res.data.features[0].center[0]}`, lat: `${res.data.features[0].center[1]}`}}
         this.setState({ location })
       })
       .then(() => {

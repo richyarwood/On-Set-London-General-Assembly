@@ -21,27 +21,15 @@ class LocationIndex extends React.Component {
     this.popUpHide = this.popUpHide.bind(this)
   }
 
-  popUpShow(e){
-    this.props.data.center.lat = e.target.dataset.lat
-    this.props.data.center.long = e.target.dataset.long
-
-    this.setState({ markerClick: !this.state.markerClick })
-    this.setState({ marker: {
-      lat: e.target.dataset.lat,
-      long: e.target.dataset.long,
-      image: e.target.dataset.image,
-      name: e.target.dataset.name,
-      address: e.target.dataset.address,
-      films: e.target.dataset.films
-    }})
+  popUpShow(marker){
+    this.setState({ marker, markerClick: !this.state.markerClick })
   }
 
   popUpHide(){
     this.setState({ markerClick: false})
   }
   getFilms(films){
-    const allFilms = films.map(film => film.title)
-    return allFilms.slice(0,1)
+    return films.map(film => film.title).slice(0,2)
   }
 
   render() {
@@ -50,8 +38,8 @@ class LocationIndex extends React.Component {
       <div className="location">
         <Map
           style='mapbox://styles/mapbox/streets-v10'
-          center = {[ this.props.data.center.long, this.props.data.center.lat ]}
-          zoom = {[14]}
+          center={this.props.data.center}
+          zoom={[15]}
           containerStyle={{
             height: '100vh',
             width: '100vw'
@@ -59,21 +47,21 @@ class LocationIndex extends React.Component {
 
           {this.props.data.locations.map(marker =>
             <Marker key={marker._id}
-              coordinates={[marker.coordinates.long, marker.coordinates.lat]}
+              coordinates={[marker.coordinates.lng, marker.coordinates.lat]}
               anchor="bottom">
-              <img src='/images/marker-icon.png' width='30px' onClick={this.popUpShow}
-                data-lat={marker.coordinates.lat}
-                data-long={marker.coordinates.long}
-                data-image={marker.image}
-                data-name={marker.name}
-                data-address={marker.streetAddress}
-                data-films={this.getFilms(marker.films)}
+              <img
+                src='/images/marker-icon.png'
+                width='30px' onClick={() => this.popUpShow(marker)}
               />
             </Marker>
           )}
 
           {this.state.markerClick && <Popup
-            coordinates={[this.state.marker.long, this.state.marker.lat]}
+            coordinates={[
+              this.state.marker.coordinates.lng,
+              this.state.marker.coordinates.lat
+            ]}
+            onClick={() => this.props.scrollLocationOnMarkerClick(this.state.marker._id)}
             assName="marker-popup"
             offset={{
               'bottom-left': [20, -38],  'bottom': [0, -38], 'bottom-right': [-20, -38]
@@ -84,7 +72,10 @@ class LocationIndex extends React.Component {
               <div>
                 <div className="pop-up-title is-size-6"><strong>{this.state.marker.name}</strong></div>
                 <div className="pop-up-films"><strong>Films: </strong>
-                  {this.state.marker.films}
+                  <ul>
+                    <li>{this.getFilms(this.state.marker.films)[0]}</li>
+                    <li>{this.getFilms(this.state.marker.films)[1]}</li>
+                  </ul>
                 </div>
               </div>
 

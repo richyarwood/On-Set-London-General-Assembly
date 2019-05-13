@@ -15,7 +15,7 @@ class Home extends React.Component {
       locations: null,
       center: {
         lat: '51.520119',
-        long: '-0.098549'
+        lng: '-0.098549'
       },
       toggleSidebar: false,
       toggleRightBar: false
@@ -34,8 +34,8 @@ class Home extends React.Component {
 
   handleClick(e){
     const lat = e.target.dataset.lat
-    const long = e.target.dataset.long
-    this.setState( { center: { lat: lat, long: long } } )
+    const lng = e.target.dataset.lng
+    this.setState( { center: { lat: lat, lng: lng } } )
     this.toggleSidebarClick = this.toggleSidebarClick.bind(this)
   }
 
@@ -50,19 +50,34 @@ class Home extends React.Component {
     console.log(this.state.message)
   }
 
+  scrollLocationOnMarkerClick(locationId){
+    document.getElementById(locationId)
+      .scrollIntoView({ behavior: 'smooth', block: 'start' })
+  }
+
   render() {
     if (!this.state.locations) return <h1>Loading...</h1>
     return (
       <main>
         <div>
-          <div className={`sidebar-wrapper${this.state.toggleSidebar ? ' close': ''}`}>
+          <div
+            className={`sidebar-wrapper${this.state.toggleSidebar ? ' close': ''}`}
+          >
             <div className="sidebar">
               <img src="/images/on-set-london-logo.jpg" alt="On Set London movie Location database" />
               <hr />
-              <LocationIndex data={this.state.locations} handleClick={this.handleClick} />
+              <LocationIndex
+                data={this.state.locations}
+                handleClick={this.handleClick}
+              />
             </div>
             <div className="togglewrapper">
-              <div className="togglebutton" onClick={this.toggleSidebarClick}><FontAwesomeIcon icon="exchange-alt" size="1x"/></div>
+              <div
+                className="togglebutton"
+                onClick={this.toggleSidebarClick}
+              >
+                <FontAwesomeIcon icon="exchange-alt" size="1x"/>
+              </div>
             </div>
           </div>
         </div>
@@ -75,12 +90,16 @@ class Home extends React.Component {
             </div>
             <div className="sidebar">
               <LocationNew
-                toggleRightBar={this.toggleRightBar}/>
+                toggleRightBar={this.toggleRightBar}
+              />
             </div>
           </div>
         </div>
         <div className="map">
-          <Map data={this.state} />
+          <Map
+            data={this.state}
+            scrollLocationOnMarkerClick={this.scrollLocationOnMarkerClick}
+          />
         </div>
         <div className="map-icon" onClick={this.toggleRightBar}>
           <FontAwesomeIcon icon="plus-circle" size="4x"/>

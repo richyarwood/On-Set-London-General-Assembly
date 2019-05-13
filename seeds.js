@@ -40,7 +40,7 @@ mongoose.connect(dbUri, (err, db) => {
         image: 'https://cdn.networkrail.co.uk/wp-content/uploads/2017/04/Liverpool-street-station.jpg',
         coordinates: {
           lat: '51.523350',
-          long: '-0.077440'
+          lng: '-0.077440'
         },
         films: [theElephantMan],
         areaOfLondon: 'East London',
@@ -55,7 +55,7 @@ mongoose.connect(dbUri, (err, db) => {
         image: 'https://www.movie-locations.com/movies/h/Harry-Potter-1-Leaky-Cauldron.jpg',
         coordinates: {
           lat: '51.512490',
-          long: '-0.084150'
+          lng: '-0.084150'
         },
         films: [harryPotterPS],
         areaOfLondon: 'The City of London',
@@ -70,7 +70,7 @@ mongoose.connect(dbUri, (err, db) => {
         image: 'https://media.timeout.com/images/72169/630/472/image.jpg',
         coordinates: {
           lat: '51.512840',
-          long: '-0.083720'
+          lng: '-0.083720'
         },
         films: [laraCroft],
         areaOfLondon: 'The City of London',
@@ -85,7 +85,7 @@ mongoose.connect(dbUri, (err, db) => {
         image: 'https://upload.wikimedia.org/wikipedia/commons/0/01/SIS_building_%2826327425611%29.jpg',
         coordinates: {
           lat: '51.490760',
-          long: '-0.122460'
+          lng: '-0.122460'
         },
         films: [theWorldIsNotEnough],
         areaOfLondon: 'East London',
@@ -100,7 +100,7 @@ mongoose.connect(dbUri, (err, db) => {
         image: 'https://blog.londonpass.com/wp-content/uploads/2017/03/st-pauls-facts-3.jpg',
         coordinates: {
           lat: '51.513704',
-          long: '-0.098399'
+          lng: '-0.098399'
         },
         films: [lawrenceOfArabia, greatExpectations],
         areaOfLondon: 'The City of London',
@@ -120,7 +120,7 @@ mongoose.connect(dbUri, (err, db) => {
         image: 'https://www.barleystudio.co.uk/wp-content/uploads/2018/01/oldbailey1.jpg',
         coordinates: {
           lat: '51.515483',
-          long: '-0.101822'
+          lng: '-0.101822'
         },
         films: [vForVendetta],
         areaOfLondon: 'The City of London',

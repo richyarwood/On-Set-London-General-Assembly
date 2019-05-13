@@ -10,7 +10,7 @@ class LocationShow extends React.Component {
       locations: [],
       center: {
         lat: -0.070839,
-        long: 51.515619
+        lng: 51.515619
       }
     }
 
@@ -19,7 +19,7 @@ class LocationShow extends React.Component {
 
   handleClick(e){
     const data = e.target.id.split(',')
-    this.setState( { center: { lat: data[0], long: data[1] } } )
+    this.setState( { center: { lat: data[0], lng: data[1] } } )
   }
 
   render() {
@@ -29,7 +29,7 @@ class LocationShow extends React.Component {
           <div key={location.id}>
             <div className="title is-1">{location.name}</div>
             <div className="location-image"
-              id={[location.coordinates.lat, location.coordinates.long]}
+              id={[location.coordinates.lat, location.coordinates.lng]}
               style={{ backgroundImage: `url(${location.image})` }} onClick={this.handleClick}>
             </div>
             {location.films.map(film =>

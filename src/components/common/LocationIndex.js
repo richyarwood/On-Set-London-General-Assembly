@@ -15,14 +15,12 @@ class LocationIndex extends React.Component {
     else this.setState({ activeLocation: location })
   }
 
-
   render() {
     if (!this.props) return <h1>Loading...</h1>
-    console.log(this.props.data)
     return (
       <div>
         {this.props.data.map(location =>
-          <div key={location._id} >
+          <div key={location._id} id={location._id}>
             {// -----ITEMS ARE ALWAYS VISIBILE-----}
             }
             <div
@@ -32,7 +30,7 @@ class LocationIndex extends React.Component {
               <div className="subtitle is-6">{location.areaOfLondon}</div>
               <div className="location-image"
                 data-lat={location.coordinates.lat}
-                data-long={location.coordinates.long}
+                data-lng={location.coordinates.lng}
                 onClick={this.props.handleClick}
                 style={{ backgroundImage: `url(${location.image})` }} >
               </div>
