@@ -1,6 +1,8 @@
 $primary-color: #0d47a1;
-$button-hover-color: #1565c0;
+$plus-button-hover-color: #1565c0;
 $secondary-color: #9E9E9E;
+$tertiarycolor: #d50000;
+$close-button-hover-color: #ff5131;
 
 body {
   margin: 0;
@@ -24,10 +26,24 @@ body {
   }
 }
 
-.sidebar {
+.right-sidebar-wrapper {
   position: absolute;
   top: 0;
-  left: 0;
+  right: -500px;
+  height: 100%;
+  width: 400px;
+  z-index: 6;
+  transform: translateX(0px);
+  transition-property: -webkit-transform,transform,opacity;
+  transition-duration: 0.2s;
+  transition-timing-function: cubic-bezier(0.0,0.0,0.2,1);
+
+  &.open {
+    transform: translateX(-500px);
+  }
+}
+
+.sidebar {
   width: 100%;
   height: 100%;
   padding: 30px;
@@ -77,7 +93,7 @@ body {
   font-size: 14px;
 }
 
-.map-plus-icon {
+.map-icon {
   position: fixed;
   display: block;
   bottom: 40px;
@@ -95,13 +111,31 @@ body {
     -moz-box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
     box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
   }
+
+  &.cancel {
+    position: absolute;
+    bottom: 30px;
+    right: 100%;
+    z-index: 4;
+    display: block;
+    margin-right: 10px;
+  }
 }
 
 .fa-plus-circle {
   color: $primary-color;
 
   :hover {
-    color: $button-hover-color;
+    color: $plus-button-hover-color;
+  }
+
+}
+
+.fa-times-circle {
+  color: $tertiarycolor;
+
+  :hover {
+    color: $close-button-hover-color;
   }
 
 }
@@ -132,7 +166,7 @@ body {
 
   &:hover {
     color: #fff;
-    background-color: $button-hover-color;
+    background-color: $plus-button-hover-color;
     -webkit-box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
     -moz-box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
     box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);

@@ -4,14 +4,15 @@ import axios from 'axios'
 
 class LocationNew extends React.Component {
 
-  constructor(){
-    super()
+  constructor(props){
+    super(props)
 
     this.state = {
       location: {
         coordinates: {},
         sceneNotes: {}
-      }
+      },
+      errors: {}
     }
 
     this.handleChange = this.handleChange.bind(this)
@@ -20,54 +21,65 @@ class LocationNew extends React.Component {
   }
 
   getExistingFilm(e){
-    console.log(e.value)
     axios.get(`/api/films/${e.value}`)
       .then(res => {
         const films = []
         films.push(res.data)
         const location = {...this.state.location, films, sceneNotes: {...this.state.location.sceneNotes, film: res.data}}
         this.setState({ location })
-        console.log(this.state)
       })
   }
 
+
   handleChange(e){
     let location = this.state.location
-    if(e.target.dataset.coordinates) {
-      location = {...this.state.location, coordinates: {...this.state.location.coordinates, [e.target.name]: e.target.value}}
-    } else if(e.target.dataset.sceneNotes) {
-      location = {...this.state.location, sceneNotes: {...this.state.location.sceneNotes, [e.target.name]: e.target.value}}
-    } else {
-      location = {...this.state.location, [e.target.name]: e.target.value}
+    switch(true){
+      case (e.name === 'areaOfLondon'):
+        location = {...this.state.location, [e.name]: e.value}
+        break
+      case (!!e.target.dataset.sceneNotes):
+        location = {...this.state.location, sceneNotes: {...this.state.location.sceneNotes, [e.target.name]: e.target.value}}
+        break
+      default:
+        location = {...this.state.location, [e.target.name]: e.target.value}
     }
     this.setState({ location })
   }
 
+
   handleSubmit(e) {
     e.preventDefault()
-    axios.post('api/locations', this.state.location)
-      .then(res => console.log(res))
-      .then(() => this.props.history.push('/'))
-      .catch(err => console.log(err))
+    axios.get(`https://cors-anywhere.herokuapp.com/api.mapbox.com/geocoding/v5/mapbox.places/${this.state.location.streetAddress}.json`, {
+      params: {
+        types: 'address',
+        proximity: '-0.127758,51.507351',
+        limit: 1,
+        access_token: process.env.MAPBOX_API_TOKEN
+      }
+    })
+      .then(res => {
+        const location = {...this.state.location, coordinates: {long: `${res.data.features[0].center[0]}`, lat: `${res.data.features[0].center[1]}`}}
+        this.setState({ location })
+      })
+      .then(() => {
+        axios.post('api/locations', this.state.location)
+          .then(res => console.log(res))
+          .catch(err => console.log(err))
+      })
   }
 
   render(){
-    console.log(this.state)
     return(
-      <section className="section">
-        <div className="container">
-          <div className="columns">
-            <div className="column">
-            </div>
-            <Form
-              handleChange={this.handleChange}
-              handleSubmit={this.handleSubmit}
-              getExistingFilm={this.getExistingFilm}
-            />
-            <div className="column">
-            </div>
-          </div>
-        </div>
+      <section>
+
+        <Form
+          handleChange={this.handleChange}
+          handleSubmit={this.handleSubmit}
+          getExistingFilm={this.getExistingFilm}
+          errors={this.state.errors}
+          addressLookup={this.addressLookup}
+        />
+
       </section>
     )
   }

@@ -15,7 +15,6 @@ export default class FilmSelect extends React.Component {
 
 
   handleCreate(inputValue){
-
     const { options } = this.state
     axios.post('api/films', {title: inputValue})
       .then(res => {
@@ -30,24 +29,21 @@ export default class FilmSelect extends React.Component {
   componentDidMount() {
     axios.get('api/films')
       .then(res => {
-        console.log(res.data)
         films = res.data.map(film => {
           return { value: film._id, label: film.title }
         })
-        console.log(films)
         return films
+        // return  films.sort
       })
-      .then(res => this.setState({isLoading: false, options: res}))
+      .then(res => this.setState({isLoading: false, options: res }))
   }
 
   render() {
     return (
       <CreatableSelect
-        isClearable
         onCreateOption={this.handleCreate}
         onChange={this.props.handleChange}
         options={this.state.options}
-        value={this.state.value}
       />
     )
   }
