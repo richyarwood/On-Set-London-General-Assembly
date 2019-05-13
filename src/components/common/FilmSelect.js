@@ -1,7 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import CreatableSelect from 'react-select/lib/Creatable'
-
+import Auth from '../../lib/Auth'
 let films = []
 
 export default class FilmSelect extends React.Component {
@@ -15,8 +15,12 @@ export default class FilmSelect extends React.Component {
 
 
   handleCreate(inputValue){
+    const token = Auth.getToken()
+    console.log(token)
     const { options } = this.state
-    axios.post('api/films', {title: inputValue})
+    axios.post('api/films', {title: inputValue},  {
+      headers: { 'Authorization': `Bearer ${token}` }
+    })
       .then(res => {
         const newFilm = { value: res.data._id, label: res.data.title }
         this.setState({

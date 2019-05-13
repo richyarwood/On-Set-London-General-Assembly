@@ -1,6 +1,7 @@
 import React from 'react'
 import Form from './Form'
 import axios from 'axios'
+import Auth from '../../lib/Auth'
 
 class LocationNew extends React.Component {
 
@@ -49,6 +50,7 @@ class LocationNew extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault()
+    const token = Auth.getToken()
     axios.get(`https://cors-anywhere.herokuapp.com/api.mapbox.com/geocoding/v5/mapbox.places/${this.state.location.streetAddress}.json`, {
       params: {
         types: 'address',
@@ -62,13 +64,19 @@ class LocationNew extends React.Component {
         this.setState({ location })
       })
       .then(() => {
-        axios.post('api/locations', this.state.location)
-          .then(res => console.log(res))
+        console.log(token)
+        axios.post('api/locations', this.state.location, {
+          headers: { 'Authorization': `Bearer ${token}` }
+        })
+          .then(res => {
+            this.props.toggleRightBar(res.data.message)
+          })
           .catch(err => console.log(err))
       })
   }
 
   render(){
+    if(this.state.messages === 'Sucess') return <h2>{this.state.messages}</h2>
     return(
       <section>
 
