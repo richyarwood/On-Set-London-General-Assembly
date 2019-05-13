@@ -1,11 +1,9 @@
 const mongoose = require('mongoose')
 const Film = require('./models/Film')
 const Location = require('./models/Location')
+const { dbUri } = require('./config/environment')
 
-
-
-
-mongoose.connect('mongodb://localhost:27017/on-set-london', (err, db) => {
+mongoose.connect(dbUri, (err, db) => {
 
   db.dropDatabase()
     .then(() => {

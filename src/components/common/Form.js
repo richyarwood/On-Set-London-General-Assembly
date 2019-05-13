@@ -93,7 +93,6 @@ class Form extends React.Component {
                 name="postCode"
                 type="text"
                 placeholder="E1 7PT"
-                onChange={this.props.handleChange}
               />
             </div>
             <div>
@@ -101,36 +100,12 @@ class Form extends React.Component {
             </div>
           </div>
           <div className="field">
-            <label className="label">Latitude</label>
-            <div className="control">
-              <input className="input"
-                name="lat"
-                type="text"
-                placeholder="Lat"
-                data-coordinates="coordinates"
-                onChange={this.props.handleChange}
-              />
-            </div>
-          </div>
-          <div className="field">
-            <label className="label">Longitude</label>
-            <div className="control">
-              <input className="input"
-                name="long"
-                type="text"
-                placeholder="Long"
-                data-coordinates="coordinates"
-                onChange={this.props.handleChange}
-              />
-            </div>
-          </div>
-          <div className="field">
             <label className="label">Scene Notes</label>
             <div className="control">
               <input className="input"
                 name="text"
-                type="text"
-                placeholder="text"
+                type="textarea"
+                placeholder="Add scene notes..."
                 data-scene-notes="text"
                 onChange={this.props.handleChange}
               />
@@ -145,3 +120,30 @@ class Form extends React.Component {
 }
 
 export default Form
+
+
+
+// <div className="field">
+//   <label className="label">Latitude</label>
+//   <div className="control">
+//     <input className="input"
+//       name="lat"
+//       type="text"
+//       placeholder="Lat"
+//       data-coordinates="coordinates"
+//       onChange={this.props.handleChange}
+//     />
+//   </div>
+// </div>
+// <div className="field">
+//   <label className="label">Longitude</label>
+//   <div className="control">
+//     <input className="input"
+//       name="long"
+//       type="text"
+//       placeholder="Long"
+//       data-coordinates="coordinates"
+//       onChange={this.props.handleChange}
+//     />
+//   </div>
+// </div>

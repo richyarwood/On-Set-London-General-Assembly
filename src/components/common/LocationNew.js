@@ -4,8 +4,8 @@ import axios from 'axios'
 
 class LocationNew extends React.Component {
 
-  constructor(){
-    super()
+  constructor(props){
+    super(props)
 
     this.state = {
       location: {
@@ -30,15 +30,12 @@ class LocationNew extends React.Component {
       })
   }
 
+
   handleChange(e){
     let location = this.state.location
     switch(true){
       case (e.name === 'areaOfLondon'):
-        console.log('areaoflondon')
         location = {...this.state.location, [e.name]: e.value}
-        break
-      case (!!e.target.dataset.coordinates):
-        location = {...this.state.location, coordinates: {...this.state.location.coordinates, [e.target.name]: e.target.value}}
         break
       case (!!e.target.dataset.sceneNotes):
         location = {...this.state.location, sceneNotes: {...this.state.location.sceneNotes, [e.target.name]: e.target.value}}
@@ -52,31 +49,40 @@ class LocationNew extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault()
-    axios.post('api/locations', this.state.location)
+    axios.get(`https://cors-anywhere.herokuapp.com/api.mapbox.com/geocoding/v5/mapbox.places/${this.state.location.streetAddress}.json`, {
+      params: {
+        types: 'address',
+        proximity: '-0.127758,51.507351',
+        limit: 1,
+        access_token: process.env.MAPBOX_API_TOKEN
+      }
+    })
       .then(res => {
-        this.props.toggleSidebar(res.data)
+        const location = {...this.state.location, coordinates: {long: `${res.data.features[0].center[0]}`, lat: `${res.data.features[0].center[1]}`}}
+        this.setState({ location })
       })
-      .catch(err => this.setState({errors: err.response.data.errors}))
+      .then(() => {
+        axios.post('api/locations', this.state.location)
+          .then(res => {
+            this.props.toggleSidebar(res.data)
+          })
+          .catch(err => console.log(err))
+      })
   }
 
   render(){
     if(this.state.messages === 'Sucess') return <h2>{this.state.messages}</h2>
     return(
-      <section className="section">
-        <div className="container">
-          <div className="columns">
-            <div className="column">
-            </div>
-            <Form
-              handleChange={this.handleChange}
-              handleSubmit={this.handleSubmit}
-              getExistingFilm={this.getExistingFilm}
-              errors={this.state.errors}
-            />
-            <div className="column">
-            </div>
-          </div>
-        </div>
+      <section>
+
+        <Form
+          handleChange={this.handleChange}
+          handleSubmit={this.handleSubmit}
+          getExistingFilm={this.getExistingFilm}
+          errors={this.state.errors}
+          addressLookup={this.addressLookup}
+        />
+
       </section>
     )
   }
