@@ -97,13 +97,13 @@ class Form extends React.Component {
           <div className="field">
             <label className="label">Scene Notes</label>
             <div className="control">
-              <input className="input"
+              <textarea
                 name="text"
-                type="textarea"
+                className="textarea"
                 placeholder="Add scene notes..."
                 data-scene-notes="text"
-                onChange={this.props.handleChange}
-              />
+                onChange={this.props.handleChange}>
+              </textarea>
             </div>
           </div>
           <button className="button">Submit</button>
