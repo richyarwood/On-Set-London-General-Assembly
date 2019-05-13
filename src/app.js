@@ -5,7 +5,7 @@ import ReactDOM from 'react-dom'
 import Home from './components/common/Home'
 import Login from './components/auth/Login'
 import Register from './components/auth/Register'
-import LocationNew from './components/common/LocationNew'
+import LocationNew from './components/locations/LocationNew'
 import { HashRouter as Router, Switch, Route } from 'react-router-dom'
 
 import { library } from '@fortawesome/fontawesome-svg-core'

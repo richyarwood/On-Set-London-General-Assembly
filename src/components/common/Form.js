@@ -1,9 +1,9 @@
 import React from 'react'
-import FilmSelect from './FilmSelect'
+import FilmSelect from '../films/FilmSelect'
 import Auth from '../../lib/Auth'
 import { Link } from 'react-router-dom'
 import Select from 'react-select'
-import areasOfLondon from './areasOfLondon'
+import areasOfLondon from '../locations/areasOfLondon'
 
 class Form extends React.Component {
 

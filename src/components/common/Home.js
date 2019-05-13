@@ -3,9 +3,9 @@ import axios from 'axios'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import Map from './Map'
-import LocationIndex from './LocationIndex'
+import LocationIndex from '../locations/LocationIndex'
 import LoginLogout from './LoginLogout'
-import LocationNew from './LocationNew'
+import LocationNew from '../locations/LocationNew'
 class Home extends React.Component {
 
   constructor(){
@@ -50,6 +50,7 @@ class Home extends React.Component {
     console.log(this.state.message)
   }
 
+  //Scrolls the location index to the entry on map click===============
   scrollLocationOnMarkerClick(locationId){
     document.getElementById(locationId)
       .scrollIntoView({ behavior: 'smooth', block: 'start' })
@@ -81,7 +82,6 @@ class Home extends React.Component {
             </div>
           </div>
         </div>
-
         <div>
 
           <div className={`right-sidebar-wrapper${this.state.toggleRightBar ? ' open': ''}`}>
