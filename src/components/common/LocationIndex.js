@@ -1,5 +1,10 @@
 import React from 'react'
 
+import Select from 'react-select'
+import defaultAreasOfLondon from './areasOfLondon'
+const areasOfLondon = [{ name: 'areaOfLondon', value: 'All', label: 'All' }, ...defaultAreasOfLondon ]
+
+
 class LocationIndex extends React.Component {
 
   constructor(props){
@@ -40,6 +45,13 @@ class LocationIndex extends React.Component {
     console.log(this.props.data)
     return (
       <div>
+        <Select
+          defaultValue={areasOfLondon[0]}
+          options={areasOfLondon}
+          name="areaOfLondon"
+          onChange={this.props.handleChange}
+        />
+        <hr />
         {this.sortedLocations().map(location =>
           <div key={location._id} >
             {// -----ITEMS ARE ALWAYS VISIBILE-----}

@@ -2,14 +2,14 @@ import React from 'react'
 import axios from 'axios'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-import Select from 'react-select'
-import areasOfLondon from './areasOfLondon'
 
 import Map from './Map'
 import LocationIndex from './LocationIndex'
 import LoginLogout from './LoginLogout'
 import LocationNew from './LocationNew'
+
 class Home extends React.Component {
+
 
   constructor(){
     super()
@@ -61,13 +61,6 @@ class Home extends React.Component {
           <div className={`sidebar-wrapper${this.state.toggleSidebar ? ' close': ''}`}>
             <div className="sidebar">
               <img src="/images/on-set-london-logo.jpg" alt="On Set London movie Location database" />
-              <hr />
-              <Select
-                defaultValue={areasOfLondon[0]}
-                options={areasOfLondon}
-                name="areaOfLondon"
-                onChange={this.props.handleChange}
-              />
               <hr />
               <LocationIndex data={this.state.locations} handleClick={this.handleClick} />
             </div>
