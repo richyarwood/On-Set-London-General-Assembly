@@ -57,8 +57,12 @@ const locationSchema = new mongoose.Schema({
       type: mongoose.Schema.ObjectId,
       ref: 'Film'
     }
-  }]
-})
+  }],
+  createdBy: {
+    type: mongoose.Schema.ObjectId,
+    ref: 'User'
+  }
+},)
 
 
 

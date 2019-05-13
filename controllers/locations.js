@@ -9,6 +9,7 @@ function indexRoute(req, res, next) {
 
 function showRoute(req, res, next) {
   Location.findById(req.params.id)
+    .populate('createdBy', '-email')
     .then(location => res.json(location))
     .catch(next)
 }
