@@ -37,7 +37,7 @@ class LocationIndex extends React.Component {
               <div className="location-image"
                 data-lat={location.coordinates.lat}
                 data-lng={location.coordinates.lng}
-                onClick={this.props.handleClick}
+                onClick={this.props.handleLocationClick}
                 style={{ backgroundImage: `url(${location.image})` }} >
               </div>
               <div className="is-size-6"> {`${location.streetAddress}, ${location.postCode}`}
