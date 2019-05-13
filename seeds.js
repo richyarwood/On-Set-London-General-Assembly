@@ -1,12 +1,19 @@
 const mongoose = require('mongoose')
 const Film = require('./models/Film')
 const Location = require('./models/Location')
+const User = require('./models/User')
 const { dbUri } = require('./config/environment')
 
 mongoose.connect(dbUri, (err, db) => {
 
   db.dropDatabase()
-    .then(() => {
+  return User.create({
+    username: 'violeta',
+    email: 'violepaez@gmail.com',
+    password: 'pass',
+    passwordConfirmation: 'pass'
+  })
+    .then(user => {
       return Film.create([
         {
           title: 'The Elephant Man',
@@ -69,9 +76,9 @@ mongoose.connect(dbUri, (err, db) => {
           image: 'http://www.gstatic.com/tv/thumb/v22vodart/19202/p19202_v_v8_ab.jpg'
         }
       ])
-    })
-    .then(films => {
+        .then(films => {
 
+<<<<<<< HEAD
       const [ theElephantMan, laraCroft, vForVendetta, lawrenceOfArabia, greatExpectations, theWorldIsNotEnough, harryPotterPS, blackWindmill, earthCaughtFire, manTooMuch, fourWeddings, bDiary, eastEast, goldenEye, theSaint ] = films
 
       return Location.create([{

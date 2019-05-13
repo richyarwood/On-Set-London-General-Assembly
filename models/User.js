@@ -19,14 +19,16 @@ const userSchema = new mongoose.Schema({
   }
 }, {
   toJSON: {
-    virtuals: true, // add virtals to the JSON
+    virtuals: true, // add virtuals to the JSON
     transform(doc, json) {
       delete json.password // delete the password
       delete json.__v
       return json
     }
-  }
+  },
+  toObject: { virtuals: true }
 })
+
 
 // this is a special virtual that will aggregate
 // all the lcoations and films that a specific user has created
@@ -37,11 +39,11 @@ userSchema.virtual('locations', {
   ref: 'Location'
 })
 
-userSchema.virtual('films', {
-  localField: '_id',
-  foreignField: 'createdBy',
-  ref: 'Film'
-})
+// userSchema.virtual('films', {
+//   localField: '_id',
+//   foreignField: 'createdBy',
+//   ref: 'Film'
+// })
 
 userSchema.virtual('passwordConfirmation')
   .set(function setPasswordConfirmation(plaintext) {

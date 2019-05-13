@@ -17,5 +17,6 @@ router.post('/films/', secureRoute, filmsController.create)
 
 router.post('/register', authenticationController.register)
 router.post('/login', authenticationController.login)
+router.get('/me', secureRoute, authenticationController.profile)
 
 module.exports = router
