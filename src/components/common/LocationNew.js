@@ -13,7 +13,8 @@ class LocationNew extends React.Component {
         coordinates: {},
         sceneNotes: {}
       },
-      errors: {}
+      errors: {},
+      message: ''
     }
 
     this.handleChange = this.handleChange.bind(this)
@@ -49,6 +50,7 @@ class LocationNew extends React.Component {
 
 
   handleSubmit(e) {
+    console.log(this.state.location)
     e.preventDefault()
     const token = Auth.getToken()
     axios.get(`https://cors-anywhere.herokuapp.com/api.mapbox.com/geocoding/v5/mapbox.places/${this.state.location.streetAddress}.json`, {
@@ -69,17 +71,21 @@ class LocationNew extends React.Component {
           headers: { 'Authorization': `Bearer ${token}` }
         })
           .then(res => {
-            this.props.toggleRightBar(res.data.message)
+            this.setState({message: res.data.message})
+            setTimeout(() => {
+              this.setState({message: ''})
+              this.props.toggleRightBar(res.data.message)
+            }, 1000)
           })
           .catch(err => console.log(err))
       })
   }
 
+
+
   render(){
-    if(this.state.messages === 'Sucess') return <h2>{this.state.messages}</h2>
     return(
       <section>
-
         <Form
           handleChange={this.handleChange}
           handleSubmit={this.handleSubmit}
@@ -88,6 +94,7 @@ class LocationNew extends React.Component {
           addressLookup={this.addressLookup}
         />
 
+        {this.state.message && <div className="notification is-success">{this.state.message}</div>}
       </section>
     )
   }

@@ -93,6 +93,7 @@ class Form extends React.Component {
                 name="postCode"
                 type="text"
                 placeholder="E1 7PT"
+                onChange={this.props.handleChange}
               />
             </div>
             <div>
