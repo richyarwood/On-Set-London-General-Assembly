@@ -30,14 +30,14 @@ const locationSchema = new mongoose.Schema({
     required: 'Please select an area of London',
     enum: areasOfLondon
   },
-  // streetAddress: {
-  //   type: String,
-  //   required: 'Please enter street address'
-  // },
-  // postCode: {
-  //   type: String,
-  //   required: 'Please enter postcode'
-  // },
+  streetAddress: {
+    type: String,
+    required: 'Please enter street address'
+  },
+  postCode: {
+    type: String,
+    required: 'Please enter postcode'
+  },
   coordinates: {
     lat: {
       type: String,
