@@ -6,7 +6,8 @@ class LocationIndex extends React.Component {
     super(props)
 
     this.state = {
-      activeLocation: null
+      activeLocation: null,
+      sort: 'name|asc'
     }
   }
 
@@ -15,12 +16,30 @@ class LocationIndex extends React.Component {
     else this.setState({ activeLocation: location })
   }
 
+  sortedLocations() {
+    return this.props.data.sort((a, b) => {
+      if (a.name === b.name) return 0
+      return a.name < b.name ? -1 : 1
+    })
+  }
+
+  // set state search: ''
+  // set state.catergoy
+  // if empty (cat.length[0]), show all
+  // filter on entire index array
+  // prod.cat === value of input return it
+  // // location =>
+  // return location.region
+
+  // make a func filter location, first sort by called sort func, then flter and map over filter results in render
 
   render() {
+    console.log([ ...this.props.data ])
+    console.log('locations-2', this.props.data)
     if (!this.props) return <h1>Loading...</h1>
     return (
       <div>
-        {this.props.data.map(location =>
+        {this.sortedLocations().map(location =>
           <div key={location._id} >
             {// -----ITEMS ARE ALWAYS VISIBILE-----}
             }
