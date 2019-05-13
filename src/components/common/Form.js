@@ -104,8 +104,8 @@ class Form extends React.Component {
             <div className="control">
               <input className="input"
                 name="text"
-                type="text"
-                placeholder="text"
+                type="textarea"
+                placeholder="Add scene notes..."
                 data-scene-notes="text"
                 onChange={this.props.handleChange}
               />

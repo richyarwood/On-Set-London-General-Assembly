@@ -33,6 +33,7 @@ export default class FilmSelect extends React.Component {
           return { value: film._id, label: film.title }
         })
         return films
+        // return  films.sort
       })
       .then(res => this.setState({isLoading: false, options: res }))
   }

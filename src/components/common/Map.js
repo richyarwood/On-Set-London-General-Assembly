@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactMapboxGl, { Marker, Popup } from 'react-mapbox-gl'
 
-const mapBoxToken = process.env.mapboxApiToken
+const mapBoxToken = process.env.MAPBOX_API_TOKEN
 
 const Map = ReactMapboxGl({
   accessToken: mapBoxToken

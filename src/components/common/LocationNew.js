@@ -52,7 +52,14 @@ class LocationNew extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault()
-    axios.get(`https://cors-anywhere.herokuapp.com/api.mapbox.com/geocoding/v5/mapbox.places/${this.state.location.streetAddress}.json?types=address&proximity=-0.127758,51.507351&limit=1&access_token=${process.env.MAPBOX_API_TOKEN}`)
+    axios.get(`https://cors-anywhere.herokuapp.com/api.mapbox.com/geocoding/v5/mapbox.places/${this.state.location.streetAddress}.json`, {
+      params: {
+        types: 'address',
+        proximity: '-0.127758,51.507351',
+        limit: 1,
+        access_token: process.env.MAPBOX_API_TOKEN
+      }
+    })
       .then(res => {
         const location = {...this.state.location, coordinates: {long: `${res.data.features[0].center[0]}`, lat: `${res.data.features[0].center[1]}`}}
         this.setState({ location })
