@@ -14,7 +14,7 @@ class LocationIndex extends React.Component {
 
     this.state = {
       marker: {},
-      hover: false
+      markerClick: false
     }
 
     this.popUpShow = this.popUpShow.bind(this)
@@ -25,23 +25,27 @@ class LocationIndex extends React.Component {
     this.props.data.center.lat = e.target.dataset.lat
     this.props.data.center.long = e.target.dataset.long
 
-    this.setState({ hover: !this.state.hover })
+    this.setState({ markerClick: !this.state.markerClick })
     this.setState({ marker: {
       lat: e.target.dataset.lat,
       long: e.target.dataset.long,
       image: e.target.dataset.image,
       name: e.target.dataset.name,
-      address: e.target.dataset.address
+      address: e.target.dataset.address,
+      films: e.target.dataset.films
     }})
   }
 
   popUpHide(){
-    this.setState({ hover: false})
+    this.setState({ markerClick: false})
+  }
+  getFilms(films){
+    const allFilms = films.map(film => film.title)
+    return allFilms.slice(0,1)
   }
 
   render() {
     if (!this.props.data) return <h1>Loading...</h1>
-    console.log(this.props.data.center)
     return (
       <div className="location">
         <Map
@@ -57,28 +61,33 @@ class LocationIndex extends React.Component {
             <Marker key={marker._id}
               coordinates={[marker.coordinates.long, marker.coordinates.lat]}
               anchor="bottom">
-              <img src='https://i.pinimg.com/originals/30/98/49/309849c5815761081926477e5e872f1e.png' width='30px' onClick={this.popUpShow}
+              <img src='/images/marker-icon.png' width='30px' onClick={this.popUpShow}
                 data-lat={marker.coordinates.lat}
                 data-long={marker.coordinates.long}
                 data-image={marker.image}
                 data-name={marker.name}
                 data-address={marker.streetAddress}
+                data-films={this.getFilms(marker.films)}
               />
             </Marker>
           )}
 
-          {this.state.hover && <Popup
+          {this.state.markerClick && <Popup
             coordinates={[this.state.marker.long, this.state.marker.lat]}
             assName="marker-popup"
             offset={{
               'bottom-left': [20, -38],  'bottom': [0, -38], 'bottom-right': [-20, -38]
             }}>
             <div className="marker-popup-content">
+
               <img src={this.state.marker.image} alt={this.state.marker.name}/>
               <div>
-                <div><strong>{this.state.marker.name}</strong></div>
-                <div>{this.state.marker.address}</div>
+                <div className="pop-up-title is-size-6"><strong>{this.state.marker.name}</strong></div>
+                <div className="pop-up-films"><strong>Films: </strong>
+                  {this.state.marker.films}
+                </div>
               </div>
+
             </div>
           </Popup>}
 
