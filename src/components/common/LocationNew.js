@@ -53,11 +53,14 @@ class LocationNew extends React.Component {
   handleSubmit(e) {
     e.preventDefault()
     axios.post('api/locations', this.state.location)
-      .then(() => this.props.history.push('/'))
+      .then(res => {
+        this.props.toggleSidebar(res.data)
+      })
       .catch(err => this.setState({errors: err.response.data.errors}))
   }
 
   render(){
+    if(this.state.messages === 'Sucess') return <h2>{this.state.messages}</h2>
     return(
       <section className="section">
         <div className="container">

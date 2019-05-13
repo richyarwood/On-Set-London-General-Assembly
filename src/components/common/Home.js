@@ -18,7 +18,8 @@ class Home extends React.Component {
         lat: 51.520119,
         long: -0.098549
       },
-      toggleSidebar: false
+      toggleSidebar: false,
+      formMessage: ''
     }
 
     this.handleClick = this.handleClick.bind(this)
@@ -38,9 +39,9 @@ class Home extends React.Component {
     this.toggleSidebarClick = this.toggleSidebarClick.bind(this)
   }
 
-  toggleSidebarClick(){
+  toggleSidebarClick(message){
     console.log('clicked')
-    this.setState({ toggleSidebar: !this.state.toggleSidebar})
+    this.setState({ toggleSidebar: !this.state.toggleSidebar, formMessage: message })
   }
 
   render() {
