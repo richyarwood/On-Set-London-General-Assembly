@@ -1,6 +1,7 @@
 import React from 'react'
 import Form from './Form'
 import axios from 'axios'
+import Auth from '../../lib/Auth'
 
 class LocationNew extends React.Component {
 
@@ -12,7 +13,8 @@ class LocationNew extends React.Component {
         coordinates: {},
         sceneNotes: {}
       },
-      errors: {}
+      errors: {},
+      message: ''
     }
 
     this.handleChange = this.handleChange.bind(this)
@@ -48,7 +50,9 @@ class LocationNew extends React.Component {
 
 
   handleSubmit(e) {
+    console.log(this.state.location)
     e.preventDefault()
+    const token = Auth.getToken()
     axios.get(`https://cors-anywhere.herokuapp.com/api.mapbox.com/geocoding/v5/mapbox.places/${this.state.location.streetAddress}.json`, {
       params: {
         types: 'address',
@@ -62,24 +66,36 @@ class LocationNew extends React.Component {
         this.setState({ location })
       })
       .then(() => {
-        axios.post('api/locations', this.state.location)
-          .then(res => console.log(res))
+        console.log(token)
+        axios.post('api/locations', this.state.location, {
+          headers: { 'Authorization': `Bearer ${token}` }
+        })
+          .then(res => {
+            this.setState({message: res.data.message})
+            setTimeout(() => {
+              this.setState({message: ''})
+              this.props.toggleRightBar(res.data.message)
+            }, 1000)
+          })
           .catch(err => console.log(err))
       })
   }
 
+
+
   render(){
     return(
       <section>
-
         <Form
           handleChange={this.handleChange}
           handleSubmit={this.handleSubmit}
           getExistingFilm={this.getExistingFilm}
           errors={this.state.errors}
           addressLookup={this.addressLookup}
+          newFilm={this.state.newFilm}
         />
 
+        {this.state.message && <div className="notification is-success">{this.state.message}</div>}
       </section>
     )
   }

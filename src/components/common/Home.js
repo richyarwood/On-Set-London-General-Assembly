@@ -6,7 +6,6 @@ import Map from './Map'
 import LocationIndex from './LocationIndex'
 import LoginLogout from './LoginLogout'
 import LocationNew from './LocationNew'
-
 class Home extends React.Component {
 
   constructor(){
@@ -45,13 +44,14 @@ class Home extends React.Component {
     this.setState({ toggleSidebar: !this.state.toggleSidebar})
   }
 
-  toggleRightBar() {
-    this.setState({ toggleRightBar: !this.state.toggleRightBar })
+  toggleRightBar(message) {
+    console.log(message)
+    this.setState({ toggleRightBar: !this.state.toggleRightBar, message: message })
+    console.log(this.state.message)
   }
 
   render() {
     if (!this.state.locations) return <h1>Loading...</h1>
-    console.log(this.state.toggleRightBar)
     return (
       <main>
         <div>
@@ -62,7 +62,7 @@ class Home extends React.Component {
               <LocationIndex data={this.state.locations} handleClick={this.handleClick} />
             </div>
             <div className="togglewrapper">
-              <a role="button" className="togglebutton" onClick={this.toggleSidebarClick}>x</a>
+              <div className="togglebutton" onClick={this.toggleSidebarClick}><FontAwesomeIcon icon="exchange-alt" size="1x"/></div>
             </div>
           </div>
         </div>
@@ -74,7 +74,8 @@ class Home extends React.Component {
               <FontAwesomeIcon icon="times-circle" size="4x"/>
             </div>
             <div className="sidebar">
-              <LocationNew />
+              <LocationNew
+                toggleRightBar={this.toggleRightBar}/>
             </div>
           </div>
         </div>

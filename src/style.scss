@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto|Oswald');
+
 $primary-color: #0d47a1;
 $plus-button-hover-color: #1565c0;
 $secondary-color: #9E9E9E;
@@ -7,6 +9,16 @@ $close-button-hover-color: #ff5131;
 body {
   margin: 0;
   padding: 0;
+  font-family: 'Roboto', sans-serif;
+}
+
+.title, .subtitle {
+  font-family: 'Oswald', sans-serif;
+  letter-spacing: 0.5px;
+
+  &.indexTitle {
+    margin-bottom: 2px;
+  }
 }
 
 .sidebar-wrapper {
@@ -61,7 +73,8 @@ body {
 
 .togglewrapper {
   opacity: 1;
-  display: block;
+  display: flex;
+  align-items: center;
   position: absolute;
   top: 0;
   left: 100%;
@@ -73,12 +86,12 @@ body {
 
 .togglebutton {
   position: absolute;
-  width: 25px;
+  width: 35px;
   height: 50px;
   background-color: #fff;
   top: 8px;
   left: 100%;
-  padding: 10px;
+  padding: 12px 10px 10px 10px;
 }
 
 .location-image {
@@ -141,19 +154,28 @@ body {
 }
 
 .mapboxgl-popup-content {
-  height: 80px;
-  width: 250px;
+  height: 100px;
+  width: 300px;
 }
 
 .marker-popup-content {
-  height: 60px;
+  height: 100%;
   display: flex;
   flex-direction: row;
 
   img {
-    max-height: 100%;
+    max-height: 90%;
     padding-right: 10px;
   }
+
+  .pop-up-title {
+    margin-bottom: 5px;
+  }
+  .pop-up-films {
+    line-height: 15px;
+  }
+
+
 }
 
 .button {
@@ -188,22 +210,28 @@ body {
   z-index: 4;
 }
 
-.hidden {
+
+// Location index styles
+
+.locationShow {
   display: none;
+
+  &.show {
+    display: block;
+  }
 }
 
-.divider {
-  color: #030303;
+hr.dark-hr {
+background-color: #d8d8d8;
+}
+
+.hidden {
+  display: none;
 }
 
 h1 {
   font-size: 30px;
   font-weight: 700;
-}
-
-.film-title {
-  font-size: 20px;
-  margin-top: 10px;
 }
 
 .level {
