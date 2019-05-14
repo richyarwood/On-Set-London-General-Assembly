@@ -1,6 +1,5 @@
 const mongoose = require('mongoose')
 
-
 const filmSchema = new mongoose.Schema({
   title: {
     unique: 'This film already exists',

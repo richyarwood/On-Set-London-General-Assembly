@@ -25,6 +25,7 @@ class LocationIndex extends React.Component {
 
   render() {
     if (!this.props) return <h1>Loading...</h1>
+    console.log(this.props.data)
     return (
       <div>
         {this.sortedLocations().map(location =>
@@ -51,7 +52,7 @@ class LocationIndex extends React.Component {
 
               <div className="subtitle is-size-6">Films and notes</div>
               {location.sceneNotes.map(note =>
-                <div key={note._id} className="note-wrapper">
+                <div key={note.film._id} className="note-wrapper">
                   <div className="columns">
                     <div className="column">
                       <img src={note.film.image} />

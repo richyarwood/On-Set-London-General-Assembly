@@ -64,6 +64,4 @@ const locationSchema = new mongoose.Schema({
   }]
 })
 
-
-
 module.exports = mongoose.model('Location', locationSchema)
