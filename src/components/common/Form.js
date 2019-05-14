@@ -27,6 +27,10 @@ class Form extends React.Component {
           </div>
         }
         {Auth.isAuthenticated() && <form onSubmit={this.props.handleSubmit}>
+          <FilmSelect
+            handleChange={this.props.getExistingFilm}
+            handleFilmImage={this.props.handleFilmImage}
+          />
           <div className="field">
             <label className="label">Name</label>
             <div className="control">
@@ -41,11 +45,7 @@ class Form extends React.Component {
               {this.props.errors.name &&<div className="help is-danger">{this.props.errors.name}</div>}
             </div>
           </div>
-          <FilmSelect
-            handleChange={this.props.getExistingFilm}
-            handleFilmImage={this.props.handleFilmImage}
-          />
-          <div className="field">
+          <div><div className="field">
             <label className="label">Area of London</label>
             <Select
               options={areasOfLondon}
@@ -64,7 +64,7 @@ class Form extends React.Component {
               />
             </div>
             <div>
-              {this.props.errors.invalidOpenCageAddress &&<div className="help is-danger">{this.props.errors.invalidOpenCageAddress}</div>}
+              {this.props.errors.invalidOpenCageAddress && <div className="help is-danger">{this.props.errors.invalidOpenCageAddress}</div>}
             </div>
           </div>
           <div className="field">
@@ -106,6 +106,7 @@ class Form extends React.Component {
                 onChange={this.props.handleChange}>
               </textarea>
             </div>
+          </div>
           </div>
           <button className="button">Submit</button>
         </form>
