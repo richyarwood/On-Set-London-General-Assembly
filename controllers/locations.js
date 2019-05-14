@@ -17,7 +17,7 @@ function showRoute(req, res, next) {
 function createRoute(req, res, next) {
   req.body.createdBy = req.currentUser
   Location.create(req.body)
-    .then(() => res.status(201).json({message: 'New location created'}))
+    .then(location => res.status(201).json(location))
     .catch(next)
 }
 

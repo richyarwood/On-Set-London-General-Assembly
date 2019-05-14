@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 import Auth from '../../lib/Auth'
+import Promise from 'bluebird'
 
 
 class EditProfile extends React.Component {
@@ -14,31 +15,28 @@ class EditProfile extends React.Component {
       locations: []
     }
 
-    this.editProfileHandleChange = this.editProfileHandleChange.bind(this)
+    this.handleChange = this.handleChange.bind(this)
   }
 
   componentDidMount(){
     const token = Auth.getToken()
 
-    axios.get('/api/me', {
-      headers: { 'Authorization': `Bearer ${token}` }
+    Promise.props({
+      data: axios.get('/api/me', {
+        headers: { 'Authorization': `Bearer ${token}` }
+      }).then(res => res.data),
+      locations: axios.get('/api/locations').then(res => res.data)
     })
-      .then(res => this.setState({ data: res.data }))
-
-      .then(() => {
-        axios.get('/api/locations')
-          .then(res => this.setState({ locations: res.data }))
-      })
-      .catch(err => console.error( err ))
+      .then(data => this.setState(data))
+      .catch(err => console.error(err))
   }
 
-  editProfileHandleChange(e) {
+  handleChange(e) {
     const data = { ...this.state.data, [e.target.name]: e.target.value }
     this.setState({ data })
   }
 
   render(){
-    console.log(this.state.locations)
     return(
       <main>
         <section className="section">
@@ -58,7 +56,7 @@ class EditProfile extends React.Component {
                         className="input"
                         name="username"
                         placeholder="eg: John Maps"
-                        onChange={this.editProfileHandleChange}
+                        onChange={this.handleChange}
                         value={this.state.data.username || ''}
                       />
                     </div>
@@ -68,7 +66,7 @@ class EditProfile extends React.Component {
                         className="input"
                         name="email"
                         placeholder="eg: john.maps@email.com"
-                        onChange={this.editProfileHandleChange}
+                        onChange={this.handleChange}
                         value={this.state.data.email || ''}
                       />
                     </div>

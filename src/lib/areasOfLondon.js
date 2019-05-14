@@ -1,4 +1,4 @@
-const areasOfLondon = [
+export default [
   { name: 'areaOfLondon', value: 'Central London', label: 'Central London' },
   { name: 'areaOfLondon', value: 'North London', label: 'North London' },
   { name: 'areaOfLondon', value: 'North Central London', label: 'North Central London' },
@@ -12,5 +12,3 @@ const areasOfLondon = [
   { name: 'areaOfLondon', value: 'West London', label: 'West London' },
   { name: 'areaOfLondon', value: 'The City of London', label: 'The City of London'}
 ]
-
-export default areasOfLondon

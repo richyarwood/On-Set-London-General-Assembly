@@ -53,35 +53,45 @@ class LocationNew extends React.Component {
     console.log(this.state.location)
     e.preventDefault()
     const token = Auth.getToken()
-    axios.get(`https://api.opencagedata.com/geocode/v1/json?key=${process.env.OPENCAGE_API_TOKEN}&q=${this.state.location.streetAddress}`)
+    axios.get('https://api.opencagedata.com/geocode/v1/json', {
+      params: {
+        key: process.env.OPENCAGE_API_TOKEN,
+        q: this.state.location.streetAddress
+      }
+    })
       .then(res => {
         if(res.data.results[0]) {
-          const location = {...this.state.location, coordinates: {lng: `${res.data.results[0].geometry.lng}`, lat: `${res.data.results[0].geometry.lat}`}}
+          const location = {
+            ...this.state.location,
+            coordinates: {
+              lng: res.data.results[0].geometry.lng,
+              lat: res.data.results[0].geometry.lat
+            }
+          }
           this.setState({ location })
-        }
-        this.setState({
-          errors: {
+        } else {
+          const errors = {
+            ...this.state.errors,
             invalidOpenCageAddress: 'Please enter a valid address'
           }
-        })
+          this.setState({ errors })
+        }
       })
       .then(() => {
-        console.log(token)
-        axios.post('api/locations', this.state.location, {
+        return axios.post('api/locations', this.state.location, {
           headers: { 'Authorization': `Bearer ${token}` }
         })
-          .then(res => {
-            this.setState({message: res.data.message})
-            setTimeout(() => {
-              this.setState({message: ''})
-              this.props.toggleRightBar(res.data.message)
-            }, 1000)
-          })
-          .catch(err => {
-            const errors = {...this.state.errors, ...err.response.data.errors}
-            this.setState({ errors })
-            console.log(this.state.errors)
-          })
+      })
+      .then(res => {
+        this.setState({message: res.data.message})
+        setTimeout(() => {
+          this.setState({message: ''})
+          this.props.toggleRightBar(res.data.message)
+        }, 1000)
+      })
+      .catch(err => {
+        const errors = {...this.state.errors, ...err.response.data.errors}
+        this.setState({ errors })
       })
   }
 
@@ -99,7 +109,9 @@ class LocationNew extends React.Component {
           newFilm={this.state.newFilm}
         />
 
-        {this.state.message && <div className="notification is-success">{this.state.message}</div>}
+        {this.state.message &
+          <div className="notification is-success">{this.state.message}</div>
+        }
       </section>
     )
   }

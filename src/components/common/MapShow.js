@@ -52,41 +52,49 @@ class MapShow extends React.Component {
               anchor="bottom">
               <img
                 src='/images/marker-icon.png'
-                width='30px' onClick={() => this.popUpShow(marker)}
+                width='30px'
+                onClick={() => this.popUpShow(marker)}
               />
             </Marker>
           )}
 
-          {this.state.markerClick && <Popup
-            coordinates={[
-              this.state.marker.coordinates.lng,
-              this.state.marker.coordinates.lat
-            ]}
-            onClick={() =>{
-              this.props.scrollLocationOnMarkerClick(this.state.marker._id)
-              if (this.props.data.toggleSidebar) {
-                this.props.toggleSidebarClick()
-              }
-            } }
-            assName="marker-popup"
-            offset={{
-              'bottom-left': [20, -38],  'bottom': [0, -38], 'bottom-right': [-20, -38]
-            }}>
-            <div className="marker-popup-content">
+          {this.state.markerClick &&
+            <Popup
+              coordinates={[
+                this.state.marker.coordinates.lng,
+                this.state.marker.coordinates.lat
+              ]}
+              onClick={() =>{
+                this.props.scrollLocationOnMarkerClick(this.state.marker._id)
+                if (this.props.data.toggleSidebar) {
+                  this.props.toggleSidebarClick()
+                }
+              }}
+              className="marker-popup"
+              offset={{
+                'bottom-left': [20, -38],
+                'bottom': [0, -38],
+                'bottom-right': [-20, -38]
+              }}
+            >
+              <div className="marker-popup-content">
 
-              <img src={this.state.marker.image} alt={this.state.marker.name}/>
-              <div>
-                <div className="pop-up-title is-size-6"><strong>{this.state.marker.name}</strong></div>
-                <div className="pop-up-films"><strong>Films: </strong>
-                  <ul>
-                    <li>{this.getFilms(this.state.marker.films)[0]}</li>
-                    <li>{this.getFilms(this.state.marker.films)[1]}</li>
-                  </ul>
+                <img src={this.state.marker.image} alt={this.state.marker.name}/>
+                <div>
+                  <div className="pop-up-title is-size-6">
+                    <strong>{this.state.marker.name}</strong>
+                  </div>
+                  <div className="pop-up-films"><strong>Films: </strong>
+                    <ul>
+                      {this.getFilms(this.state.marker.films).slice(0, 2).map(film =>
+                        <li key={film}>{film}</li>
+                      )}
+                    </ul>
+                  </div>
                 </div>
-              </div>
 
-            </div>
-          </Popup>}
+              </div>
+            </Popup>}
 
         </Map>
       </div>

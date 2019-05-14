@@ -3,7 +3,7 @@ import FilmSelect from '../films/FilmSelect'
 import Auth from '../../lib/Auth'
 import { Link } from 'react-router-dom'
 import Select from 'react-select'
-import areasOfLondon from '../locations/areasOfLondon'
+import areasOfLondon from '../../lib/areasOfLondon'
 
 class Form extends React.Component {
 

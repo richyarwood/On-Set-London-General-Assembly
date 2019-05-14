@@ -33,7 +33,7 @@ const userSchema = new mongoose.Schema({
 // this is a special virtual that will aggregate
 // all the lcoations and films that a specific user has created
 // NB: **This needs to be populated in the controller**
-userSchema.virtual('sceneNotes', {
+userSchema.virtual('locations', {
   localField: '_id',
   foreignField: 'sceneNotes.createdBy',
   ref: 'Location'

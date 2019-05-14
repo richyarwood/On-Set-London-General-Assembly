@@ -1,7 +1,7 @@
 import React from 'react'
 
 import Select from 'react-select'
-import defaultAreasOfLondon from './areasOfLondon'
+import defaultAreasOfLondon from '../../lib/areasOfLondon'
 const areasOfLondon = [{ name: 'areaOfLondon', value: 'All', label: 'All' }, ...defaultAreasOfLondon ]
 
 
