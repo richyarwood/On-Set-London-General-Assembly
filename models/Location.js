@@ -50,6 +50,10 @@ const locationSchema = new mongoose.Schema({
   },
   films: [{ type: mongoose.Schema.ObjectId, ref: 'Film' }],
   sceneNotes: [{
+    createdBy: {
+      type: mongoose.Schema.ObjectId,
+      ref: 'User'
+    },
     text: {
       type: String
     },
@@ -57,12 +61,8 @@ const locationSchema = new mongoose.Schema({
       type: mongoose.Schema.ObjectId,
       ref: 'Film'
     }
-  }],
-  createdBy: {
-    type: mongoose.Schema.ObjectId,
-    ref: 'User'
-  }
-},)
+  }]
+})
 
 
 
