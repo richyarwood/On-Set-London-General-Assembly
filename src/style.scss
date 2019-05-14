@@ -133,7 +133,6 @@ body {
   :hover {
     color: $plus-button-hover-color;
   }
-
 }
 
 .fa-times-circle {
@@ -215,8 +214,9 @@ body {
   opacity: 0;
   margin-top: 10px;
   visibility: hidden;
-  -webkit-box-shadow: inset 0px 0px 17px -3px rgba(0,0,0,0.32);
-  box-shadow: inset 0px 0px 17px -3px rgba(0,0,0,0.32);
+  -webkit-box-shadow: inset 0px 2px 5px -1px rgba(0,0,0,0.75);
+  -moz-box-shadow: inset 0px 2px 5px -1px rgba(0,0,0,0.75);
+  box-shadow: inset 0px 2px 5px -1px rgba(0,0,0,0.75);
 
   &.show {
     height: 100%;
