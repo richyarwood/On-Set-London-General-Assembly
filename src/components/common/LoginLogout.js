@@ -4,9 +4,15 @@ import Auth from '../../lib/Auth'
 import { Link, withRouter } from 'react-router-dom'
 
 class LoginLogout extends React.Component{
+  constructor(props){
+    super(props)
+
+    this.logout = this.logout.bind(this)
+  }
 
   logout() {
     Auth.removeToken()
+    this.props.updatePage()
   }
 
   render(){

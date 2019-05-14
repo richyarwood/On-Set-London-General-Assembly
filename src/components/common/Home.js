@@ -8,6 +8,7 @@ import LoginLogout from './LoginLogout'
 import LocationNew from '../locations/LocationNew'
 class Home extends React.Component {
 
+
   constructor(){
     super()
 
@@ -24,6 +25,7 @@ class Home extends React.Component {
     this.handleLocationClick = this.handleLocationClick.bind(this)
     this.toggleSidebarClick = this.toggleSidebarClick.bind(this)
     this.toggleRightBar = this.toggleRightBar.bind(this)
+    this.updatePage = this.updatePage.bind(this)
   }
 
   componentDidMount() {
@@ -49,7 +51,9 @@ class Home extends React.Component {
     this.setState({ toggleRightBar: !this.state.toggleRightBar, message: message })
     console.log(this.state.message)
   }
-
+  updatePage(){
+    this.forceUpdate()
+  }
   //Scrolls the location index to the entry on map click===============
   scrollLocationOnMarkerClick(locationId){
     document.getElementById(locationId)
@@ -112,7 +116,8 @@ class Home extends React.Component {
         <div className="map-icon" onClick={this.toggleRightBar}>
           <FontAwesomeIcon icon="plus-circle" size="4x"/>
         </div>
-        <LoginLogout />
+        <LoginLogout
+          updatePage={this.updatePage}/>
       </main>
 
     )
