@@ -29,19 +29,12 @@ class LocationIndex extends React.Component {
     console.log('state category', this.state.area)
 
     // const locations = this.sortedLocations()
-    const inputArea = this.state.area
-    const filtered = this.sortedLocations().filter(location => {
-      // if (location.areaOfLondon === inputArea) return location
-      // location.areaOfLondon.includes(inputArea)
-      // if (inputArea === 'all') return this.props.data
-      {console.log('locs in filtered var', location.areaOfLondon)}
-      // return location.areaOfLondon.includes(inputArea)
-      // location.areaOfLondon.includes(inputArea) ?
-      //   location.areaOfLondon : this.sortedLocations()
-      return (location.areaOfLondon === inputArea) ?
-        location.areaOfLondon : this.sortedLocations()
-    })
-    console.log('filtered 🤞',filtered)
+    // const filtered = locations.filter(location => {
+    //   {console.log('**- locs in filtered var -**', location.areaOfLondon)}
+    //   // return location.areaOfLondon.includes('East London')
+    //   return location.areaOfLondon === this.state.area
+    // })
+    // console.log('filtered 🤞',filtered)
   }
 
   sortedLocations() {
@@ -62,9 +55,13 @@ class LocationIndex extends React.Component {
   // make a func filter location, first sort by called sort func, then flter and map over filter results in render
 
   filteredLocations() {
-    console.log('state category filter', this.state.area)
     const locations = this.sortedLocations()
-    console.log('locations', locations)
+    const filtered =  locations.filter(location => {
+      // if (this.state.area === 'all') return this.sortedLocations()
+      return location.areaOfLondon === this.state.area
+    })
+    console.log('filtered 🤞',filtered)
+    return filtered
   }
 
   render() {
@@ -79,7 +76,7 @@ class LocationIndex extends React.Component {
           onChange={this.handleChange}
         />
         <hr />
-        {this.sortedLocations().map(location =>
+        {this.filteredLocations().map(location =>
           <div key={location._id} >
             {// -----ITEMS ARE ALWAYS VISIBILE-----}
             }
