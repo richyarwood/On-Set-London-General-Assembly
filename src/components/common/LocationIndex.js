@@ -30,27 +30,18 @@ class LocationIndex extends React.Component {
 
     // const locations = this.sortedLocations()
     const inputArea = this.state.area
-    // const filtered = this.sortedLocations().map(location =>
-    //   location.areaOfLondon.filter(area =>
-    //     area.includes(inputArea)
-    //   )
-    //   // inputArea.includes(location.areaOfLondon)
-    // )
-    // console.log('AREAS OF LONDON', location.areaOfLondon)
-    console.log('filtered 🤞', this.props.data.filter(location =>
-      location.areaOfLondon === inputArea
-    ))
-    // this.props.data.map().filter()
-    // this.filteredLocations()
-    // this.props.data.map(location =>
-    //   // console.log('AREAS OF LONDON', location.areaOfLondon)
-    //   location.areaOfLondon.filter(area =>
-    //     area.includes(this.state.area)
-    //   )
-    // )
-    // areas.filter(area =>
-    //   area.includes(this.state.area)
-    // )
+    const filtered = this.sortedLocations().filter(location => {
+      // if (location.areaOfLondon === inputArea) return location
+      // location.areaOfLondon.includes(inputArea)
+      // if (inputArea === 'all') return this.props.data
+      {console.log('locs in filtered var', location.areaOfLondon)}
+      // return location.areaOfLondon.includes(inputArea)
+      // location.areaOfLondon.includes(inputArea) ?
+      //   location.areaOfLondon : this.sortedLocations()
+      return (location.areaOfLondon === inputArea) ?
+        location.areaOfLondon : this.sortedLocations()
+    })
+    console.log('filtered 🤞',filtered)
   }
 
   sortedLocations() {
@@ -71,17 +62,9 @@ class LocationIndex extends React.Component {
   // make a func filter location, first sort by called sort func, then flter and map over filter results in render
 
   filteredLocations() {
-    console.log('areaInput', areaInput)
     console.log('state category filter', this.state.area)
     const locations = this.sortedLocations()
-    const area = this.state.area
-    const areaInput = this.props.data
-    if (area === 'all') return this.props.data
-    // locations = locations.filter(location => location.areaOfLondon === area)
     console.log('locations', locations)
-    // return locations.filter(area =>
-    //   // IF THE INPUT VALUE = STATE AREA
-    // )
   }
 
   render() {
