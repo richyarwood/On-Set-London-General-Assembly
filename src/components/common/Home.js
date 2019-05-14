@@ -15,8 +15,8 @@ class Home extends React.Component {
     this.state = {
       locations: null,
       center: {
-        lat: '51.515714',
-        lng: '-0.095843'
+        lat: 51.515714,
+        lng: -0.095843
       },
       toggleSidebar: false,
       toggleRightBar: false
@@ -38,6 +38,7 @@ class Home extends React.Component {
     const lat = e.target.dataset.lat
     const lng = e.target.dataset.lng
     this.setState( { center: { lat: lat, lng: lng } } )
+    console.log(this.state.center)
     this.toggleSidebarClick = this.toggleSidebarClick.bind(this)
   }
 
@@ -47,9 +48,7 @@ class Home extends React.Component {
   }
 
   toggleRightBar(message) {
-    console.log(message)
     this.setState({ toggleRightBar: !this.state.toggleRightBar, message: message })
-    console.log(this.state.message)
   }
   updatePage(){
     this.forceUpdate()

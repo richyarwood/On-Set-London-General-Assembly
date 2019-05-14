@@ -27,9 +27,7 @@ class LocationIndex extends React.Component {
   }
 
   handleChange(inputValue) {
-    console.log('inputValue', inputValue.value)
     this.setState({ area: inputValue.value })
-    console.log('state category', this.state.area)
   }
 
   sortedLocations() {
@@ -56,7 +54,6 @@ class LocationIndex extends React.Component {
 
   render() {
     if (!this.props) return <h1>Loading...</h1>
-    console.log('data render', this.props.data)
     return (
       <div>
         <Select
@@ -67,7 +64,7 @@ class LocationIndex extends React.Component {
         />
         <hr />
         {this.filteredLocations().map(location =>
-          <div key={location._id} >
+          <div key={location._id} id={location._id}>
             {// -----ITEMS ARE ALWAYS VISIBILE-----}
             }
             <div
@@ -77,8 +74,8 @@ class LocationIndex extends React.Component {
               <div className="subtitle is-6">{location.areaOfLondon}</div>
               <div className="location-image"
                 data-lat={location.coordinates.lat}
-                data-long={location.coordinates.long}
-                onClick={this.props.handleClick}
+                data-lng={location.coordinates.lng}
+                onClick={this.props.handleLocationClick}
                 style={{ backgroundImage: `url(${location.image})` }} >
               </div>
               <div className="is-size-6"> {`${location.streetAddress}, ${location.postCode}`}
@@ -89,15 +86,20 @@ class LocationIndex extends React.Component {
             }
             <div
               className={`locationShow${this.state.activeLocation !== location ? '' : ' show' }`}>
-              <hr />
               <div className="subtitle is-size-6">Films and notes</div>
               {location.sceneNotes.map(note =>
-                <div key={note.film._id} className="note-wrapper">
+                <div key={note._id} className="note-wrapper">
                   <div className="columns">
-                    <div className="column"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/9/98/Lara_Croft_film.jpg/220px-Lara_Croft_film.jpg" /></div>
+                    <div className="column">
+                      <img src={note.film.image} />
+                    </div>
                     <div className="column is-four-fifths">
-                      <div className="subtitle is-size-5 has-text-weight-bold indexTitle">{note.film.title}</div>
-                      <p className="is-5">{note.text}</p>
+                      <div className="subtitle is-size-5 has-text-weight-bold indexTitle">
+                        {note.film.title}
+                      </div>
+                      <p className="is-5">
+                        {note.text}
+                      </p>
                     </div>
                   </div>
                 </div>

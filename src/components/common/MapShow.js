@@ -34,7 +34,7 @@ class MapShow extends React.Component {
 
   render() {
     if (!this.props.data) return <h1>Loading...</h1>
-    console.log(this.props.data.toggleSidebar)
+    console.log(this.props.data, 'MAP DATA')
     return (
       <div className="location">
         <Map
