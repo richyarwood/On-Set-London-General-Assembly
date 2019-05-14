@@ -55,9 +55,15 @@ class LocationNew extends React.Component {
     const token = Auth.getToken()
     axios.get(`https://api.opencagedata.com/geocode/v1/json?key=${process.env.OPENCAGE_API_TOKEN}&q=${this.state.location.streetAddress}`)
       .then(res => {
-        console.log(res.data.results[0].geometry.lat)
-        const location = {...this.state.location, coordinates: {lng: `${res.data.results[0].geometry.lng}`, lat: `${res.data.results[0].geometry.lat}`}}
-        this.setState({ location })
+        if(res.data.results[0]) {
+          const location = {...this.state.location, coordinates: {lng: `${res.data.results[0].geometry.lng}`, lat: `${res.data.results[0].geometry.lat}`}}
+          this.setState({ location })
+        }
+        this.setState({
+          errors: {
+            invalidOpenCageAddress: 'Please enter a valid address'
+          }
+        })
       })
       .then(() => {
         console.log(token)
@@ -71,7 +77,11 @@ class LocationNew extends React.Component {
               this.props.toggleRightBar(res.data.message)
             }, 1000)
           })
-          .catch(err => console.log(err))
+          .catch(err => {
+            const errors = {...this.state.errors, ...err.response.data.errors}
+            this.setState({ errors })
+            console.log(this.state.errors)
+          })
       })
   }
 

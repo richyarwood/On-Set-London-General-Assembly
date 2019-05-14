@@ -63,7 +63,7 @@ class Form extends React.Component {
               />
             </div>
             <div>
-              {this.props.errors.streetAddress &&<div className="help is-danger">{this.props.errors.streetAddress}</div>}
+              {this.props.errors.invalidOpenCageAddress &&<div className="help is-danger">{this.props.errors.invalidOpenCageAddress}</div>}
             </div>
           </div>
           <div className="field">
