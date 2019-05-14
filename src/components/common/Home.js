@@ -3,9 +3,9 @@ import axios from 'axios'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import Map from './Map'
-import LocationIndex from './LocationIndex'
+import LocationIndex from '../locations/LocationIndex'
 import LoginLogout from './LoginLogout'
-import LocationNew from './LocationNew'
+import LocationNew from '../locations/LocationNew'
 class Home extends React.Component {
 
   constructor(){
@@ -14,14 +14,14 @@ class Home extends React.Component {
     this.state = {
       locations: null,
       center: {
-        lat: '51.520119',
-        lng: '-0.098549'
+        lat: '51.515714',
+        lng: '-0.095843'
       },
       toggleSidebar: false,
       toggleRightBar: false
     }
 
-    this.handleClick = this.handleClick.bind(this)
+    this.handleLocationClick = this.handleLocationClick.bind(this)
     this.toggleSidebarClick = this.toggleSidebarClick.bind(this)
     this.toggleRightBar = this.toggleRightBar.bind(this)
   }
@@ -32,7 +32,7 @@ class Home extends React.Component {
       .catch(err => console.error(err))
   }
 
-  handleClick(e){
+  handleLocationClick(e){
     const lat = e.target.dataset.lat
     const lng = e.target.dataset.lng
     this.setState( { center: { lat: lat, lng: lng } } )
@@ -50,9 +50,15 @@ class Home extends React.Component {
     console.log(this.state.message)
   }
 
+  //Scrolls the location index to the entry on map click===============
   scrollLocationOnMarkerClick(locationId){
     document.getElementById(locationId)
       .scrollIntoView({ behavior: 'smooth', block: 'start' })
+  }
+
+  toggleActiveLocation(location){
+    if(location === this.state.activeLocation) this.setState({ activeLocation: null })
+    else this.setState({ activeLocation: location })
   }
 
   render() {
@@ -68,7 +74,8 @@ class Home extends React.Component {
               <hr />
               <LocationIndex
                 data={this.state.locations}
-                handleClick={this.handleClick}
+                handleLocationClick={this.handleLocationClick}
+                toggleActiveLocation={this.toggleActiveLocation}
               />
             </div>
             <div className="togglewrapper">
@@ -81,7 +88,6 @@ class Home extends React.Component {
             </div>
           </div>
         </div>
-
         <div>
 
           <div className={`right-sidebar-wrapper${this.state.toggleRightBar ? ' open': ''}`}>
@@ -99,6 +105,8 @@ class Home extends React.Component {
           <Map
             data={this.state}
             scrollLocationOnMarkerClick={this.scrollLocationOnMarkerClick}
+            toggleSidebarClick={this.toggleSidebarClick}
+            toggleSideBar={this.state.toggleSidebar}
           />
         </div>
         <div className="map-icon" onClick={this.toggleRightBar}>

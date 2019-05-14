@@ -34,6 +34,7 @@ class LocationIndex extends React.Component {
 
   render() {
     if (!this.props.data) return <h1>Loading...</h1>
+    console.log(this.props.data.toggleSidebar)
     return (
       <div className="location">
         <Map
@@ -61,7 +62,12 @@ class LocationIndex extends React.Component {
               this.state.marker.coordinates.lng,
               this.state.marker.coordinates.lat
             ]}
-            onClick={() => this.props.scrollLocationOnMarkerClick(this.state.marker._id)}
+            onClick={() =>{
+              this.props.scrollLocationOnMarkerClick(this.state.marker._id)
+              if (this.props.data.toggleSidebar) {
+                this.props.toggleSidebarClick()
+              }
+            } }
             assName="marker-popup"
             offset={{
               'bottom-left': [20, -38],  'bottom': [0, -38], 'bottom-right': [-20, -38]

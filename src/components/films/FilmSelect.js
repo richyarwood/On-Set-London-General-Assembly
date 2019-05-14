@@ -9,8 +9,7 @@ export default class FilmSelect extends React.Component {
     super(props)
     this.state = {
       options: null,
-      newFilm: false,
-      value: {}
+      newFilm: false
     }
     this.handleCreate = this.handleCreate.bind(this)
   }
@@ -27,8 +26,7 @@ export default class FilmSelect extends React.Component {
         const newFilm = { value: res.data._id, label: res.data.title }
         this.setState({
           options: [...options, newFilm],
-          newFilm: true,
-          value: { value: res.data._id, label: res.data.title }
+          newFilm: true
         })
       })
   }
@@ -37,7 +35,7 @@ export default class FilmSelect extends React.Component {
   handleInputChange(inputValue){
     console.log(inputValue, 'input')
     console.log(this.state.selectedFilm, 'value')
-    // this.setState({ value: { value: inputValue, label: inputValue } })
+    this.setState({selectedFilm: inputValue })
     console.log(this.state.selectedFilm, 'value')
   }
 
