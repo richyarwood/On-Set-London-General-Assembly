@@ -24,9 +24,7 @@ class LocationIndex extends React.Component {
   }
 
   handleChange(inputValue) {
-    console.log('inputValue', inputValue.value)
     this.setState({ area: inputValue.value })
-    console.log('state category', this.state.area)
   }
 
   sortedLocations() {
@@ -89,7 +87,7 @@ class LocationIndex extends React.Component {
               <hr />
               <div className="subtitle is-size-6">Films and notes</div>
               {location.sceneNotes.map(note =>
-                <div key={note.film._id} className="note-wrapper">
+                <div key={note._id} className="note-wrapper">
                   <div className="columns">
                     <div className="column"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/9/98/Lara_Croft_film.jpg/220px-Lara_Croft_film.jpg" /></div>
                     <div className="column is-four-fifths">

@@ -8,6 +8,7 @@ import LoginLogout from './LoginLogout'
 import LocationNew from '../locations/LocationNew'
 class Home extends React.Component {
 
+
   constructor(){
     super()
 
