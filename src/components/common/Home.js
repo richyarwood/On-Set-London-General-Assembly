@@ -2,12 +2,10 @@ import React from 'react'
 import axios from 'axios'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-
-import Map from './Map'
-import LocationIndex from './LocationIndex'
+import MapShow from './MapShow'
+import LocationIndex from '../locations/LocationIndex'
 import LoginLogout from './LoginLogout'
-import LocationNew from './LocationNew'
-
+import LocationNew from '../locations/LocationNew'
 class Home extends React.Component {
 
 
@@ -17,16 +15,17 @@ class Home extends React.Component {
     this.state = {
       locations: null,
       center: {
-        lat: '51.520119',
-        long: '-0.098549'
+        lat: '51.515714',
+        lng: '-0.095843'
       },
       toggleSidebar: false,
       toggleRightBar: false
     }
 
-    this.handleClick = this.handleClick.bind(this)
+    this.handleLocationClick = this.handleLocationClick.bind(this)
     this.toggleSidebarClick = this.toggleSidebarClick.bind(this)
     this.toggleRightBar = this.toggleRightBar.bind(this)
+    this.updatePage = this.updatePage.bind(this)
   }
 
   componentDidMount() {
@@ -35,10 +34,10 @@ class Home extends React.Component {
       .catch(err => console.error(err))
   }
 
-  handleClick(e){
+  handleLocationClick(e){
     const lat = e.target.dataset.lat
-    const long = e.target.dataset.long
-    this.setState( { center: { lat: lat, long: long } } )
+    const lng = e.target.dataset.lng
+    this.setState( { center: { lat: lat, lng: lng } } )
     this.toggleSidebarClick = this.toggleSidebarClick.bind(this)
   }
 
@@ -52,24 +51,47 @@ class Home extends React.Component {
     this.setState({ toggleRightBar: !this.state.toggleRightBar, message: message })
     console.log(this.state.message)
   }
+  updatePage(){
+    this.forceUpdate()
+  }
+  //Scrolls the location index to the entry on map click===============
+  scrollLocationOnMarkerClick(locationId){
+    document.getElementById(locationId)
+      .scrollIntoView({ behavior: 'smooth', block: 'start' })
+  }
+
+  toggleActiveLocation(location){
+    if(location === this.state.activeLocation) this.setState({ activeLocation: null })
+    else this.setState({ activeLocation: location })
+  }
 
   render() {
     if (!this.state.locations) return <h1>Loading...</h1>
     return (
       <main>
         <div>
-          <div className={`sidebar-wrapper${this.state.toggleSidebar ? ' close': ''}`}>
+          <div
+            className={`sidebar-wrapper${this.state.toggleSidebar ? ' close': ''}`}
+          >
             <div className="sidebar">
               <img src="/images/on-set-london-logo.jpg" alt="On Set London movie Location database" />
               <hr />
-              <LocationIndex data={this.state.locations} handleClick={this.handleClick} />
+              <LocationIndex
+                data={this.state.locations}
+                handleLocationClick={this.handleLocationClick}
+                toggleActiveLocation={this.toggleActiveLocation}
+              />
             </div>
             <div className="togglewrapper">
-              <div className="togglebutton" onClick={this.toggleSidebarClick}><FontAwesomeIcon icon="exchange-alt" size="1x"/></div>
+              <div
+                className="togglebutton"
+                onClick={this.toggleSidebarClick}
+              >
+                <FontAwesomeIcon icon="exchange-alt" size="1x"/>
+              </div>
             </div>
           </div>
         </div>
-
         <div>
 
           <div className={`right-sidebar-wrapper${this.state.toggleRightBar ? ' open': ''}`}>
@@ -78,17 +100,24 @@ class Home extends React.Component {
             </div>
             <div className="sidebar">
               <LocationNew
-                toggleRightBar={this.toggleRightBar}/>
+                toggleRightBar={this.toggleRightBar}
+              />
             </div>
           </div>
         </div>
         <div className="map">
-          <Map data={this.state} />
+          <MapShow
+            data={this.state}
+            scrollLocationOnMarkerClick={this.scrollLocationOnMarkerClick}
+            toggleSidebarClick={this.toggleSidebarClick}
+            toggleSideBar={this.state.toggleSidebar}
+          />
         </div>
         <div className="map-icon" onClick={this.toggleRightBar}>
           <FontAwesomeIcon icon="plus-circle" size="4x"/>
         </div>
-        <LoginLogout />
+        <LoginLogout
+          updatePage={this.updatePage}/>
       </main>
 
     )

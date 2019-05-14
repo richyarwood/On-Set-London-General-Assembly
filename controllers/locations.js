@@ -2,13 +2,14 @@ const Location = require('../models/Location')
 
 function indexRoute(req, res, next) {
   Location.find()
-    .populate('films sceneNotes.film')
+    .populate('films sceneNotes.film, sceneNotes.createdBy')
     .then(locations => res.json(locations))
     .catch(next)
 }
 
 function showRoute(req, res, next) {
   Location.findById(req.params.id)
+    .populate('films sceneNotes.film sceneNotes.createdBy', '-email')
     .then(location => res.json(location))
     .catch(next)
 }

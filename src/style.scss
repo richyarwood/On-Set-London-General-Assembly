@@ -21,6 +21,8 @@ body {
   }
 }
 
+
+//SIDE BARS ==================================
 .sidebar-wrapper {
   position: absolute;
   top: 0;
@@ -94,18 +96,8 @@ body {
   padding: 12px 10px 10px 10px;
 }
 
-.location-image {
-  height: 200px;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  margin-bottom: 10px;
-}
 
-.film-title {
-  font-size: 14px;
-}
-
+// ICONS AND MAP FURNITURE=======================================
 .map-icon {
   position: fixed;
   display: block;
@@ -141,7 +133,6 @@ body {
   :hover {
     color: $plus-button-hover-color;
   }
-
 }
 
 .fa-times-circle {
@@ -150,11 +141,30 @@ body {
   :hover {
     color: $close-button-hover-color;
   }
-
 }
 
+.login-logout-wrapper {
+  position: fixed;
+  top: 40px;
+  right: 40px;
+  z-index: 4;
+}
+
+.edit-form-wrapper {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  max-width: 500px;
+
+  .label {
+    margin-top: 20px;
+  }
+}
+
+
+//MAP POP UP STYLING =====================================
 .mapboxgl-popup-content {
-  height: 100px;
+  height: 120px;
   width: 300px;
 }
 
@@ -174,10 +184,9 @@ body {
   .pop-up-films {
     line-height: 15px;
   }
-
-
 }
 
+//SITE WIDE BUTTONS =======================================
 .button {
   background-color: $primary-color;
   color: #fff;
@@ -201,23 +210,33 @@ body {
   &.logout{
     background-color: $secondary-color;
   }
-}
 
-.login-logout-wrapper {
-  position: fixed;
-  top: 40px;
-  right: 40px;
-  z-index: 4;
+  &.edit-profile {
+    margin: 0 0 30px 0;
+  }
 }
 
 
-// Location index styles
+// LOCATION INDEX STYLES===============================
 
 .locationShow {
-  display: none;
+  height: 0px;
+  -webkit-transition: 0.5s;
+  -moz-transition: 0.5s;
+  -o-transition: 0.5s;
+  transition: 0.5s;
+  padding: 10px 15px;
+  opacity: 0;
+  margin-top: 10px;
+  visibility: hidden;
+  -webkit-box-shadow: inset 0px 2px 5px -1px rgba(0,0,0,0.75);
+  -moz-box-shadow: inset 0px 2px 5px -1px rgba(0,0,0,0.75);
+  box-shadow: inset 0px 2px 5px -1px rgba(0,0,0,0.75);
 
   &.show {
-    display: block;
+    height: 100%;
+    opacity: 1;
+    visibility: visible;
   }
 }
 
@@ -242,4 +261,16 @@ h1 {
 
 .scene-note {
   margin-top: 10px;
+}
+
+.location-image {
+  height: 150px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin-bottom: 10px;
+}
+
+.film-title {
+  font-size: 14px;
 }

@@ -43,13 +43,17 @@ const locationSchema = new mongoose.Schema({
       type: String,
       unique: 'A location with this latitude already exists'
     },
-    long: {
+    lng: {
       type: String,
       unique: 'A location with this longitude already exists'
     }
   },
   films: [{ type: mongoose.Schema.ObjectId, ref: 'Film' }],
   sceneNotes: [{
+    createdBy: {
+      type: mongoose.Schema.ObjectId,
+      ref: 'User'
+    },
     text: {
       type: String
     },

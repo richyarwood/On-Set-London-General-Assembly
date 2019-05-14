@@ -1,9 +1,9 @@
 import React from 'react'
-import FilmSelect from './FilmSelect'
+import FilmSelect from '../films/FilmSelect'
 import Auth from '../../lib/Auth'
 import { Link } from 'react-router-dom'
 import Select from 'react-select'
-import areasOfLondon from './areasOfLondon'
+import areasOfLondon from '../locations/areasOfLondon'
 
 class Form extends React.Component {
 
@@ -47,7 +47,6 @@ class Form extends React.Component {
           <div className="field">
             <label className="label">Area of London</label>
             <Select
-              defaultValue={areasOfLondon[0]}
               options={areasOfLondon}
               name="areaOfLondon"
               onChange={this.props.handleChange}
@@ -64,7 +63,7 @@ class Form extends React.Component {
               />
             </div>
             <div>
-              {this.props.errors.streetAddress &&<div className="help is-danger">{this.props.errors.streetAddress}</div>}
+              {this.props.errors.invalidOpenCageAddress &&<div className="help is-danger">{this.props.errors.invalidOpenCageAddress}</div>}
             </div>
           </div>
           <div className="field">
@@ -98,13 +97,13 @@ class Form extends React.Component {
           <div className="field">
             <label className="label">Scene Notes</label>
             <div className="control">
-              <input className="input"
+              <textarea
                 name="text"
-                type="textarea"
+                className="textarea"
                 placeholder="Add scene notes..."
                 data-scene-notes="text"
-                onChange={this.props.handleChange}
-              />
+                onChange={this.props.handleChange}>
+              </textarea>
             </div>
           </div>
           <button className="button">Submit</button>
