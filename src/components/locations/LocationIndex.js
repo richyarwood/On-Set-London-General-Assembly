@@ -1,5 +1,10 @@
 import React from 'react'
 
+import Select from 'react-select'
+import defaultAreasOfLondon from './areasOfLondon'
+const areasOfLondon = [{ name: 'areaOfLondon', value: 'All', label: 'All' }, ...defaultAreasOfLondon ]
+
+
 class LocationIndex extends React.Component {
 
   constructor(props){
@@ -7,13 +12,29 @@ class LocationIndex extends React.Component {
 
     this.state = {
       activeLocation: null,
-      sort: 'name|asc'
+      area: 'All'
     }
+
+    this.handleChange = this.handleChange.bind(this)
   }
 
   toggleActiveLocation(location){
     if(location === this.state.activeLocation) this.setState({ activeLocation: null })
     else this.setState({ activeLocation: location })
+  }
+
+  handleChange(inputValue) {
+    console.log('inputValue', inputValue.value)
+    this.setState({ area: inputValue.value })
+    console.log('state category', this.state.area)
+
+    // const locations = this.sortedLocations()
+    // const filtered = locations.filter(location => {
+    //   {console.log('**- locs in filtered var -**', location.areaOfLondon)}
+    //   // return location.areaOfLondon.includes('East London')
+    //   return location.areaOfLondon === this.state.area
+    // })
+    // console.log('filtered 🤞',filtered)
   }
 
   sortedLocations() {
@@ -23,12 +44,37 @@ class LocationIndex extends React.Component {
     })
   }
 
+  sortedAreas() {
+    return this.props.data.sort((a, b) => {
+      if (a.name === b.name) return 0
+      return a.name < b.name ? -1 : 1
+    })
+  }
+
+  filteredLocations() {
+    const locations = this.sortedLocations()
+    if (this.state.area === 'All') return this.props.data
+    return locations.filter(location => {
+      return location.areaOfLondon === this.state.area
+    })
+  }
+
   render() {
     if (!this.props) return <h1>Loading...</h1>
+    console.log('data render', this.props.data)
     return (
       <div>
-        {this.sortedLocations().map(location =>
-          <div key={location._id} id={location._id}>
+        <Select
+          defaultValue={areasOfLondon[0]}
+          options={areasOfLondon}
+          name="areaOfLondon"
+          onChange={this.handleChange}
+        />
+        <hr />
+        {this.filteredLocations().map(location =>
+          <div key={location._id} >
+            {// -----ITEMS ARE ALWAYS VISIBILE-----}
+            }
             <div
               onClick={() => this.toggleActiveLocation(location)}
             >
@@ -36,8 +82,8 @@ class LocationIndex extends React.Component {
               <div className="subtitle is-6">{location.areaOfLondon}</div>
               <div className="location-image"
                 data-lat={location.coordinates.lat}
-                data-lng={location.coordinates.lng}
-                onClick={this.props.handleLocationClick}
+                data-long={location.coordinates.long}
+                onClick={this.props.handleClick}
                 style={{ backgroundImage: `url(${location.image})` }} >
               </div>
               <div className="is-size-6"> {`${location.streetAddress}, ${location.postCode}`}
@@ -48,21 +94,15 @@ class LocationIndex extends React.Component {
             }
             <div
               className={`locationShow${this.state.activeLocation !== location ? '' : ' show' }`}>
-
+              <hr />
               <div className="subtitle is-size-6">Films and notes</div>
               {location.sceneNotes.map(note =>
                 <div key={note._id} className="note-wrapper">
                   <div className="columns">
-                    <div className="column">
-                      <img src={note.film.image} />
-                    </div>
+                    <div className="column"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/9/98/Lara_Croft_film.jpg/220px-Lara_Croft_film.jpg" /></div>
                     <div className="column is-four-fifths">
-                      <div className="subtitle is-size-5 has-text-weight-bold indexTitle">
-                        {note.film.title}
-                      </div>
-                      <p className="is-5">
-                        {note.text}
-                      </p>
+                      <div className="subtitle is-size-5 has-text-weight-bold indexTitle">{note.film.title}</div>
+                      <p className="is-5">{note.text}</p>
                     </div>
                   </div>
                 </div>
