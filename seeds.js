@@ -93,15 +93,16 @@ mongoose.connect(dbUri, (err, db) => {
             postCode: 'EC2N 2DQ',
             sceneNotes: [
               {
+                createdBy: user,
                 text: 'The interior was St Petersburg council where Ourumov learns that Natalya has survived the Golden Eye detonation',
                 film: goldenEye
               },
               {
+                createdBy: user,
                 text: 'HQ for the Moscow based Tretiak Oil and Gas Industries.',
                 film: theSaint
               }
-            ],
-            createdBy: user
+            ]
           },{
             name: 'Royal Exchange Buildings',
             image: 'https://www.movie-locations.com/movies/b/Bridget-Joness-Diary-Cornhill.jpg',
@@ -115,15 +116,16 @@ mongoose.connect(dbUri, (err, db) => {
             postCode: 'EC3V 3LR',
             sceneNotes: [
               {
+                createdBy: user,
                 text: 'In the quaint buildings on the southwest corner, Mark Darcy (Colin Firth) buys a new diary and Bridget Jones finally gets her clinch in the snow.',
                 film: bDiary
               },
               {
+                createdBy: user,
                 text: 'The shops are converted in to Nazir\'s boutique hat shop, "Le Beau Chapeau"',
                 film: eastEast
               }
-            ],
-            createdBy: user
+            ]
           },{
             name: 'Highbury Terrace',
             image: 'https://www.movie-locations.com/movies/f/Four-Weddings-And-A-Funeral-Highbury-Terrace.jpg',
@@ -136,10 +138,10 @@ mongoose.connect(dbUri, (err, db) => {
             streetAddress: '22 Highbury Terrace',
             postCode: 'N5 1UP',
             sceneNotes: [{
+              createdBy: user,
               text: 'Hugh Grant and Andie McDowell finally get together in the famous rain scene at the end of the film.',
               film: fourWeddings
-            }],
-            createdBy: user
+            }]
           },{
             name: 'London Hilton',
             image: 'http://modernarchitecturelondon.com/photos/hilton-parklane-1.jpg',
@@ -152,10 +154,10 @@ mongoose.connect(dbUri, (err, db) => {
             streetAddress: '22 Park Ln, Mayfair',
             postCode: 'W1K 1BE',
             sceneNotes: [{
+              createdBy: user,
               text: 'Doris Day hosts a party in Hitchcock\'s remake of his own 1934 film.',
               film: manTooMuch
-            }],
-            createdBy: user
+            }]
           },{
             name: 'Daily Express Building',
             image: 'https://i.dailymail.co.uk/1s/2018/08/23/13/wire-4046154-1535025840-355_634x422.jpg',
@@ -168,10 +170,10 @@ mongoose.connect(dbUri, (err, db) => {
             streetAddress: '120 Fleet St',
             postCode: 'EC4A 2BE',
             sceneNotes: [{
+              createdBy: user,
               text: 'Val Guest\'s semi-documentary about impending world apocalypse was filmed in this building',
               film: earthCaughtFire
-            }],
-            createdBy: user
+            }]
           },{
             name: 'Liverpool Street Station',
             image: 'https://cdn.networkrail.co.uk/wp-content/uploads/2017/04/Liverpool-street-station.jpg',
@@ -184,10 +186,10 @@ mongoose.connect(dbUri, (err, db) => {
             streetAddress: 'Liverpool St',
             postCode: 'EC2M 7QH',
             sceneNotes: [{
+              createdBy: user,
               text: 'This is where John Merrick (John Hurt) arrives back in London and is chased by an angry mob down in to the toilets. Merrick famously shouts, "I am not an animal. I am being human"',
               film: theElephantMan
-            }],
-            createdBy: user
+            }]
           },{
             name: 'Dominion Theatre',
             image: 'http://www.arthurlloyd.co.uk/DominionTheatre/Bat.jpg',
@@ -200,10 +202,10 @@ mongoose.connect(dbUri, (err, db) => {
             streetAddress: 'Tottencourt Road',
             postCode: 'W1T 7AQ',
             sceneNotes: [{
+              createdBy: user,
               text: 'Michael Caine plays on-the-run agent who is trying to track down his missing son. He meets his wife, played by Janet Suzman, outside the Dominion Theatre',
               film: blackWindmill
-            }],
-            createdBy: user
+            }]
           },{
             name: 'The Glass House',
             image: 'https://www.movie-locations.com/movies/h/Harry-Potter-1-Leaky-Cauldron.jpg',
@@ -216,10 +218,10 @@ mongoose.connect(dbUri, (err, db) => {
             streetAddress: '42 Bulls Head Passage',
             postCode: 'EC3V 1LU',
             sceneNotes: [{
+              createdBy: user,
               text: 'The doorway of the Leaky Cauldron, which contains the entrance to Daigon Alley.',
               film: harryPotterPS
-            }],
-            createdBy: user
+            }]
           },{
             name: 'Leadenhall Market',
             image: 'https://media.timeout.com/images/72169/630/472/image.jpg',
@@ -232,10 +234,10 @@ mongoose.connect(dbUri, (err, db) => {
             streetAddress: 'Gracechurch St',
             postCode: 'EC3V 1LT',
             sceneNotes: [{
+              createdBy: user,
               text: 'Lara Croft zooms through the market on a motorbike',
               film: laraCroft
-            }],
-            createdBy: user
+            }]
           },{
             name: 'SIS Building',
             image: 'https://upload.wikimedia.org/wikipedia/commons/0/01/SIS_building_%2826327425611%29.jpg',
@@ -248,10 +250,10 @@ mongoose.connect(dbUri, (err, db) => {
             streetAddress: '85 Albert Embankment, Vauxhall',
             postCode: 'SE1 7TW',
             sceneNotes: [{
+              createdBy: user,
               text: 'The headquarters of MI6 is revealed in The World is Not Enough and we get to see Judy Dench as M for the first time',
               film: theWorldIsNotEnough
-            }],
-            createdBy: user
+            }]
           },{
             name: 'St Paul\'s Cathedral',
             image: 'https://blog.londonpass.com/wp-content/uploads/2017/03/st-pauls-facts-3.jpg',
@@ -265,14 +267,15 @@ mongoose.connect(dbUri, (err, db) => {
             postCode: 'EC4M 8AD',
             sceneNotes: [
               {
+                createdBy: user,
                 text: 'The film ends with a memorial service and characters are seen to be giving various opinions of TE Lawrence on the steps of the cathedral',
                 film: lawrenceOfArabia
               },{
+                createdBy: user,
                 text: 'Pip arrives in London and sits on the steps of the Cathedral',
                 film: greatExpectations
               }
-            ],
-            createdBy: user
+            ]
           },{
             name: 'The Old Bailey',
             image: 'https://www.barleystudio.co.uk/wp-content/uploads/2018/01/oldbailey1.jpg',
@@ -285,10 +288,10 @@ mongoose.connect(dbUri, (err, db) => {
             streetAddress: 'The Old Bailey',
             postCode: 'EC4M 7EH',
             sceneNotes: [{
+
               text: 'The Old Bailey is blown up in the dramatic start of V for Vendetta. Masked terrorist V watches on to the sound of Tchaikovsky\'s 1812 Overture',
               film: vForVendetta
-            }],
-            createdBy: user
+            }]
           }])
         })
 
