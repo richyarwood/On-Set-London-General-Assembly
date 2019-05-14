@@ -53,16 +53,10 @@ class LocationNew extends React.Component {
     console.log(this.state.location)
     e.preventDefault()
     const token = Auth.getToken()
-    axios.get(`https://cors-anywhere.herokuapp.com/api.mapbox.com/geocoding/v5/mapbox.places/${this.state.location.streetAddress}.json`, {
-      params: {
-        types: 'address',
-        proximity: '-0.127758,51.507351',
-        limit: 1,
-        access_token: process.env.MAPBOX_API_TOKEN
-      }
-    })
+    axios.get(`https://api.opencagedata.com/geocode/v1/json?key=${process.env.OPENCAGE_API_TOKEN}&q=${this.state.location.streetAddress}`)
       .then(res => {
-        const location = {...this.state.location, coordinates: {lng: `${res.data.features[0].center[0]}`, lat: `${res.data.features[0].center[1]}`}}
+        console.log(res.data.results[0].geometry.lat)
+        const location = {...this.state.location, coordinates: {lng: `${res.data.results[0].geometry.lng}`, lat: `${res.data.results[0].geometry.lat}`}}
         this.setState({ location })
       })
       .then(() => {
