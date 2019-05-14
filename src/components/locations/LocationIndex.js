@@ -27,14 +27,6 @@ class LocationIndex extends React.Component {
     console.log('inputValue', inputValue.value)
     this.setState({ area: inputValue.value })
     console.log('state category', this.state.area)
-
-    // const locations = this.sortedLocations()
-    // const filtered = locations.filter(location => {
-    //   {console.log('**- locs in filtered var -**', location.areaOfLondon)}
-    //   // return location.areaOfLondon.includes('East London')
-    //   return location.areaOfLondon === this.state.area
-    // })
-    // console.log('filtered 🤞',filtered)
   }
 
   sortedLocations() {
