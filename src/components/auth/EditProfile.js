@@ -37,6 +37,8 @@ class EditProfile extends React.Component {
   }
 
   render(){
+    console.log(this.state.data)
+    console.log(this.state.locations)
     return(
       <main>
         <section className="section">
@@ -73,6 +75,21 @@ class EditProfile extends React.Component {
                   </div>
 
                 </form>
+
+                {this.state.locations.map(film =>
+                  <div key={film._id}>
+                    <div>{film.name}</div>
+                    {film.sceneNotes.map(note =>
+                      <div key={note._id}>
+                        <div>
+                          {note.film.title}
+                        </div>
+                        <div>{note.text}</div>
+                      </div>
+                    )}
+                    <hr />
+                  </div>
+                )}
 
               </div>
             </div>
