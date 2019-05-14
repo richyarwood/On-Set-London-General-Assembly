@@ -10,7 +10,8 @@ class EditProfile extends React.Component {
     super()
 
     this.state = {
-      data: {}
+      data: {},
+      locations: []
     }
 
     this.editProfileHandleChange = this.editProfileHandleChange.bind(this)
@@ -23,6 +24,11 @@ class EditProfile extends React.Component {
       headers: { 'Authorization': `Bearer ${token}` }
     })
       .then(res => this.setState({ data: res.data }))
+
+      .then(() => {
+        axios.get('/api/locations')
+          .then(res => this.setState({ locations: res.data }))
+      })
       .catch(err => console.error( err ))
   }
 
@@ -32,7 +38,7 @@ class EditProfile extends React.Component {
   }
 
   render(){
-    console.log(this.state.data)
+    console.log(this.state.locations)
     return(
       <main>
         <section className="section">
