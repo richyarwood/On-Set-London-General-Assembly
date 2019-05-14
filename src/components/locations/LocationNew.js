@@ -15,7 +15,7 @@ class LocationNew extends React.Component {
       },
       errors: {},
       message: '',
-      image: {}
+      film: {}
     }
 
     this.handleChange = this.handleChange.bind(this)
@@ -30,7 +30,7 @@ class LocationNew extends React.Component {
         const films = []
         films.push(res.data)
         const location = {...this.state.location, films, sceneNotes: {...this.state.location.sceneNotes, film: res.data}}
-        this.setState({ location })
+        this.setState({ location, film: res.data })
       })
   }
 
@@ -59,12 +59,12 @@ class LocationNew extends React.Component {
     console.log(this.state.location)
     e.preventDefault()
     const token = Auth.getToken()
-    axios.put(`/api/films/${this.state.location.films[0]._id}`, this.state.image, {
+    axios.put(`/api/films/${this.state.film._id}`, this.state.image, {
       headers: { 'Authorization': `Bearer ${token}` }
     })
       .then((res) =>  console.log(res))
       .then(() => {
-        axios.get('https://api.opencagedata.com/geocode/v1/json', {
+        return axios.get('https://api.opencagedata.com/geocode/v1/json', {
           params: {
             key: process.env.OPENCAGE_API_TOKEN,
             q: this.state.location.streetAddress
@@ -102,6 +102,7 @@ class LocationNew extends React.Component {
         }, 1000)
       })
       .catch(err => {
+        console.log(err)
         const errors = {...this.state.errors, ...err.response.data.errors}
         this.setState({ errors })
       })
