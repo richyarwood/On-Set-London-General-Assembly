@@ -12,7 +12,7 @@ class LocationIndex extends React.Component {
 
     this.state = {
       activeLocation: null,
-      area: ''
+      area: 'All'
     }
 
     this.handleChange = this.handleChange.bind(this)
@@ -24,17 +24,7 @@ class LocationIndex extends React.Component {
   }
 
   handleChange(inputValue) {
-    console.log('inputValue', inputValue.value)
     this.setState({ area: inputValue.value })
-    console.log('state category', this.state.area)
-
-    // const locations = this.sortedLocations()
-    // const filtered = locations.filter(location => {
-    //   {console.log('**- locs in filtered var -**', location.areaOfLondon)}
-    //   // return location.areaOfLondon.includes('East London')
-    //   return location.areaOfLondon === this.state.area
-    // })
-    // console.log('filtered 🤞',filtered)
   }
 
   sortedLocations() {
@@ -44,24 +34,19 @@ class LocationIndex extends React.Component {
     })
   }
 
-  // set state search: ''
-  // set state.catergoy
-  // if empty (cat.length[0]), show all
-  // filter on entire index array
-  // prod.cat === value of input return it
-  // // location =>
-  // return location.region
-
-  // make a func filter location, first sort by called sort func, then flter and map over filter results in render
+  sortedAreas() {
+    return this.props.data.sort((a, b) => {
+      if (a.name === b.name) return 0
+      return a.name < b.name ? -1 : 1
+    })
+  }
 
   filteredLocations() {
     const locations = this.sortedLocations()
-    const filtered =  locations.filter(location => {
-      // if (this.state.area === 'all') return this.sortedLocations()
+    if (this.state.area === 'All') return this.props.data
+    return locations.filter(location => {
       return location.areaOfLondon === this.state.area
     })
-    console.log('filtered 🤞',filtered)
-    return filtered
   }
 
   render() {
