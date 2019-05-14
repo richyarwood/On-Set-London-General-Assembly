@@ -14,10 +14,12 @@ class LocationNew extends React.Component {
         sceneNotes: {}
       },
       errors: {},
-      message: ''
+      message: '',
+      image: {}
     }
 
     this.handleChange = this.handleChange.bind(this)
+    this.handleFilmImage = this.handleFilmImage.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
     this.getExistingFilm = this.getExistingFilm.bind(this)
   }
@@ -32,6 +34,10 @@ class LocationNew extends React.Component {
       })
   }
 
+  handleFilmImage(e){
+    const image = {image: e.target.value}
+    this.setState({image})
+  }
 
   handleChange(e){
     let location = this.state.location
@@ -53,12 +59,18 @@ class LocationNew extends React.Component {
     console.log(this.state.location)
     e.preventDefault()
     const token = Auth.getToken()
-    axios.get('https://api.opencagedata.com/geocode/v1/json', {
-      params: {
-        key: process.env.OPENCAGE_API_TOKEN,
-        q: this.state.location.streetAddress
-      }
+    axios.put(`/api/films/${this.state.location.films[0]._id}`, this.state.image, {
+      headers: { 'Authorization': `Bearer ${token}` }
     })
+      .then((res) =>  console.log(res))
+      .then(() => {
+        axios.get('https://api.opencagedata.com/geocode/v1/json', {
+          params: {
+            key: process.env.OPENCAGE_API_TOKEN,
+            q: this.state.location.streetAddress
+          }
+        })
+      })
       .then(res => {
         if(res.data.results[0]) {
           const location = {
@@ -102,6 +114,7 @@ class LocationNew extends React.Component {
       <section>
         <Form
           handleChange={this.handleChange}
+          handleFilmImage={this.handleFilmImage}
           handleSubmit={this.handleSubmit}
           getExistingFilm={this.getExistingFilm}
           errors={this.state.errors}

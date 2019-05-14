@@ -26,10 +26,11 @@ export default class FilmSelect extends React.Component {
         const newFilm = { value: res.data._id, label: res.data.title }
         this.setState({
           options: [...options, newFilm],
-          newFilm: true
+          newFilm: res.data
         })
       })
   }
+
 
 
   handleInputChange(inputValue){
@@ -73,7 +74,7 @@ export default class FilmSelect extends React.Component {
               name="filmImage"
               type="text"
               placeholder="e.g. www.hondo-enterprises.com/the-relay-building-entrance-all.jpg"
-              onChange={this.handleFilmImage}
+              onChange={this.props.handleFilmImage}
             />
           </div>
         </div>

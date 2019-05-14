@@ -43,6 +43,7 @@ class Form extends React.Component {
           </div>
           <FilmSelect
             handleChange={this.props.getExistingFilm}
+            handleFilmImage={this.props.handleFilmImage}
           />
           <div className="field">
             <label className="label">Area of London</label>

@@ -12,6 +12,10 @@ const filmSchema = new mongoose.Schema({
   createdBy: {
     type: mongoose.Schema.ObjectId,
     ref: 'User'
+  },
+  modifiedBy: {
+    type: mongoose.Schema.ObjectId,
+    ref: 'User'
   }
 })
 
