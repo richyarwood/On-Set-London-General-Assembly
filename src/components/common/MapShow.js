@@ -7,7 +7,7 @@ const Map = ReactMapboxGl({
   accessToken: mapBoxToken
 })
 
-class LocationIndex extends React.Component {
+class MapShow extends React.Component {
 
   constructor(props){
     super(props)
@@ -94,4 +94,4 @@ class LocationIndex extends React.Component {
   }
 }
 
-export default LocationIndex
+export default MapShow

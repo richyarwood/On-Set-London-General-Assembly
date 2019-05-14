@@ -17,8 +17,7 @@ class Register extends React.Component {
 
   handleChange(e) {
     const data = { ...this.state.data, [e.target.name]: e.target.value }
-    // set the data back on state
-    this.setState({ data }) // equivalent to { data: data }
+    this.setState({ data })
   }
 
   handleSubmit(e) {
@@ -31,7 +30,6 @@ class Register extends React.Component {
   }
 
   render() {
-    console.log(this.state.data)
     return (
       <section className="section">
         <div className="container">

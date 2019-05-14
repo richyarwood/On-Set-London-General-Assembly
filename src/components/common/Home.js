@@ -2,7 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-import Map from './Map'
+import MapShow from './MapShow'
 import LocationIndex from '../locations/LocationIndex'
 import LoginLogout from './LoginLogout'
 import LocationNew from '../locations/LocationNew'
@@ -102,7 +102,7 @@ class Home extends React.Component {
           </div>
         </div>
         <div className="map">
-          <Map
+          <MapShow
             data={this.state}
             scrollLocationOnMarkerClick={this.scrollLocationOnMarkerClick}
             toggleSidebarClick={this.toggleSidebarClick}

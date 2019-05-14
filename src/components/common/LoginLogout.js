@@ -19,6 +19,10 @@ class LoginLogout extends React.Component{
           Register
         </button></Link>}
         {Auth.isAuthenticated() &&
+          <Link to='/me'><button className="button is-normal">
+            Edit Profile
+          </button></Link>}
+        {Auth.isAuthenticated() &&
           <button className="button is-normal logout" onClick={this.logout}>
             Logout
           </button>}
