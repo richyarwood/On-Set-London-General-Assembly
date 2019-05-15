@@ -98,9 +98,6 @@ figure.image img {
   }
 }
 
-
-
-
 .right-sidebar-wrapper {
   position: absolute;
   top: 0;
@@ -112,6 +109,7 @@ figure.image img {
   transition-property: -webkit-transform,transform,opacity;
   transition-duration: 0.2s;
   transition-timing-function: cubic-bezier(0.0,0.0,0.2,1);
+  background-color: #fff;
 
   &.open {
     transform: translateX(-500px);
