@@ -92,11 +92,7 @@ class LocationNew extends React.Component {
           this.props.toggleRightBar(res.data.message)
         }, 1000)
       })
-      // .catch(err => {
-      //   console.log(err)
-      //   const errors = {...this.state.errors, ...err.response.data.errors}
-      //   this.setState({ errors })
-      // })
+    this.props.updatePage()
   }
 
 
@@ -120,7 +116,8 @@ class LocationNew extends React.Component {
             />}
             {this.state.selectedFilm &&
               <div>
-                <h2 className="title is-5">{`Film: ${this.state.selectedFilm.label} `}</h2>
+                <h2 className="title is-5">{`Film: ${this.state.selectedFilm.title} `}</h2>
+                <img />
                 <hr />
                 <div className="field">
                   <label className="label">Name</label>

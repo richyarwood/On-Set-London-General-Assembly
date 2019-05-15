@@ -48,8 +48,8 @@ export default class FilmSelect extends React.Component {
           .then(res => {
             const selectedFilm = {value: res.data._id, title: res.data.title}
             this.setState({selectedFilm})
-            this.props.getFilm(this.state.selectedFilm)
           })
+          .then(() => this.props.getFilm(this.state.selectedFilm))
       } else {
         const selectedFilm = {value: this.state.selectedFilm.value, title: this.state.selectedFilm.label}
         this.setState({selectedFilm})

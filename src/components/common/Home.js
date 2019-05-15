@@ -50,9 +50,12 @@ class Home extends React.Component {
   toggleRightBar(message) {
     this.setState({ toggleRightBar: !this.state.toggleRightBar, message: message })
   }
+
   updatePage(){
     this.forceUpdate()
   }
+
+
   //Scrolls the location index to the entry on map click===============
   scrollLocationOnMarkerClick(locationId){
     document.getElementById(locationId)
@@ -99,6 +102,7 @@ class Home extends React.Component {
             </div>
             <div className="sidebar">
               <LocationNew
+                updatePage={this.updatePage}
                 toggleRightBar={this.toggleRightBar}
               />
             </div>
