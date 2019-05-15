@@ -74,11 +74,14 @@ mongoose.connect(dbUri, (err, db) => {
         {
           title: 'The Saint',
           image: 'http://www.gstatic.com/tv/thumb/v22vodart/19202/p19202_v_v8_ab.jpg'
+        }, {
+          title: 'Batman Begins',
+          image: 'http://www.gstatic.com/tv/thumb/v22vodart/35903/p35903_v_v8_bb.jpg'
         }
       ])
         .then(films => {
 
-          const [ theElephantMan, laraCroft, vForVendetta, lawrenceOfArabia, greatExpectations, theWorldIsNotEnough, harryPotterPS, blackWindmill, earthCaughtFire, manTooMuch, fourWeddings, bDiary, eastEast, goldenEye, theSaint ] = films
+          const [ theElephantMan, laraCroft, vForVendetta, lawrenceOfArabia, greatExpectations, theWorldIsNotEnough, harryPotterPS, blackWindmill, earthCaughtFire, manTooMuch, fourWeddings, bDiary, eastEast, goldenEye, theSaint, batmanBegins ] = films
 
           return Location.create([{
             name: 'Drapers Hall',
@@ -291,6 +294,22 @@ mongoose.connect(dbUri, (err, db) => {
 
               text: 'The Old Bailey is blown up in the dramatic start of V for Vendetta. Masked terrorist V watches on to the sound of Tchaikovsky\'s 1812 Overture',
               film: vForVendetta
+            }]
+          }, {
+            name: 'St Pancras',
+            image: 'https://cdn.theculturetrip.com/wp-content/uploads/2018/01/st-pancras-station.jpg',
+            coordinates: {
+              lat: '51.531421',
+              lng: '-0.126090'
+            },
+            films: [batmanBegins],
+            areaOfLondon: 'North Central London',
+            streetAddress: 'St Pancras',
+            postCode: 'N1C 4QP',
+            sceneNotes: [{
+
+              text: 'The elaborate Gothic stairwell because the staircase of "Arkham Asylum", invaded by a SWAT team and a flock of CGI bats. You might recognise the same location from the first Spice Girls video, Wannabe',
+              film: batmanBegins
             }]
           }])
         })
