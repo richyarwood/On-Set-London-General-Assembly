@@ -110,6 +110,7 @@ figure.image img {
   width: 400px;
   z-index: 6;
   transform: translateX(0px);
+  transform: translateY(0px);
   transition-property: -webkit-transform,transform,opacity;
   transition-duration: 0.2s;
   transition-timing-function: cubic-bezier(0.0,0.0,0.2,1);
@@ -121,13 +122,29 @@ figure.image img {
 
 @media only screen and (max-width: 400px){
   .right-sidebar-wrapper {
-    width: 100%;
+    right: -100%;
+    // width: 100%;
+    // width: 0;
     display: none;
     &.open {
+      transform: translateX(-100%);
+      width: 100%;
       display: inline-block;
+      // transform: translateY(100%);
     }
   }
 }
+
+// @media only screen and (max-width: 400px){
+//   .sidebar-wrapper {
+//     top: 50%;
+//     width: 100%;
+//     &.close {
+//       transform: translateX(0px);
+//       transform: translateY(-50%);
+//     }
+//   }
+// }
 
 .sidebar {
   width: 100%;
