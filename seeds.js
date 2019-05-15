@@ -219,7 +219,7 @@ mongoose.connect(dbUri, (err, db) => {
             }]
           },{
             name: 'Dominion Theatre',
-            image: 'http://www.arthurlloyd.co.uk/DominionTheatre/Bat.jpg',
+            image: 'https://www.westendtheatre.com/wp-content/uploads/2017/08/dominion-theatre-2017-001.jpg',
             coordinates: {
               lat: '51.516924',
               lng: '-0.129577'
