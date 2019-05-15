@@ -71,7 +71,7 @@ class MapShow extends React.Component {
                 this.state.marker.coordinates.lng,
                 this.state.marker.coordinates.lat
               ]}
-              onClick={() =>{
+              onClick={() => {
                 this.props.scrollLocationOnMarkerClick(this.state.marker._id)
                 if (this.props.data.toggleSidebar) {
                   this.props.toggleSidebarClick()

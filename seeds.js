@@ -101,11 +101,23 @@ mongoose.connect(dbUri, (err, db) => {
         }, {
           title: 'Stormbreaker',
           image: 'http://www.gstatic.com/tv/thumb/v22vodart/161382/p161382_v_v8_ab.jpg'
+        },
+        {
+          title: 'American Assassin',
+          image: 'https://www.cbsfilms.com/media/cache/62/93/62931f7e83c518aa9d092b3fea7e4dc4.jpg'
+        },
+        {
+          title: 'Brazil',
+          image: 'https://media.timeout.com/images/101619403/630/472/image.jpg'
+        },
+        {
+          title: 'The Da Vinci Code',
+          image: 'https://vignette.wikia.nocookie.net/davincicode/images/5/57/Da_Vinci_Code_characters_poster.jpg/revision/latest?cb=20150623230955'
         }
       ])
         .then(films => {
 
-          const [ theElephantMan, laraCroft, vForVendetta, lawrenceOfArabia, greatExpectations, theWorldIsNotEnough, harryPotterPS, blackWindmill, earthCaughtFire, manTooMuch, fourWeddings, bDiary, eastEast, goldenEye, theSaint, batmanBegins, aboutABoy, slidingDoors, theAvengers, loveActually, nineteen84, seanOTDead, clockworkOrange, stormBreaker ] = films
+          const [ theElephantMan, laraCroft, vForVendetta, lawrenceOfArabia, greatExpectations, theWorldIsNotEnough, harryPotterPS, blackWindmill, earthCaughtFire, manTooMuch, fourWeddings, bDiary, eastEast, goldenEye, theSaint, batmanBegins, aboutABoy, slidingDoors, theAvengers, loveActually, nineteen84, seanOTDead, clockworkOrange, stormBreaker, americanAssassin, brazil, theDaVinciCode ] = films
 
           return Location.create([{
             name: 'Drapers Hall',
@@ -456,7 +468,7 @@ mongoose.connect(dbUri, (err, db) => {
             },
             films: [clockworkOrange],
             areaOfLondon: 'South Central London',
-            streetAddress: 'Trnity Road, Wandsworth',
+            streetAddress: 'Trinity Road, Wandsworth',
             postCode: 'SW18 1JT',
             sceneNotes: [{
               createdBy: user,
@@ -479,7 +491,59 @@ mongoose.connect(dbUri, (err, db) => {
               text: 'In the Museum\'s "Making the Modern World" gallery, Alex Rider thwarts the attempt by Darrius Sayles to get the Brisih PM to launch the virus-laden computer network',
               film: stormBreaker
             }]
-          }])
+          },
+          {
+            name: 'St George’s Walk',
+            image: 'https://i2-prod.croydonadvertiser.co.uk/news/croydon-news/article492870.ece/ALTERNATES/s615b/American-Assassin-4JPG.jpg',
+            coordinates: {
+              lat: '51.3725237',
+              lng: '-0.0985434'
+            },
+            films: [americanAssassin],
+            areaOfLondon: 'South London',
+            streetAddress: 'St George\'s Walk, Croydon',
+            postCode: 'CR0 1YB',
+            sceneNotes: [{
+
+              text: 'St George’s Walk was dressed as an area of Istanbul. Dylan O’Brien walks through the bustle into a Turkish restaurant on the corner. Then the scene unfolds into an elaborate chase, with special operatives hoofing after him',
+              film: americanAssassin
+            }]
+          },
+          {
+            name: 'Croydon B Power Station',
+            image: 'https://lh5.googleusercontent.com/p/AF1QipO3Ra2Z7ZpoJKPUYjmQJG6SyA-g4uy61mNHBNmR=w424-h240-k-no',
+            coordinates: {
+              lat: '51.379884',
+              lng: '-0.123879'
+            },
+            films: [brazil],
+            areaOfLondon: 'South London',
+            streetAddress: 'Valley Retail Park, Purley Way, Croydon',
+            postCode: 'CR0 4UZ',
+            sceneNotes: [{
+
+              text: 'The power station was decommissioned in 1984, and it was used in a disused state in Terry Gilliam\'s 1985 film Brazil. The station was demolished in 1991 and an IKEA store was opened on the site. Two large chimneys were retained and remain a local landmark.',
+              film: brazil
+            }]
+          },
+          {
+            name: 'Fairfield Halls Concert Hall',
+            image: 'https://upload.wikimedia.org/wikipedia/commons/8/82/Fairfield_Halls_-_London.jpg',
+            coordinates: {
+              lat: '51.374010',
+              lng: '-0.096840'
+            },
+            films: [theDaVinciCode],
+            areaOfLondon: 'South London',
+            streetAddress: 'Park Ln, London',
+            postCode: 'CR9 1DG',
+            sceneNotes: [{
+
+              text: 'Robert Langdon (played by Tom Hanks) gives a lecture in our beloved Fairfield Halls Concert Hall.',
+              film: theDaVinciCode
+            }]
+          }
+          ])
         })
 
         .then(() => mongoose.connection.close())
