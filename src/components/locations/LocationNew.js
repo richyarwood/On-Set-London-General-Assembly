@@ -3,8 +3,8 @@ import axios from 'axios'
 import FilmSelect from '../films/FilmSelect'
 import Auth from '../../lib/Auth'
 import { Link } from 'react-router-dom'
-import Select from 'react-select'
-import areasOfLondon from '../../lib/areasOfLondon'
+import LocationEntry from './LocationEntry'
+
 
 class LocationNew extends React.Component {
 
@@ -115,89 +115,10 @@ class LocationNew extends React.Component {
               getFilm={this.getFilm}
             />}
             {this.state.selectedFilm &&
-              <div>
-                <h2 className="title is-5">{`Film: ${this.state.selectedFilm.title} `}</h2>
-                <img />
-                <hr />
-                <div className="field">
-                  <label className="label">Name</label>
-                  <div className="control">
-                    <input className="input"
-                      name="name"
-                      type="text"
-                      placeholder="e.g. Relay Building"
-                      onChange={this.handleChange}
-                    />
-                  </div>
-                  <div>
-                    {this.state.errors.name &&<div className="help is-danger">{this.state.errors.name}</div>}
-                  </div>
-                </div>
-                <div><div className="field">
-                  <label className="label">Area of London</label>
-                  <Select
-                    options={areasOfLondon}
-                    name="areaOfLondon"
-                    onChange={this.handleChange}
-                  />
-                </div>
-                <div className="field">
-                  <label className="label">Address</label>
-                  <div className="control">
-                    <input className="input"
-                      name="streetAddress"
-                      type="text"
-                      placeholder="114 Whitechapel High St"
-                      onChange={this.handleChange}
-                    />
-                  </div>
-                  <div>
-                    {this.state.errors.invalidOpenCageAddress && <div className="help is-danger">{this.state.errors.invalidOpenCageAddress}</div>}
-                  </div>
-                </div>
-                <div className="field">
-                  <label className="label">Postcode</label>
-                  <div className="control">
-                    <input className="input"
-                      name="postCode"
-                      type="text"
-                      placeholder="E1 7PT"
-                      onChange={this.handleChange}
-                    />
-                  </div>
-                  <div>
-                    {this.state.errors.postCode &&<div className="help is-danger">{this.state.errors.postCode}</div>}
-                  </div>
-                </div>
-                <div className="field">
-                  <label className="label">Image</label>
-                  <div className="control">
-                    <input className="input"
-                      name="image"
-                      type="text"
-                      placeholder="e.g. www.hondo-enterprises.com/the-relay-building-entrance-all.jpg"
-                      onChange={this.handleChange}
-                    />
-                  </div>
-                  <div>
-                    {this.state.errors.image &&<div className="help is-danger">{this.state.errors.image}</div>}
-                  </div>
-                </div>
-                <div className="field">
-                  <label className="label">Scene Notes</label>
-                  <div className="control">
-                    <textarea
-                      name="text"
-                      className="textarea"
-                      placeholder="Add scene notes..."
-                      data-scene-notes="text"
-                      onChange={this.handleChange}>
-                    </textarea>
-                  </div>
-                </div>
-                </div>
-                <button className="submit">Submit</button>
-              </div>
+              <LocationEntry
+                errors={this.state.errors}
+                selectedFilm={this.state.selectedFilm}
+              />
             }
           </form>
           }
