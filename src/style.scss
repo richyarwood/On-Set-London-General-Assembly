@@ -25,6 +25,35 @@ body {
   width: 40px;
 }
 
+
+.film-image-form {
+  max-height: 70px;
+  max-width: 70px
+}
+
+.film-card-form {
+  height: 150px;
+  width: 150px;
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+
+}
+
+div.film-card-form {
+  display: block;
+  width: 100%;
+}
+
+figure {
+  width: 100%;
+}
+
+figure.image img {
+  margin: 10px 40px 25px 40px;
+
+}
+
 .marker {
   width: 30px;
 }

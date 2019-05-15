@@ -102,7 +102,6 @@ class Home extends React.Component {
             </div>
             <div className="sidebar">
               <LocationNew
-                updatePage={this.updatePage}
                 toggleRightBar={this.toggleRightBar}
               />
             </div>
