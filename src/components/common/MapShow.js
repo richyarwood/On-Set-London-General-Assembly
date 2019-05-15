@@ -19,6 +19,7 @@ class MapShow extends React.Component {
 
     this.popUpShow = this.popUpShow.bind(this)
     this.popUpHide = this.popUpHide.bind(this)
+    this.toggleMarker = this.toggleMarker.bind(this)
   }
 
   popUpShow(marker){
@@ -30,6 +31,12 @@ class MapShow extends React.Component {
   }
   getFilms(films){
     return films.map(film => film.title).slice(0,2)
+  }
+
+
+  toggleMarker(marker){
+    if(this.state.markerClick) return this.state.marker.coordinates.lat === marker.coordinates.lat? 'active-marker': 'marker'
+    else return this.props.data.center.lat === marker.coordinates.lat? 'active-marker': 'marker'
   }
 
   render() {
@@ -51,9 +58,9 @@ class MapShow extends React.Component {
               coordinates={[marker.coordinates.lng, marker.coordinates.lat]}
               anchor="bottom">
               <img
-                src={this.props.data.center.lat === marker.coordinates.lat ? '/images/active-marker.png': '/images/marker-icon.png'}
+                src={`/images/${this.toggleMarker(marker)}.png`}
                 onClick={() => this.popUpShow(marker)}
-                className= {this.props.data.center.lat === marker.coordinates.lat ? 'active-marker': 'marker'}
+                className= {this.toggleMarker(marker)}
               />
             </Marker>
           )}
