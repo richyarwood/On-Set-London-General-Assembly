@@ -1,7 +1,10 @@
 import React from 'react'
-import Form from '../common/Form'
 import axios from 'axios'
+import FilmSelect from '../films/FilmSelect'
 import Auth from '../../lib/Auth'
+import { Link } from 'react-router-dom'
+import Select from 'react-select'
+import areasOfLondon from '../../lib/areasOfLondon'
 
 class LocationNew extends React.Component {
 
@@ -15,20 +18,21 @@ class LocationNew extends React.Component {
       },
       errors: {},
       message: '',
-      film: {}
+      film: {},
+      selectedFilm: null
     }
 
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
     this.getFilm = this.getFilm.bind(this)
   }
-
   getFilm(film){
-    console.log(film, 'hey')
+    const selectedFilm = {...film}
     const films = []
-    films.push(film)
-    const location = {...this.state.location, films, sceneNotes: {...this.state.location.sceneNotes, film: film}}
-    this.setState({ location, film: film })
+    films.push(film.value)
+    const sceneNotes = {...this.state.location.sceneNotes, film: film.value}
+    const location = {...this.state.location, films, sceneNotes}
+    this.setState({selectedFilm, location})
   }
 
 
@@ -49,6 +53,7 @@ class LocationNew extends React.Component {
 
 
   handleSubmit(e) {
+    console.log(this.state.location)
     e.preventDefault()
     const token = Auth.getToken()
     axios.get('https://api.opencagedata.com/geocode/v1/json', {
@@ -99,14 +104,107 @@ class LocationNew extends React.Component {
   render(){
     return(
       <section>
-        <Form
-          handleChange={this.handleChange}
-          handleFilmImage={this.handleFilmImage}
-          handleSubmit={this.handleSubmit}
-          getFilm={this.getFilm}
-          errors={this.state.errors}
-          addressLookup={this.addressLookup}
-        />
+        <div className="column">
+          <div className="title is-4">Create a new film location</div>
+          {!Auth.isAuthenticated() &&
+            <div>
+              <p className="content">You need to be logged in to create a new film location</p>
+              <Link to="/login"><p>Log in now</p></Link>
+            </div>
+          }
+          {Auth.isAuthenticated() && <form onSubmit={this.handleSubmit}>
+            {!this.state.selectedFilm &&<FilmSelect
+              handleChange={this.getExistingFilm}
+              handleFilmImage={this.handleFilmImage}
+              getFilm={this.getFilm}
+            />}
+            {this.state.selectedFilm &&
+              <div>
+                <h2 className="title is-5">{`Film: ${this.state.selectedFilm.label} `}</h2>
+                <hr />
+                <div className="field">
+                  <label className="label">Name</label>
+                  <div className="control">
+                    <input className="input"
+                      name="name"
+                      type="text"
+                      placeholder="e.g. Relay Building"
+                      onChange={this.handleChange}
+                    />
+                  </div>
+                  <div>
+                    {this.state.errors.name &&<div className="help is-danger">{this.state.errors.name}</div>}
+                  </div>
+                </div>
+                <div><div className="field">
+                  <label className="label">Area of London</label>
+                  <Select
+                    options={areasOfLondon}
+                    name="areaOfLondon"
+                    onChange={this.handleChange}
+                  />
+                </div>
+                <div className="field">
+                  <label className="label">Address</label>
+                  <div className="control">
+                    <input className="input"
+                      name="streetAddress"
+                      type="text"
+                      placeholder="114 Whitechapel High St"
+                      onChange={this.handleChange}
+                    />
+                  </div>
+                  <div>
+                    {this.state.errors.invalidOpenCageAddress && <div className="help is-danger">{this.state.errors.invalidOpenCageAddress}</div>}
+                  </div>
+                </div>
+                <div className="field">
+                  <label className="label">Postcode</label>
+                  <div className="control">
+                    <input className="input"
+                      name="postCode"
+                      type="text"
+                      placeholder="E1 7PT"
+                      onChange={this.handleChange}
+                    />
+                  </div>
+                  <div>
+                    {this.state.errors.postCode &&<div className="help is-danger">{this.state.errors.postCode}</div>}
+                  </div>
+                </div>
+                <div className="field">
+                  <label className="label">Image</label>
+                  <div className="control">
+                    <input className="input"
+                      name="image"
+                      type="text"
+                      placeholder="e.g. www.hondo-enterprises.com/the-relay-building-entrance-all.jpg"
+                      onChange={this.handleChange}
+                    />
+                  </div>
+                  <div>
+                    {this.state.errors.image &&<div className="help is-danger">{this.state.errors.image}</div>}
+                  </div>
+                </div>
+                <div className="field">
+                  <label className="label">Scene Notes</label>
+                  <div className="control">
+                    <textarea
+                      name="text"
+                      className="textarea"
+                      placeholder="Add scene notes..."
+                      data-scene-notes="text"
+                      onChange={this.handleChange}>
+                    </textarea>
+                  </div>
+                </div>
+                </div>
+                <button className="submit">Submit</button>
+              </div>
+            }
+          </form>
+          }
+        </div>
 
       </section>
     )
