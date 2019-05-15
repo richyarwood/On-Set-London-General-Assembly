@@ -25,7 +25,7 @@ function loginRoute(req, res, next) {
 }
 
 function profileRoute(req, res) {
-  req.currentUser.populate('locations')
+  req.currentUser.populate('_locations')
     .execPopulate()
     .then(user => res.json(user))
 }

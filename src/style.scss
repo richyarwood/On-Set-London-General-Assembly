@@ -21,7 +21,13 @@ body {
   }
 }
 
+.active-marker {
+  width: 40px;
+}
 
+.marker {
+  width: 30px;
+}
 //SIDE BARS ==================================
 .sidebar-wrapper {
   position: absolute;
@@ -273,4 +279,8 @@ h1 {
 
 .film-title {
   font-size: 14px;
+}
+
+.profile-note {
+  margin-bottom: 10px;
 }
