@@ -401,7 +401,7 @@ mongoose.connect(dbUri, (err, db) => {
             }]
           }, {
             name: 'St Lukes Mews',
-            image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Kingsway_tramway_subway_%286266160469%29.jpg/600px-Kingsway_tramway_subway_%286266160469%29.jpg',
+            image: 'https://s23514.pcdn.co/wp-content/uploads/2017/10/st_lukes_mews_notting_hill.jpg',
             coordinates: {
               lat: '51.517757',
               lng: '-0.203167'
@@ -471,7 +471,7 @@ mongoose.connect(dbUri, (err, db) => {
               lng: '-0.174526'
             },
             films: [stormBreaker],
-            areaOfLondon: 'South West London',
+            areaOfLondon: 'Southwest London',
             streetAddress: 'Exhibition Rd, South Kensington',
             postCode: 'SW7 2DD',
             sceneNotes: [{
