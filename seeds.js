@@ -95,11 +95,14 @@ mongoose.connect(dbUri, (err, db) => {
         }, {
           title: 'Sean of the Dead',
           image: 'http://www.movienewsletters.net/photos/043445R1.jpg'
+        }, {
+          title: 'Clockwork Orange',
+          image: 'http://t2.gstatic.com/images?q=tbn:ANd9GcTB-hK0IAfj71C5QASyaTIK-lGBenOwmkG-AjFJNAoRL1t-PO3h'
         }
       ])
         .then(films => {
 
-          const [ theElephantMan, laraCroft, vForVendetta, lawrenceOfArabia, greatExpectations, theWorldIsNotEnough, harryPotterPS, blackWindmill, earthCaughtFire, manTooMuch, fourWeddings, bDiary, eastEast, goldenEye, theSaint, batmanBegins, aboutABoy, slidingDoors, theAvengers, loveActually, nineteen84, seanOTDead ] = films
+          const [ theElephantMan, laraCroft, vForVendetta, lawrenceOfArabia, greatExpectations, theWorldIsNotEnough, harryPotterPS, blackWindmill, earthCaughtFire, manTooMuch, fourWeddings, bDiary, eastEast, goldenEye, theSaint, batmanBegins, aboutABoy, slidingDoors, theAvengers, loveActually, nineteen84, seanOTDead, clockworkOrange ] = films
 
           return Location.create([{
             name: 'Drapers Hall',
@@ -440,6 +443,22 @@ mongoose.connect(dbUri, (err, db) => {
 
               text: 'In the film, the pub is renamed "The Winchester Arms" and is Sean\'s beloved local. This site has since been redeveloped and turned into flats',
               film: seanOTDead
+            }]
+          }, {
+            name: 'Trinity Road',
+            image: 'https://s0.geograph.org.uk/geophotos/02/40/94/2409495_2555c695.jpg',
+            coordinates: {
+              lat: '51.462371',
+              lng: '-0.185475'
+            },
+            films: [clockworkOrange],
+            areaOfLondon: 'South Central London',
+            streetAddress: 'Trnity Road, Wandsworth',
+            postCode: 'SW18 1JT',
+            sceneNotes: [{
+
+              text: 'In the film, the pub is renamed "The Winchester Arms" and is Sean\'s beloved local. This site has since been redeveloped and turned into flats',
+              film: clockworkOrange
             }]
           }])
         })
