@@ -93,6 +93,7 @@ figure.image img {
 
 @media only screen and (max-width: 400px){
   .sidebar-wrapper {
+    position: fixed;
     top: 50%;
     width: 100%;
     &.close {
