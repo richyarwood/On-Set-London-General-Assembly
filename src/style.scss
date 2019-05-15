@@ -164,6 +164,20 @@ figure.image img {
   }
 }
 
+@media only screen and (max-width: 400px){
+  .sidebar {
+    padding: 30px 0px;
+  }
+  .locationsContainer {
+    .title, .subtitle, .address {
+      padding: 0 15px;
+    }
+  }
+  .filterSelect {
+    padding: 0 25px;
+  }
+}
+
 .togglewrapper {
   opacity: 1;
   display: flex;
