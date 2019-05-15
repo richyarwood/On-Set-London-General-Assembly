@@ -96,7 +96,6 @@ figure.image img {
     position: fixed;
     top: 50%;
     width: 100%;
-    // padding: 0;
     &.close {
       transform: translateX(0px);
       transform: translateY(-50.1%);
@@ -112,7 +111,6 @@ figure.image img {
   width: 400px;
   z-index: 6;
   transform: translateX(0px);
-  transform: translateY(0px);
   transition-property: -webkit-transform,transform,opacity;
   transition-duration: 0.2s;
   transition-timing-function: cubic-bezier(0.0,0.0,0.2,1);
@@ -125,28 +123,14 @@ figure.image img {
 @media only screen and (max-width: 400px){
   .right-sidebar-wrapper {
     right: -100%;
-    // width: 100%;
-    // width: 0;
     display: none;
     &.open {
       transform: translateX(-100%);
       width: 100%;
       display: inline-block;
-      // transform: translateY(100%);
     }
   }
 }
-
-// @media only screen and (max-width: 400px){
-//   .sidebar-wrapper {
-//     top: 50%;
-//     width: 100%;
-//     &.close {
-//       transform: translateX(0px);
-//       transform: translateY(-50%);
-//     }
-//   }
-// }
 
 .sidebar {
   width: 100%;
@@ -175,6 +159,12 @@ figure.image img {
   }
   .filterSelect {
     padding: 0 25px;
+  }
+  .locationShow {
+    margin: 15px;
+  }
+  hr.dark-hr {
+    margin: 5px 0;
   }
 }
 
@@ -207,19 +197,13 @@ figure.image img {
     height: 55px;
     left: 0;
     background-color: #fff;
-    // z-index: 3;
   }
   .togglebutton, {
-    // display: inline-block;
-    // position: sticky;
     top: 25px;
-    // top: 25px;
     height: auto;
-    // left: -360px;
     left: 2%;
     padding: 0;
     transform: rotate(90deg);
-    // z-index: 8;
   }
 }
 
@@ -378,7 +362,7 @@ figure.image img {
 // LOCATION INDEX STYLES===============================
 
 .locationShow {
-  height: 0px;
+  height: 0;
   -webkit-transition: 0.5s;
   -moz-transition: 0.5s;
   -o-transition: 0.5s;
@@ -397,14 +381,6 @@ figure.image img {
     visibility: visible;
   }
 }
-
-// @media only screen and (max-width: 400px) {
-//   .locationShow {
-//     -webkit-box-shadow: inset 0px 0px 5px 0px rgba(0,0,0,0.75);
-//     -moz-box-shadow: inset 0px 0px 5px 0px rgba(0,0,0,0.75);
-//     box-shadow: inset 0px 0px 5px 0px rgba(0,0,0,0.75);
-//   }
-// }
 
 hr.dark-hr {
 background-color: #d8d8d8;
