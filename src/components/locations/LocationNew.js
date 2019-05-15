@@ -19,25 +19,18 @@ class LocationNew extends React.Component {
     }
 
     this.handleChange = this.handleChange.bind(this)
-    this.handleFilmImage = this.handleFilmImage.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
-    this.getExistingFilm = this.getExistingFilm.bind(this)
+    this.getFilm = this.getFilm.bind(this)
   }
 
-  getExistingFilm(e){
-    axios.get(`/api/films/${e.value}`)
-      .then(res => {
-        const films = []
-        films.push(res.data)
-        const location = {...this.state.location, films, sceneNotes: {...this.state.location.sceneNotes, film: res.data}}
-        this.setState({ location, film: res.data })
-      })
+  getFilm(film){
+    console.log(film, 'hey')
+    const films = []
+    films.push(film)
+    const location = {...this.state.location, films, sceneNotes: {...this.state.location.sceneNotes, film: film}}
+    this.setState({ location, film: film })
   }
 
-  handleFilmImage(e){
-    const image = {image: e.target.value}
-    this.setState({image})
-  }
 
   handleChange(e){
     let location = this.state.location
@@ -56,21 +49,14 @@ class LocationNew extends React.Component {
 
 
   handleSubmit(e) {
-    console.log(this.state.location)
     e.preventDefault()
     const token = Auth.getToken()
-    axios.put(`/api/films/${this.state.film._id}`, this.state.image, {
-      headers: { 'Authorization': `Bearer ${token}` }
+    axios.get('https://api.opencagedata.com/geocode/v1/json', {
+      params: {
+        key: process.env.OPENCAGE_API_TOKEN,
+        q: this.state.location.streetAddress
+      }
     })
-      .then((res) =>  console.log(res))
-      .then(() => {
-        return axios.get('https://api.opencagedata.com/geocode/v1/json', {
-          params: {
-            key: process.env.OPENCAGE_API_TOKEN,
-            q: this.state.location.streetAddress
-          }
-        })
-      })
       .then(res => {
         if(res.data.results[0]) {
           const location = {
@@ -101,11 +87,11 @@ class LocationNew extends React.Component {
           this.props.toggleRightBar(res.data.message)
         }, 1000)
       })
-      .catch(err => {
-        console.log(err)
-        const errors = {...this.state.errors, ...err.response.data.errors}
-        this.setState({ errors })
-      })
+      // .catch(err => {
+      //   console.log(err)
+      //   const errors = {...this.state.errors, ...err.response.data.errors}
+      //   this.setState({ errors })
+      // })
   }
 
 
@@ -117,18 +103,19 @@ class LocationNew extends React.Component {
           handleChange={this.handleChange}
           handleFilmImage={this.handleFilmImage}
           handleSubmit={this.handleSubmit}
-          getExistingFilm={this.getExistingFilm}
+          getFilm={this.getFilm}
           errors={this.state.errors}
           addressLookup={this.addressLookup}
-          newFilm={this.state.newFilm}
         />
 
-        {this.state.message &
-          <div className="notification is-success">{this.state.message}</div>
-        }
       </section>
     )
   }
 }
 
 export default LocationNew
+
+
+// {this.state.message &
+//   <div className="notification is-success">{this.state.message}</div>
+// }
