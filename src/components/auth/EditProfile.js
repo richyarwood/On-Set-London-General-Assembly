@@ -11,34 +11,32 @@ class EditProfile extends React.Component {
     super()
 
     this.state = {
-      data: {},
-      locations: []
+      data: null,
+      sceneNotes: {}
     }
 
     this.handleChange = this.handleChange.bind(this)
   }
 
   componentDidMount(){
+
     const token = Auth.getToken()
 
-    Promise.props({
-      data: axios.get('/api/me', {
-        headers: { 'Authorization': `Bearer ${token}` }
-      }).then(res => res.data),
-      locations: axios.get('/api/locations').then(res => res.data)
+    axios.get('/api/me', {
+      headers: { 'Authorization': `Bearer ${token}` }
     })
-      .then(data => this.setState(data))
+      .then(res => this.setState({ data: res.data }))
       .catch(err => console.error(err))
   }
 
   handleChange(e) {
-    const data = { ...this.state.data, [e.target.name]: e.target.value }
-    this.setState({ data })
+    const data = { ...this.state.sceneNotes, [e.target.name]: e.target.value }
+    this.setState({ sceneNotes: data })
   }
 
   render(){
+    if(!this.state.data) return null
     console.log(this.state.data)
-    console.log(this.state.locations)
     return(
       <main>
         <section className="section">
@@ -75,21 +73,43 @@ class EditProfile extends React.Component {
                   </div>
 
                 </form>
+                <section className="section">
+                  {this.state.data.locations.map(location =>
+                    <div key={location._id}>
+                      <div className="title is-5">{location.name}</div>
 
-                {this.state.locations.map(film =>
-                  <div key={film._id}>
-                    <div>{film.name}</div>
-                    {film.sceneNotes.map(note =>
-                      <div key={note._id}>
-                        <div>
-                          {note.film.title}
-                        </div>
-                        <div>{note.text}</div>
-                      </div>
-                    )}
-                    <hr />
-                  </div>
-                )}
+                      {location.sceneNotes.map(note =>
+                        note.createdBy === this.state.data._id &&
+                          <div key={note._id}>
+                            <div className="is-size-5">
+                              {note.film.title}
+                            </div>
+                            <div className="is-size-5">
+                              {note.createdBy.email}
+                            </div>
+                            <div className="is-size-5">
+                            </div>
+                            <form>
+                              <div className="field">
+                                <div className="control">
+                                  <textarea
+                                    className="textarea"
+                                    name="text"
+                                    placeholder="A scene at this location"
+                                    onChange={this.handleChange}
+                                    value={note.text || ''}
+                                  />
+                                </div>
+                              </div>
+
+                              <button className="button">Save note</button>
+                            </form>
+                          </div>
+                      )}
+                      <hr />
+                    </div>
+                  )}
+                </section>
 
               </div>
             </div>

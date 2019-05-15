@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
 const bcrypt = require('bcrypt')
 const uniqueValidator = require('mongoose-unique-validator')
+const _ = require('lodash')
 
 const userSchema = new mongoose.Schema({
   username: {
@@ -22,6 +23,7 @@ const userSchema = new mongoose.Schema({
     virtuals: true, // add virtuals to the JSON
     transform(doc, json) {
       delete json.password // delete the password
+      delete json._locations
       delete json.__v
       return json
     }
@@ -33,17 +35,16 @@ const userSchema = new mongoose.Schema({
 // this is a special virtual that will aggregate
 // all the lcoations and films that a specific user has created
 // NB: **This needs to be populated in the controller**
-userSchema.virtual('locations', {
+userSchema.virtual('_locations', {
   localField: '_id',
   foreignField: 'sceneNotes.createdBy',
   ref: 'Location'
 })
 
-// userSchema.virtual('films', {
-//   localField: '_id',
-//   foreignField: 'createdBy',
-//   ref: 'Film'
-// })
+userSchema.virtual('locations')
+  .get(function() {
+    return _.uniqBy(this._locations, '_id')
+  })
 
 userSchema.virtual('passwordConfirmation')
   .set(function setPasswordConfirmation(plaintext) {
