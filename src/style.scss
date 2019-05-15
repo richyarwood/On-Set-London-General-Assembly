@@ -125,9 +125,9 @@ figure.image img {
 @media only screen and (max-width: 400px){
   .right-sidebar-wrapper {
     width: 100%;
-    right: -400px;
+    display: none;
     &.open {
-      transform: translateX(-400px);
+      display: inline-block;
     }
   }
 }
@@ -211,12 +211,17 @@ figure.image img {
 @media only screen and (max-width: 400px){
   .map-icon {
     position: fixed;
-    display: block;
+    display: inline-block;
     bottom: 40px;
     right: 40px;
 
     &.cancel {
-      
+      position: fixed;
+      display: inline-block;
+      bottom: 40px;
+      right: 40px;
+      border-radius: 50%;
+      margin: 0;
     }
   }
 }
