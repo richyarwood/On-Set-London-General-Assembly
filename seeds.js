@@ -77,11 +77,17 @@ mongoose.connect(dbUri, (err, db) => {
         }, {
           title: 'Batman Begins',
           image: 'http://www.gstatic.com/tv/thumb/v22vodart/35903/p35903_v_v8_bb.jpg'
+        }, {
+          title: 'About a Boy',
+          image: 'http://www.gstatic.com/tv/thumb/v22vodart/29150/p29150_v_v8_al.jpg'
+        }, {
+          title: 'Sliding Doors',
+          image: 'http://www.gstatic.com/tv/thumb/v22vodart/20474/p20474_v_v8_ab.jpg'
         }
       ])
         .then(films => {
 
-          const [ theElephantMan, laraCroft, vForVendetta, lawrenceOfArabia, greatExpectations, theWorldIsNotEnough, harryPotterPS, blackWindmill, earthCaughtFire, manTooMuch, fourWeddings, bDiary, eastEast, goldenEye, theSaint, batmanBegins ] = films
+          const [ theElephantMan, laraCroft, vForVendetta, lawrenceOfArabia, greatExpectations, theWorldIsNotEnough, harryPotterPS, blackWindmill, earthCaughtFire, manTooMuch, fourWeddings, bDiary, eastEast, goldenEye, theSaint, batmanBegins, aboutABoy, slidingDoors ] = films
 
           return Location.create([{
             name: 'Drapers Hall',
@@ -296,7 +302,7 @@ mongoose.connect(dbUri, (err, db) => {
               film: vForVendetta
             }]
           }, {
-            name: 'St Pancras',
+            name: 'St Pancras International',
             image: 'https://cdn.theculturetrip.com/wp-content/uploads/2018/01/st-pancras-station.jpg',
             coordinates: {
               lat: '51.531421',
@@ -304,12 +310,60 @@ mongoose.connect(dbUri, (err, db) => {
             },
             films: [batmanBegins],
             areaOfLondon: 'North Central London',
-            streetAddress: 'St Pancras',
+            streetAddress: 'Euston Rd, Kings Cross, London',
             postCode: 'N1C 4QP',
             sceneNotes: [{
 
               text: 'The elaborate Gothic stairwell because the staircase of "Arkham Asylum", invaded by a SWAT team and a flock of CGI bats. You might recognise the same location from the first Spice Girls video, Wannabe',
               film: batmanBegins
+            }]
+          }, {
+            name: 'Kings Cross Station',
+            image: 'https://www.kingscross.co.uk/media/P_KXC_TPA_KXS_N761_kxweb-600x409.jpg',
+            coordinates: {
+              lat: '51.531685',
+              lng: '-0.124446'
+            },
+            films: [harryPotterPS],
+            areaOfLondon: 'North Central London',
+            streetAddress: 'Euston Rd, Kings Cross, London',
+            postCode: 'N1 9AL',
+            sceneNotes: [{
+
+              text: 'The arched wall between platforms 4 and 5 was used as the magical entrance to "Platform 9 3/4", from which young Harry catches the Hogwarts Express',
+              film: harryPotterPS
+            }]
+          }, {
+            name: 'Oseney Crescent',
+            image: 'https://www.movie-locations.com/movies/a/About-A-Boy_Oseney-Crescent.jpg',
+            coordinates: {
+              lat: '51.548032',
+              lng: '-0.133737'
+            },
+            films: [aboutABoy],
+            areaOfLondon: 'Northwest London',
+            streetAddress: '31 Oseney Crescent, Kentish Town, London',
+            postCode: 'NW5 2AT',
+            sceneNotes: [{
+
+              text: 'Continuing on Caversham Road takes you into Oseney Crescent. Terminally depressed thrift-shop hippy Fiona and her son Marcus live in number 31, in About a Boy',
+              film: aboutABoy
+            }]
+          }, {
+            name: 'Primrose Gardens',
+            image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRcKXzkQSgQ4ogYDXoITu5uTiPTPGFKi4cG6PBtd1ndRTJvpZqw1Q',
+            coordinates: {
+              lat: '51.547164',
+              lng: '-0.163306'
+            },
+            films: [slidingDoors],
+            areaOfLondon: 'Northwest London',
+            streetAddress: '25 Primrose Gardens, London',
+            postCode: 'NW5 4TN',
+            sceneNotes: [{
+
+              text: 'This is the house of Helen/'s friend Anna, where Helen stays after catching her boyfriend cheating on her',
+              film: slidingDoors
             }]
           }])
         })
