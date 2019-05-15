@@ -40,6 +40,7 @@ class MapShow extends React.Component {
   }
 
   render() {
+    console.log(this.state.marker)
     if (!this.props.data) return <h1>Loading...</h1>
     return (
       <div className="location">

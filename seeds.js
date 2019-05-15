@@ -8,8 +8,8 @@ mongoose.connect(dbUri, (err, db) => {
 
   db.dropDatabase()
   return User.create({
-    username: 'violeta',
-    email: 'violepaez@gmail.com',
+    username: 'Mr User',
+    email: 'email@email.com',
     password: 'pass',
     passwordConfirmation: 'pass'
   })
@@ -327,7 +327,7 @@ mongoose.connect(dbUri, (err, db) => {
             streetAddress: 'The Old Bailey',
             postCode: 'EC4M 7EH',
             sceneNotes: [{
-
+              createdBy: user,
               text: 'The Old Bailey is blown up in the dramatic start of V for Vendetta. Masked terrorist V watches on to the sound of Tchaikovsky\'s 1812 Overture',
               film: vForVendetta
             }]
@@ -343,7 +343,7 @@ mongoose.connect(dbUri, (err, db) => {
             streetAddress: 'Euston Rd, Kings Cross',
             postCode: 'N1C 4QP',
             sceneNotes: [{
-
+              createdBy: user,
               text: 'The elaborate Gothic stairwell because the staircase of "Arkham Asylum", invaded by a SWAT team and a flock of CGI bats. You might recognise the same location from the first Spice Girls video, Wannabe',
               film: batmanBegins
             }]
@@ -359,7 +359,7 @@ mongoose.connect(dbUri, (err, db) => {
             streetAddress: 'Euston Rd, Kings Cross',
             postCode: 'N1 9AL',
             sceneNotes: [{
-
+              createdBy: user,
               text: 'The arched wall between platforms 4 and 5 was used as the magical entrance to "Platform 9 3/4", from which young Harry catches the Hogwarts Express',
               film: harryPotterPS
             }]
@@ -375,7 +375,7 @@ mongoose.connect(dbUri, (err, db) => {
             streetAddress: '31 Oseney Crescent, Kentish Town',
             postCode: 'NW5 2AT',
             sceneNotes: [{
-
+              createdBy: user,
               text: 'Continuing on Caversham Road takes you into Oseney Crescent. Terminally depressed thrift-shop hippy Fiona and her son Marcus live in number 31, in About a Boy',
               film: aboutABoy
             }]
@@ -391,7 +391,7 @@ mongoose.connect(dbUri, (err, db) => {
             streetAddress: '25 Primrose Gardens',
             postCode: 'NW5 4TN',
             sceneNotes: [{
-
+              createdBy: user,
               text: 'This is the house of Helen\'s friend Anna, where Helen stays after catching her boyfriend cheating on her',
               film: slidingDoors
             }]
@@ -407,7 +407,7 @@ mongoose.connect(dbUri, (err, db) => {
             streetAddress: '16-36 Southampton Row, Holborn',
             postCode: 'WC1B 4AP',
             sceneNotes: [{
-
+              createdBy: user,
               text: 'In the film the tunnel runs beneath the Thames to Greenwich. In reality, it emerges uner the arch of Waterloo Bridge, but has lain unused since the last tram ran in 1952',
               film: theAvengers
             }]
@@ -423,7 +423,7 @@ mongoose.connect(dbUri, (err, db) => {
             streetAddress: '27 St Lukes Mews Notting Hill',
             postCode: 'W11 1DF',
             sceneNotes: [{
-
+              createdBy: user,
               text: 'This is the home of newlyweds Peter and Juliet, where sadly lovestruck Mark silently declares his love with cue cards. The original script called for him to carpet the mews with rose petals',
               film: loveActually
             }]
@@ -439,7 +439,7 @@ mongoose.connect(dbUri, (err, db) => {
             streetAddress: 'Alexandra Palace Way, Muswell Hill',
             postCode: 'N22 7AY',
             sceneNotes: [{
-
+              createdBy: user,
               text: 'While still a gutted ruin, the Palace\'s central Concert Hall became "Victory Square"',
               film: nineteen84
             }]
@@ -455,7 +455,7 @@ mongoose.connect(dbUri, (err, db) => {
             streetAddress: '39 Monson Rd, New Cross',
             postCode: 'SE14 5EQ',
             sceneNotes: [{
-
+              createdBy: user,
               text: 'In the film, the pub is renamed "The Winchester Arms" and is Sean\'s beloved local. This site has since been redeveloped and turned into flats',
               film: seanOTDead
             }]
@@ -471,7 +471,7 @@ mongoose.connect(dbUri, (err, db) => {
             streetAddress: 'Trinity Road, Wandsworth',
             postCode: 'SW18 1JT',
             sceneNotes: [{
-
+              createdBy: user,
               text: 'The southern underpass beneath a huge circular advertising installation is where Alex and the "droogs" attack the Irish tramp at the begining of the film',
               film: clockworkOrange
             }]
@@ -487,7 +487,7 @@ mongoose.connect(dbUri, (err, db) => {
             streetAddress: 'Exhibition Rd, South Kensington',
             postCode: 'SW7 2DD',
             sceneNotes: [{
-
+              createdBy: user,
               text: 'In the Museum\'s "Making the Modern World" gallery, Alex Rider thwarts the attempt by Darrius Sayles to get the Brisih PM to launch the virus-laden computer network',
               film: stormBreaker
             }]

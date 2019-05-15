@@ -18,15 +18,15 @@ class LoginLogout extends React.Component{
   render(){
     return(
       <div className="login-logout-wrapper">
-        {!Auth.isAuthenticated() && <Link to='/login'><button className="button is-normal login">
-          Login
-        </button></Link>}
         {!Auth.isAuthenticated() &&<Link to='/register'><button className="button is-normal login">
           Register
         </button></Link>}
+        {!Auth.isAuthenticated() && <Link to='/login'><button className="button is-normal login">
+        Login
+        </button></Link>}
         {Auth.isAuthenticated() &&
           <Link to='/me'><button className="button is-normal">
-            Edit Profile
+            Profile
           </button></Link>}
         {Auth.isAuthenticated() &&
           <button className="button is-normal logout" onClick={this.logout}>

@@ -54,6 +54,16 @@ figure.image img {
 
 }
 
+.logo{
+  display: block;
+}
+
+@media only screen and (max-width: 400px){
+  .logo {
+    display: none;
+  }
+}
+
 .marker {
   width: 30px;
 }
@@ -69,11 +79,27 @@ figure.image img {
   transition-property: -webkit-transform,transform,opacity;
   transition-duration: 0.2s;
   transition-timing-function: cubic-bezier(0.0,0.0,0.2,1);
+  background-color: #fff;
 
   &.close {
     transform: translateX(-400px);
   }
 }
+
+@media only screen and (max-width: 400px){
+  .sidebar-wrapper {
+    top: 50%;
+  }
+}
+
+@media only screen and (max-width: 400px){
+  .sidebar-wrapper .sidebar {
+    width: 100%;
+  }
+}
+
+
+
 
 .right-sidebar-wrapper {
   position: absolute;
@@ -101,7 +127,6 @@ figure.image img {
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
   z-index: 1;
   overflow-y: hidden;
-  background-color: #fff;
 
   &:hover {
     overflow-y: auto;
@@ -312,4 +337,9 @@ h1 {
 
 .profile-note {
   margin-bottom: 10px;
+}
+
+.edit-button {
+  padding-top: 10px;
+  padding-bottom: 25px;
 }
