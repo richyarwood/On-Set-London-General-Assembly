@@ -99,7 +99,7 @@ figure.image img {
     // padding: 0;
     &.close {
       transform: translateX(0px);
-      transform: translateY(-50%);
+      transform: translateY(-50.1%);
     }
   }
 }
@@ -213,6 +213,7 @@ figure.image img {
     // display: inline-block;
     // position: sticky;
     top: 25px;
+    // top: 25px;
     height: auto;
     // left: -360px;
     left: 2%;
