@@ -86,11 +86,14 @@ mongoose.connect(dbUri, (err, db) => {
         }, {
           title: 'The Avengers',
           image: 'https://terrigen-cdn-dev.marvel.com/content/prod/1x/theavengers_lob_crd_03.jpg'
+        }, {
+          title: 'Love Actually',
+          image: 'http://t1.gstatic.com/images?q=tbn:ANd9GcR-yz1sgpd6sn0JuYHhl6JTUNZT6tpe0Jv8znAb7yn7yrGOD3lK'
         }
       ])
         .then(films => {
 
-          const [ theElephantMan, laraCroft, vForVendetta, lawrenceOfArabia, greatExpectations, theWorldIsNotEnough, harryPotterPS, blackWindmill, earthCaughtFire, manTooMuch, fourWeddings, bDiary, eastEast, goldenEye, theSaint, batmanBegins, aboutABoy, slidingDoors, theAvengers ] = films
+          const [ theElephantMan, laraCroft, vForVendetta, lawrenceOfArabia, greatExpectations, theWorldIsNotEnough, harryPotterPS, blackWindmill, earthCaughtFire, manTooMuch, fourWeddings, bDiary, eastEast, goldenEye, theSaint, batmanBegins, aboutABoy, slidingDoors, theAvengers, loveActually ] = films
 
           return Location.create([{
             name: 'Drapers Hall',
@@ -372,8 +375,8 @@ mongoose.connect(dbUri, (err, db) => {
             name: 'Kingsway Tram Tunnel',
             image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Kingsway_tramway_subway_%286266160469%29.jpg/600px-Kingsway_tramway_subway_%286266160469%29.jpg',
             coordinates: {
-              lat: '51.547164',
-              lng: '-0.163306'
+              lat: '51.518392',
+              lng: '-0.120738'
             },
             films: [theAvengers],
             areaOfLondon: 'West London',
@@ -381,8 +384,24 @@ mongoose.connect(dbUri, (err, db) => {
             postCode: 'WC1B 4AP',
             sceneNotes: [{
 
-              text: 'This is the house of Helen\'s friend Anna, where Helen stays after catching her boyfriend cheating on her',
+              text: 'In the film the tunnel runs beneath the Thames to Greenwich. In reality, it emerges uner the arch of Waterloo Bridge, but has lain unused since the last tram ran in 1952',
               film: theAvengers
+            }]
+          }, {
+            name: 'St Lukes Mews',
+            image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Kingsway_tramway_subway_%286266160469%29.jpg/600px-Kingsway_tramway_subway_%286266160469%29.jpg',
+            coordinates: {
+              lat: '51.518392',
+              lng: '-0.120738'
+            },
+            films: [loveActually],
+            areaOfLondon: 'West London',
+            streetAddress: '27 St Lukes Mews Notting Hill',
+            postCode: 'W11 1DF',
+            sceneNotes: [{
+
+              text: 'This is the home of newlyweds Peter and Juliet, where sadly lovestruck Mark silently declares his love with cue cards. The original script called for him to carpet the mews with rose petals',
+              film: loveActually
             }]
           }])
         })
