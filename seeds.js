@@ -74,11 +74,38 @@ mongoose.connect(dbUri, (err, db) => {
         {
           title: 'The Saint',
           image: 'http://www.gstatic.com/tv/thumb/v22vodart/19202/p19202_v_v8_ab.jpg'
+        }, {
+          title: 'Batman Begins',
+          image: 'http://www.gstatic.com/tv/thumb/v22vodart/35903/p35903_v_v8_bb.jpg'
+        }, {
+          title: 'About a Boy',
+          image: 'http://www.gstatic.com/tv/thumb/v22vodart/29150/p29150_v_v8_al.jpg'
+        }, {
+          title: 'Sliding Doors',
+          image: 'http://www.gstatic.com/tv/thumb/v22vodart/20474/p20474_v_v8_ab.jpg'
+        }, {
+          title: 'The Avengers',
+          image: 'https://terrigen-cdn-dev.marvel.com/content/prod/1x/theavengers_lob_crd_03.jpg'
+        }, {
+          title: 'Love Actually',
+          image: 'http://t1.gstatic.com/images?q=tbn:ANd9GcR-yz1sgpd6sn0JuYHhl6JTUNZT6tpe0Jv8znAb7yn7yrGOD3lK'
+        }, {
+          title: 'Nineteen Eighty-Four',
+          image: 'http://www.gstatic.com/tv/thumb/v22vodart/8582/p8582_v_v8_ab.jpg'
+        }, {
+          title: 'Sean of the Dead',
+          image: 'http://www.movienewsletters.net/photos/043445R1.jpg'
+        }, {
+          title: 'Clockwork Orange',
+          image: 'http://t2.gstatic.com/images?q=tbn:ANd9GcTB-hK0IAfj71C5QASyaTIK-lGBenOwmkG-AjFJNAoRL1t-PO3h'
+        }, {
+          title: 'Stormbreaker',
+          image: 'http://www.gstatic.com/tv/thumb/v22vodart/161382/p161382_v_v8_ab.jpg'
         }
       ])
         .then(films => {
 
-          const [ theElephantMan, laraCroft, vForVendetta, lawrenceOfArabia, greatExpectations, theWorldIsNotEnough, harryPotterPS, blackWindmill, earthCaughtFire, manTooMuch, fourWeddings, bDiary, eastEast, goldenEye, theSaint ] = films
+          const [ theElephantMan, laraCroft, vForVendetta, lawrenceOfArabia, greatExpectations, theWorldIsNotEnough, harryPotterPS, blackWindmill, earthCaughtFire, manTooMuch, fourWeddings, bDiary, eastEast, goldenEye, theSaint, batmanBegins, aboutABoy, slidingDoors, theAvengers, loveActually, nineteen84, seanOTDead, clockworkOrange, stormBreaker ] = films
 
           return Location.create([{
             name: 'Drapers Hall',
@@ -291,6 +318,166 @@ mongoose.connect(dbUri, (err, db) => {
 
               text: 'The Old Bailey is blown up in the dramatic start of V for Vendetta. Masked terrorist V watches on to the sound of Tchaikovsky\'s 1812 Overture',
               film: vForVendetta
+            }]
+          }, {
+            name: 'St Pancras International',
+            image: 'https://cdn.theculturetrip.com/wp-content/uploads/2018/01/st-pancras-station.jpg',
+            coordinates: {
+              lat: '51.531421',
+              lng: '-0.126090'
+            },
+            films: [batmanBegins],
+            areaOfLondon: 'North Central London',
+            streetAddress: 'Euston Rd, Kings Cross',
+            postCode: 'N1C 4QP',
+            sceneNotes: [{
+
+              text: 'The elaborate Gothic stairwell because the staircase of "Arkham Asylum", invaded by a SWAT team and a flock of CGI bats. You might recognise the same location from the first Spice Girls video, Wannabe',
+              film: batmanBegins
+            }]
+          }, {
+            name: 'Kings Cross Station',
+            image: 'https://www.kingscross.co.uk/media/P_KXC_TPA_KXS_N761_kxweb-600x409.jpg',
+            coordinates: {
+              lat: '51.531685',
+              lng: '-0.124446'
+            },
+            films: [harryPotterPS],
+            areaOfLondon: 'North Central London',
+            streetAddress: 'Euston Rd, Kings Cross',
+            postCode: 'N1 9AL',
+            sceneNotes: [{
+
+              text: 'The arched wall between platforms 4 and 5 was used as the magical entrance to "Platform 9 3/4", from which young Harry catches the Hogwarts Express',
+              film: harryPotterPS
+            }]
+          }, {
+            name: 'Oseney Crescent',
+            image: 'https://www.movie-locations.com/movies/a/About-A-Boy_Oseney-Crescent.jpg',
+            coordinates: {
+              lat: '51.548032',
+              lng: '-0.133737'
+            },
+            films: [aboutABoy],
+            areaOfLondon: 'Northwest London',
+            streetAddress: '31 Oseney Crescent, Kentish Town',
+            postCode: 'NW5 2AT',
+            sceneNotes: [{
+
+              text: 'Continuing on Caversham Road takes you into Oseney Crescent. Terminally depressed thrift-shop hippy Fiona and her son Marcus live in number 31, in About a Boy',
+              film: aboutABoy
+            }]
+          }, {
+            name: 'Primrose Gardens',
+            image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRcKXzkQSgQ4ogYDXoITu5uTiPTPGFKi4cG6PBtd1ndRTJvpZqw1Q',
+            coordinates: {
+              lat: '51.547164',
+              lng: '-0.163306'
+            },
+            films: [slidingDoors],
+            areaOfLondon: 'Northwest London',
+            streetAddress: '25 Primrose Gardens',
+            postCode: 'NW5 4TN',
+            sceneNotes: [{
+
+              text: 'This is the house of Helen\'s friend Anna, where Helen stays after catching her boyfriend cheating on her',
+              film: slidingDoors
+            }]
+          }, {
+            name: 'Kingsway Tram Tunnel',
+            image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Kingsway_tramway_subway_%286266160469%29.jpg/600px-Kingsway_tramway_subway_%286266160469%29.jpg',
+            coordinates: {
+              lat: '51.518392',
+              lng: '-0.120738'
+            },
+            films: [theAvengers],
+            areaOfLondon: 'West London',
+            streetAddress: '16-36 Southampton Row, Holborn',
+            postCode: 'WC1B 4AP',
+            sceneNotes: [{
+
+              text: 'In the film the tunnel runs beneath the Thames to Greenwich. In reality, it emerges uner the arch of Waterloo Bridge, but has lain unused since the last tram ran in 1952',
+              film: theAvengers
+            }]
+          }, {
+            name: 'St Lukes Mews',
+            image: 'https://s23514.pcdn.co/wp-content/uploads/2017/10/st_lukes_mews_notting_hill.jpg',
+            coordinates: {
+              lat: '51.517757',
+              lng: '-0.203167'
+            },
+            films: [loveActually],
+            areaOfLondon: 'West London',
+            streetAddress: '27 St Lukes Mews Notting Hill',
+            postCode: 'W11 1DF',
+            sceneNotes: [{
+
+              text: 'This is the home of newlyweds Peter and Juliet, where sadly lovestruck Mark silently declares his love with cue cards. The original script called for him to carpet the mews with rose petals',
+              film: loveActually
+            }]
+          }, {
+            name: 'Alexandra Palace',
+            image: 'https://cdn.londonandpartners.com/asset/alexandra-palace_ariel-view-of-alexandra-palace-image-courtesy-of-alexandra-palace_5da39c3871881d72c9c4be25267c13ba.jpg',
+            coordinates: {
+              lat: '51.594168',
+              lng: '-0.130751'
+            },
+            films: [nineteen84],
+            areaOfLondon: 'North London',
+            streetAddress: 'Alexandra Palace Way, Muswell Hill',
+            postCode: 'N22 7AY',
+            sceneNotes: [{
+
+              text: 'While still a gutted ruin, the Palace\'s central Concert Hall became "Victory Square"',
+              film: nineteen84
+            }]
+          }, {
+            name: 'The Duke of Albany',
+            image: 'https://www.movie-locations.com/movies/s/Shaun-Of-The-Dead-Monson-Road.jpg',
+            coordinates: {
+              lat: '51.478016',
+              lng: '-0.047708'
+            },
+            films: [seanOTDead],
+            areaOfLondon: 'Southeast London',
+            streetAddress: '39 Monson Rd, New Cross',
+            postCode: 'SE14 5EQ',
+            sceneNotes: [{
+
+              text: 'In the film, the pub is renamed "The Winchester Arms" and is Sean\'s beloved local. This site has since been redeveloped and turned into flats',
+              film: seanOTDead
+            }]
+          }, {
+            name: 'Trinity Road',
+            image: 'https://s0.geograph.org.uk/geophotos/02/40/94/2409495_2555c695.jpg',
+            coordinates: {
+              lat: '51.462371',
+              lng: '-0.185475'
+            },
+            films: [clockworkOrange],
+            areaOfLondon: 'South Central London',
+            streetAddress: 'Trnity Road, Wandsworth',
+            postCode: 'SW18 1JT',
+            sceneNotes: [{
+
+              text: 'The southern underpass beneath a huge circular advertising installation is where Alex and the "droogs" attack the Irish tramp at the begining of the film',
+              film: clockworkOrange
+            }]
+          }, {
+            name: 'Science Museum',
+            image: 'https://cdn.londonandpartners.com/asset/8ee0b8e262ad8ef44167aab3b2e40563.jpg',
+            coordinates: {
+              lat: '51.497807',
+              lng: '-0.174526'
+            },
+            films: [stormBreaker],
+            areaOfLondon: 'Southwest London',
+            streetAddress: 'Exhibition Rd, South Kensington',
+            postCode: 'SW7 2DD',
+            sceneNotes: [{
+
+              text: 'In the Museum\'s "Making the Modern World" gallery, Alex Rider thwarts the attempt by Darrius Sayles to get the Brisih PM to launch the virus-laden computer network',
+              film: stormBreaker
             }]
           }])
         })

@@ -34,7 +34,6 @@ class MapShow extends React.Component {
 
   render() {
     if (!this.props.data) return <h1>Loading...</h1>
-    console.log(this.props.data, 'MAP DATA')
     return (
       <div className="location">
         <Map
@@ -51,10 +50,9 @@ class MapShow extends React.Component {
               coordinates={[marker.coordinates.lng, marker.coordinates.lat]}
               anchor="bottom">
               <img
-                src='/images/marker-icon.png'
+                src={this.props.data.center.lat === marker.coordinates.lat ? '/images/active-marker.png': '/images/marker-icon.png'}
                 onClick={() => this.popUpShow(marker)}
-                width="80px"
-                className= {this.props.data.center === [marker.coordinates.lng, marker.coordinates.lat]? 'active-marker': 'marker'}
+                className= {this.props.data.center.lat === marker.coordinates.lat ? 'active-marker': 'marker'}
               />
             </Marker>
           )}

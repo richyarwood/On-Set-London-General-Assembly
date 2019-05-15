@@ -41,7 +41,6 @@ body {
 }
 
 div.film-card-form {
-  // margin-bottom: 15px;
   display: block;
   width: 100%;
 }
@@ -52,6 +51,7 @@ figure {
 
 figure.image img {
   margin: 10px 40px 25px 40px;
+
 }
 
 .marker {
@@ -308,4 +308,8 @@ h1 {
 
 .film-title {
   font-size: 14px;
+}
+
+.profile-note {
+  margin-bottom: 10px;
 }
