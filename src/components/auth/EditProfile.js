@@ -2,8 +2,6 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 import Auth from '../../lib/Auth'
-import Promise from 'bluebird'
-
 
 class EditProfile extends React.Component {
 
@@ -11,8 +9,7 @@ class EditProfile extends React.Component {
     super()
 
     this.state = {
-      data: null,
-      sceneNotes: {}
+      data: null
     }
 
     this.handleChange = this.handleChange.bind(this)
@@ -30,8 +27,8 @@ class EditProfile extends React.Component {
   }
 
   handleChange(e) {
-    const data = { ...this.state.sceneNotes, [e.target.name]: e.target.value }
-    this.setState({ sceneNotes: data })
+    const data = { ...this.state.data, [e.target.name]: e.target.value }
+    this.setState({ data: data })
   }
 
   render(){
@@ -89,21 +86,10 @@ class EditProfile extends React.Component {
                             </div>
                             <div className="is-size-5">
                             </div>
-                            <form>
-                              <div className="field">
-                                <div className="control">
-                                  <textarea
-                                    className="textarea"
-                                    name="text"
-                                    placeholder="A scene at this location"
-                                    onChange={this.handleChange}
-                                    value={note.text || ''}
-                                  />
-                                </div>
-                              </div>
-
-                              <button className="button">Save note</button>
-                            </form>
+                            <div className="content">
+                              {note.text}<br />
+                              <p className="edit-button"><Link to="/locations/:id/scenenotes/:id">Edit this note</Link></p>
+                            </div>
                           </div>
                       )}
                       <hr />

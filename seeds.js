@@ -8,8 +8,8 @@ mongoose.connect(dbUri, (err, db) => {
 
   db.dropDatabase()
   return User.create({
-    username: 'violeta',
-    email: 'violepaez@gmail.com',
+    username: 'Mr User',
+    email: 'email@email.com',
     password: 'pass',
     passwordConfirmation: 'pass'
   })
@@ -101,11 +101,23 @@ mongoose.connect(dbUri, (err, db) => {
         }, {
           title: 'Stormbreaker',
           image: 'http://www.gstatic.com/tv/thumb/v22vodart/161382/p161382_v_v8_ab.jpg'
+        },
+        {
+          title: 'American Assassin',
+          image: 'https://www.cbsfilms.com/media/cache/62/93/62931f7e83c518aa9d092b3fea7e4dc4.jpg'
+        },
+        {
+          title: 'Brazil',
+          image: 'https://media.timeout.com/images/101619403/630/472/image.jpg'
+        },
+        {
+          title: 'The Da Vinci Code',
+          image: 'https://vignette.wikia.nocookie.net/davincicode/images/5/57/Da_Vinci_Code_characters_poster.jpg/revision/latest?cb=20150623230955'
         }
       ])
         .then(films => {
 
-          const [ theElephantMan, laraCroft, vForVendetta, lawrenceOfArabia, greatExpectations, theWorldIsNotEnough, harryPotterPS, blackWindmill, earthCaughtFire, manTooMuch, fourWeddings, bDiary, eastEast, goldenEye, theSaint, batmanBegins, aboutABoy, slidingDoors, theAvengers, loveActually, nineteen84, seanOTDead, clockworkOrange, stormBreaker ] = films
+          const [ theElephantMan, laraCroft, vForVendetta, lawrenceOfArabia, greatExpectations, theWorldIsNotEnough, harryPotterPS, blackWindmill, earthCaughtFire, manTooMuch, fourWeddings, bDiary, eastEast, goldenEye, theSaint, batmanBegins, aboutABoy, slidingDoors, theAvengers, loveActually, nineteen84, seanOTDead, clockworkOrange, stormBreaker, americanAssassin, brazil, theDaVinciCode ] = films
 
           return Location.create([{
             name: 'Drapers Hall',
@@ -315,7 +327,7 @@ mongoose.connect(dbUri, (err, db) => {
             streetAddress: 'The Old Bailey',
             postCode: 'EC4M 7EH',
             sceneNotes: [{
-
+              createdBy: user,
               text: 'The Old Bailey is blown up in the dramatic start of V for Vendetta. Masked terrorist V watches on to the sound of Tchaikovsky\'s 1812 Overture',
               film: vForVendetta
             }]
@@ -331,7 +343,7 @@ mongoose.connect(dbUri, (err, db) => {
             streetAddress: 'Euston Rd, Kings Cross',
             postCode: 'N1C 4QP',
             sceneNotes: [{
-
+              createdBy: user,
               text: 'The elaborate Gothic stairwell because the staircase of "Arkham Asylum", invaded by a SWAT team and a flock of CGI bats. You might recognise the same location from the first Spice Girls video, Wannabe',
               film: batmanBegins
             }]
@@ -347,7 +359,7 @@ mongoose.connect(dbUri, (err, db) => {
             streetAddress: 'Euston Rd, Kings Cross',
             postCode: 'N1 9AL',
             sceneNotes: [{
-
+              createdBy: user,
               text: 'The arched wall between platforms 4 and 5 was used as the magical entrance to "Platform 9 3/4", from which young Harry catches the Hogwarts Express',
               film: harryPotterPS
             }]
@@ -363,7 +375,7 @@ mongoose.connect(dbUri, (err, db) => {
             streetAddress: '31 Oseney Crescent, Kentish Town',
             postCode: 'NW5 2AT',
             sceneNotes: [{
-
+              createdBy: user,
               text: 'Continuing on Caversham Road takes you into Oseney Crescent. Terminally depressed thrift-shop hippy Fiona and her son Marcus live in number 31, in About a Boy',
               film: aboutABoy
             }]
@@ -379,7 +391,7 @@ mongoose.connect(dbUri, (err, db) => {
             streetAddress: '25 Primrose Gardens',
             postCode: 'NW5 4TN',
             sceneNotes: [{
-
+              createdBy: user,
               text: 'This is the house of Helen\'s friend Anna, where Helen stays after catching her boyfriend cheating on her',
               film: slidingDoors
             }]
@@ -395,7 +407,7 @@ mongoose.connect(dbUri, (err, db) => {
             streetAddress: '16-36 Southampton Row, Holborn',
             postCode: 'WC1B 4AP',
             sceneNotes: [{
-
+              createdBy: user,
               text: 'In the film the tunnel runs beneath the Thames to Greenwich. In reality, it emerges uner the arch of Waterloo Bridge, but has lain unused since the last tram ran in 1952',
               film: theAvengers
             }]
@@ -411,7 +423,7 @@ mongoose.connect(dbUri, (err, db) => {
             streetAddress: '27 St Lukes Mews Notting Hill',
             postCode: 'W11 1DF',
             sceneNotes: [{
-
+              createdBy: user,
               text: 'This is the home of newlyweds Peter and Juliet, where sadly lovestruck Mark silently declares his love with cue cards. The original script called for him to carpet the mews with rose petals',
               film: loveActually
             }]
@@ -427,7 +439,7 @@ mongoose.connect(dbUri, (err, db) => {
             streetAddress: 'Alexandra Palace Way, Muswell Hill',
             postCode: 'N22 7AY',
             sceneNotes: [{
-
+              createdBy: user,
               text: 'While still a gutted ruin, the Palace\'s central Concert Hall became "Victory Square"',
               film: nineteen84
             }]
@@ -443,7 +455,7 @@ mongoose.connect(dbUri, (err, db) => {
             streetAddress: '39 Monson Rd, New Cross',
             postCode: 'SE14 5EQ',
             sceneNotes: [{
-
+              createdBy: user,
               text: 'In the film, the pub is renamed "The Winchester Arms" and is Sean\'s beloved local. This site has since been redeveloped and turned into flats',
               film: seanOTDead
             }]
@@ -456,10 +468,10 @@ mongoose.connect(dbUri, (err, db) => {
             },
             films: [clockworkOrange],
             areaOfLondon: 'South Central London',
-            streetAddress: 'Trnity Road, Wandsworth',
+            streetAddress: 'Trinity Road, Wandsworth',
             postCode: 'SW18 1JT',
             sceneNotes: [{
-
+              createdBy: user,
               text: 'The southern underpass beneath a huge circular advertising installation is where Alex and the "droogs" attack the Irish tramp at the begining of the film',
               film: clockworkOrange
             }]
@@ -475,11 +487,63 @@ mongoose.connect(dbUri, (err, db) => {
             streetAddress: 'Exhibition Rd, South Kensington',
             postCode: 'SW7 2DD',
             sceneNotes: [{
-
+              createdBy: user,
               text: 'In the Museum\'s "Making the Modern World" gallery, Alex Rider thwarts the attempt by Darrius Sayles to get the Brisih PM to launch the virus-laden computer network',
               film: stormBreaker
             }]
-          }])
+          },
+          {
+            name: 'St George’s Walk',
+            image: 'https://i2-prod.croydonadvertiser.co.uk/news/croydon-news/article492870.ece/ALTERNATES/s615b/American-Assassin-4JPG.jpg',
+            coordinates: {
+              lat: '51.3725237',
+              lng: '-0.0985434'
+            },
+            films: [americanAssassin],
+            areaOfLondon: 'South London',
+            streetAddress: 'St George\'s Walk, Croydon',
+            postCode: 'CR0 1YB',
+            sceneNotes: [{
+
+              text: 'St George’s Walk was dressed as an area of Istanbul. Dylan O’Brien walks through the bustle into a Turkish restaurant on the corner. Then the scene unfolds into an elaborate chase, with special operatives hoofing after him',
+              film: americanAssassin
+            }]
+          },
+          {
+            name: 'Croydon B Power Station',
+            image: 'https://lh5.googleusercontent.com/p/AF1QipO3Ra2Z7ZpoJKPUYjmQJG6SyA-g4uy61mNHBNmR=w424-h240-k-no',
+            coordinates: {
+              lat: '51.379884',
+              lng: '-0.123879'
+            },
+            films: [brazil],
+            areaOfLondon: 'South London',
+            streetAddress: 'Valley Retail Park, Purley Way, Croydon',
+            postCode: 'CR0 4UZ',
+            sceneNotes: [{
+
+              text: 'The power station was decommissioned in 1984, and it was used in a disused state in Terry Gilliam\'s 1985 film Brazil. The station was demolished in 1991 and an IKEA store was opened on the site. Two large chimneys were retained and remain a local landmark.',
+              film: brazil
+            }]
+          },
+          {
+            name: 'Fairfield Halls Concert Hall',
+            image: 'https://upload.wikimedia.org/wikipedia/commons/8/82/Fairfield_Halls_-_London.jpg',
+            coordinates: {
+              lat: '51.374010',
+              lng: '-0.096840'
+            },
+            films: [theDaVinciCode],
+            areaOfLondon: 'South London',
+            streetAddress: 'Park Ln, London',
+            postCode: 'CR9 1DG',
+            sceneNotes: [{
+
+              text: 'Robert Langdon (played by Tom Hanks) gives a lecture in our beloved Fairfield Halls Concert Hall.',
+              film: theDaVinciCode
+            }]
+          }
+          ])
         })
 
         .then(() => mongoose.connection.close())
