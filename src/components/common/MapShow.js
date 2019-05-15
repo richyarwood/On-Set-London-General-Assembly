@@ -32,6 +32,12 @@ class MapShow extends React.Component {
     return films.map(film => film.title).slice(0,2)
   }
 
+
+  changeMarkers(marker){
+    if (this.state.marker === marker) return '/images/active-marker.png'
+    return this.props.data.center.lat === marker.coordinates.lat ? '/images/active-marker.png': '/images/marker-icon.png'
+  }
+
   render() {
     if (!this.props.data) return <h1>Loading...</h1>
     return (
@@ -50,7 +56,7 @@ class MapShow extends React.Component {
               coordinates={[marker.coordinates.lng, marker.coordinates.lat]}
               anchor="bottom">
               <img
-                src={this.props.data.center.lat === marker.coordinates.lat ? '/images/active-marker.png': '/images/marker-icon.png'}
+                src={this.changeMarkers(marker)}
                 onClick={() => this.popUpShow(marker)}
                 className= {this.props.data.center.lat === marker.coordinates.lat ? 'active-marker': 'marker'}
               />

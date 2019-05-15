@@ -92,7 +92,6 @@ class LocationNew extends React.Component {
           this.props.toggleRightBar(res.data.message)
         }, 1000)
       })
-    this.props.updatePage()
   }
 
 
@@ -118,6 +117,8 @@ class LocationNew extends React.Component {
               <LocationEntry
                 errors={this.state.errors}
                 selectedFilm={this.state.selectedFilm}
+                handleChange={this.handleChange}
+                handleSubmit={this.handleSubmit}
               />
             }
           </form>

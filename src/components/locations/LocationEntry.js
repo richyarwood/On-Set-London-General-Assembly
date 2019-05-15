@@ -4,11 +4,20 @@ import Select from 'react-select'
 import areasOfLondon from '../../lib/areasOfLondon'
 
 
-class LocationNew extends React.Component {
+class LocationEntry extends React.Component {
 
   constructor(props){
     super(props)
-    this.state={}
+    this.state={
+      location: {
+        coordinates: {},
+        sceneNotes: {}
+      },
+      errors: {},
+      message: '',
+      film: {},
+      selectedFilm: null
+    }
   }
 
 
@@ -118,7 +127,7 @@ class LocationNew extends React.Component {
   }
 }
 
-export default LocationNew
+export default LocationEntry
 
 
 // {this.props.message &
