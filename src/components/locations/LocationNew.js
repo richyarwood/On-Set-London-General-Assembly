@@ -5,22 +5,23 @@ import Auth from '../../lib/Auth'
 import { Link } from 'react-router-dom'
 import LocationEntry from './LocationEntry'
 
+const initialState = {
+  location: {
+    coordinates: {},
+    sceneNotes: {}
+  },
+  errors: {},
+  message: null,
+  film: {},
+  selectedFilm: null
+}
 
 class LocationNew extends React.Component {
 
   constructor(props){
     super(props)
 
-    this.state = {
-      location: {
-        coordinates: {},
-        sceneNotes: {}
-      },
-      errors: {},
-      message: '',
-      film: {},
-      selectedFilm: null
-    }
+    this.state = {...initialState},
 
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -73,10 +74,7 @@ class LocationNew extends React.Component {
           }
           this.setState({ location })
         } else {
-          const errors = {
-            ...this.state.errors,
-            invalidOpenCageAddress: 'Please enter a valid address'
-          }
+          const errors = {...this.state.errors, invalidCoordinates: 'Please enter a valid address'}
           this.setState({ errors })
         }
       })
@@ -85,12 +83,16 @@ class LocationNew extends React.Component {
           headers: { 'Authorization': `Bearer ${token}` }
         })
       })
-      .then(res => {
-        this.setState({message: res.data.message})
+      .then(() => {
+        this.setState({message: 'Location created'})
         setTimeout(() => {
-          this.setState({message: ''})
-          this.props.toggleRightBar(res.data.message)
-        }, 1000)
+          this.props.toggleRightBar()
+          this.setState({ ...initialState})
+        }, 2000)
+      })
+      .catch(err => {
+        const errors = { ...this.state.errors, ...err.response.data.errors }
+        this.setState({ errors })
       })
   }
 
@@ -124,7 +126,9 @@ class LocationNew extends React.Component {
           </form>
           }
         </div>
-
+        {this.state.message &&
+          <div className="notification is-success">Location created!</div>
+        }
       </section>
     )
   }
