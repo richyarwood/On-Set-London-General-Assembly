@@ -34,9 +34,9 @@ class MapShow extends React.Component {
   }
 
 
-  toggleMarker(marker, active, inactive){
-    if(this.state.markerClick) return this.state.marker.coordinates.lat === marker.coordinates.lat? active: inactive
-    else return this.props.data.center.lat === marker.coordinates.lat? active: inactive
+  toggleMarker(marker){
+    if(this.state.markerClick) return this.state.marker.coordinates.lat === marker.coordinates.lat? 'active-marker': 'marker'
+    else return this.props.data.center.lat === marker.coordinates.lat? 'active-marker': 'marker'
   }
 
   render() {
@@ -57,9 +57,9 @@ class MapShow extends React.Component {
               coordinates={[marker.coordinates.lng, marker.coordinates.lat]}
               anchor="bottom">
               <img
-                src={this.toggleMarker(marker, '/images/active-marker.png', '/images/marker-icon.png')}
+                src={`/images/${this.toggleMarker(marker)}.png`}
                 onClick={() => this.popUpShow(marker)}
-                className= {this.toggleMarker(marker, 'active-marker', 'marker')}
+                className= {this.toggleMarker(marker)}
               />
             </Marker>
           )}
@@ -71,7 +71,6 @@ class MapShow extends React.Component {
                 this.state.marker.coordinates.lat
               ]}
               onClick={() =>{
-                this.toggleMarker()
                 this.props.scrollLocationOnMarkerClick(this.state.marker._id)
                 if (this.props.data.toggleSidebar) {
                   this.props.toggleSidebarClick()
