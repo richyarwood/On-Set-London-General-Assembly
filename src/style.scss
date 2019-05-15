@@ -96,6 +96,7 @@ figure.image img {
     position: fixed;
     top: 50%;
     width: 100%;
+    // padding: 0;
     &.close {
       transform: translateX(0px);
       transform: translateY(-50%);
@@ -277,6 +278,13 @@ figure.image img {
   top: 40px;
   right: 40px;
   z-index: 4;
+}
+
+@media only screen and (max-width: 400px){
+  .login-logout-wrapper {
+    top: 9px;
+    right: 15px;
+  }
 }
 
 .edit-form-wrapper {

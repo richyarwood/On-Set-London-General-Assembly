@@ -85,11 +85,11 @@ class LocationIndex extends React.Component {
             {// -----ITEMS ARE HIDDEN ON LOAD AND APPEAR ON CLICK-----
             }
             <div
-              className={`locationShow${this.state.activeLocation !== location ? '' : ' show' }`}>
+              className={`locationShow ${this.state.activeLocation !== location ? '' : ' show' }`}>
               <div className="subtitle is-size-6">Films and notes</div>
               {location.sceneNotes.map(note =>
                 <div key={note._id} className="note-wrapper">
-                  <div className="columns">
+                  <div className="columns is-mobile">
                     <div className="column">
                       <img src={note.film.image} />
                     </div>
