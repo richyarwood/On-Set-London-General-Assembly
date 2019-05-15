@@ -83,11 +83,14 @@ mongoose.connect(dbUri, (err, db) => {
         }, {
           title: 'Sliding Doors',
           image: 'http://www.gstatic.com/tv/thumb/v22vodart/20474/p20474_v_v8_ab.jpg'
+        }, {
+          title: 'The Avengers',
+          image: 'https://terrigen-cdn-dev.marvel.com/content/prod/1x/theavengers_lob_crd_03.jpg'
         }
       ])
         .then(films => {
 
-          const [ theElephantMan, laraCroft, vForVendetta, lawrenceOfArabia, greatExpectations, theWorldIsNotEnough, harryPotterPS, blackWindmill, earthCaughtFire, manTooMuch, fourWeddings, bDiary, eastEast, goldenEye, theSaint, batmanBegins, aboutABoy, slidingDoors ] = films
+          const [ theElephantMan, laraCroft, vForVendetta, lawrenceOfArabia, greatExpectations, theWorldIsNotEnough, harryPotterPS, blackWindmill, earthCaughtFire, manTooMuch, fourWeddings, bDiary, eastEast, goldenEye, theSaint, batmanBegins, aboutABoy, slidingDoors, theAvengers ] = films
 
           return Location.create([{
             name: 'Drapers Hall',
@@ -310,7 +313,7 @@ mongoose.connect(dbUri, (err, db) => {
             },
             films: [batmanBegins],
             areaOfLondon: 'North Central London',
-            streetAddress: 'Euston Rd, Kings Cross, London',
+            streetAddress: 'Euston Rd, Kings Cross',
             postCode: 'N1C 4QP',
             sceneNotes: [{
 
@@ -326,7 +329,7 @@ mongoose.connect(dbUri, (err, db) => {
             },
             films: [harryPotterPS],
             areaOfLondon: 'North Central London',
-            streetAddress: 'Euston Rd, Kings Cross, London',
+            streetAddress: 'Euston Rd, Kings Cross',
             postCode: 'N1 9AL',
             sceneNotes: [{
 
@@ -342,7 +345,7 @@ mongoose.connect(dbUri, (err, db) => {
             },
             films: [aboutABoy],
             areaOfLondon: 'Northwest London',
-            streetAddress: '31 Oseney Crescent, Kentish Town, London',
+            streetAddress: '31 Oseney Crescent, Kentish Town',
             postCode: 'NW5 2AT',
             sceneNotes: [{
 
@@ -358,12 +361,28 @@ mongoose.connect(dbUri, (err, db) => {
             },
             films: [slidingDoors],
             areaOfLondon: 'Northwest London',
-            streetAddress: '25 Primrose Gardens, London',
+            streetAddress: '25 Primrose Gardens',
             postCode: 'NW5 4TN',
             sceneNotes: [{
 
               text: 'This is the house of Helen\'s friend Anna, where Helen stays after catching her boyfriend cheating on her',
               film: slidingDoors
+            }]
+          }, {
+            name: 'Kingsway Tram Tunnel',
+            image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Kingsway_tramway_subway_%286266160469%29.jpg/600px-Kingsway_tramway_subway_%286266160469%29.jpg',
+            coordinates: {
+              lat: '51.547164',
+              lng: '-0.163306'
+            },
+            films: [theAvengers],
+            areaOfLondon: 'West London',
+            streetAddress: '16-36 Southampton Row, Holborn',
+            postCode: 'WC1B 4AP',
+            sceneNotes: [{
+
+              text: 'This is the house of Helen\'s friend Anna, where Helen stays after catching her boyfriend cheating on her',
+              film: theAvengers
             }]
           }])
         })
