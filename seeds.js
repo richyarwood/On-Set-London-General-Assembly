@@ -362,7 +362,7 @@ mongoose.connect(dbUri, (err, db) => {
             postCode: 'NW5 4TN',
             sceneNotes: [{
 
-              text: 'This is the house of Helen/'s friend Anna, where Helen stays after catching her boyfriend cheating on her',
+              text: 'This is the house of Helen\'s friend Anna, where Helen stays after catching her boyfriend cheating on her',
               film: slidingDoors
             }]
           }])
