@@ -89,11 +89,17 @@ mongoose.connect(dbUri, (err, db) => {
         }, {
           title: 'Love Actually',
           image: 'http://t1.gstatic.com/images?q=tbn:ANd9GcR-yz1sgpd6sn0JuYHhl6JTUNZT6tpe0Jv8znAb7yn7yrGOD3lK'
+        }, {
+          title: 'Nineteen Eighty-Four',
+          image: 'http://www.gstatic.com/tv/thumb/v22vodart/8582/p8582_v_v8_ab.jpg'
+        }, {
+          title: 'Sean of the Dead',
+          image: 'http://www.movienewsletters.net/photos/043445R1.jpg'
         }
       ])
         .then(films => {
 
-          const [ theElephantMan, laraCroft, vForVendetta, lawrenceOfArabia, greatExpectations, theWorldIsNotEnough, harryPotterPS, blackWindmill, earthCaughtFire, manTooMuch, fourWeddings, bDiary, eastEast, goldenEye, theSaint, batmanBegins, aboutABoy, slidingDoors, theAvengers, loveActually ] = films
+          const [ theElephantMan, laraCroft, vForVendetta, lawrenceOfArabia, greatExpectations, theWorldIsNotEnough, harryPotterPS, blackWindmill, earthCaughtFire, manTooMuch, fourWeddings, bDiary, eastEast, goldenEye, theSaint, batmanBegins, aboutABoy, slidingDoors, theAvengers, loveActually, nineteen84, seanOTDead ] = films
 
           return Location.create([{
             name: 'Drapers Hall',
@@ -391,8 +397,8 @@ mongoose.connect(dbUri, (err, db) => {
             name: 'St Lukes Mews',
             image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Kingsway_tramway_subway_%286266160469%29.jpg/600px-Kingsway_tramway_subway_%286266160469%29.jpg',
             coordinates: {
-              lat: '51.518392',
-              lng: '-0.120738'
+              lat: '51.517757',
+              lng: '-0.203167'
             },
             films: [loveActually],
             areaOfLondon: 'West London',
@@ -402,6 +408,38 @@ mongoose.connect(dbUri, (err, db) => {
 
               text: 'This is the home of newlyweds Peter and Juliet, where sadly lovestruck Mark silently declares his love with cue cards. The original script called for him to carpet the mews with rose petals',
               film: loveActually
+            }]
+          }, {
+            name: 'Alexandra Palace',
+            image: 'https://cdn.londonandpartners.com/asset/alexandra-palace_ariel-view-of-alexandra-palace-image-courtesy-of-alexandra-palace_5da39c3871881d72c9c4be25267c13ba.jpg',
+            coordinates: {
+              lat: '51.594168',
+              lng: '-0.130751'
+            },
+            films: [nineteen84],
+            areaOfLondon: 'North London',
+            streetAddress: 'Alexandra Palace Way, Muswell Hill',
+            postCode: 'N22 7AY',
+            sceneNotes: [{
+
+              text: 'While still a gutted ruin, the Palace\'s central Concert Hall became "Victory Square"',
+              film: nineteen84
+            }]
+          }, {
+            name: 'The Duke of Albany',
+            image: 'https://www.movie-locations.com/movies/s/Shaun-Of-The-Dead-Monson-Road.jpg',
+            coordinates: {
+              lat: '51.478016',
+              lng: '-0.047708'
+            },
+            films: [seanOTDead],
+            areaOfLondon: 'Southeast London',
+            streetAddress: '39 Monson Rd, New Cross',
+            postCode: 'SE14 5EQ',
+            sceneNotes: [{
+
+              text: 'In the film, the pub is renamed "The Winchester Arms" and is Sean\'s beloved local. This site has since been redeveloped and turned into flats',
+              film: seanOTDead
             }]
           }])
         })
