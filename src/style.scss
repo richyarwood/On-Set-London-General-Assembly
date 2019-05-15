@@ -80,6 +80,7 @@ figure.image img {
   width: 400px;
   z-index: 4;
   transform: translateX(0px);
+  transform: translateX(0px);
   transition-property: -webkit-transform,transform,opacity;
   transition-duration: 0.2s;
   transition-timing-function: cubic-bezier(0.0,0.0,0.2,1);
@@ -94,6 +95,10 @@ figure.image img {
   .sidebar-wrapper {
     top: 50%;
     width: 100%;
+    &.close {
+      transform: translateX(0px);
+      transform: translateY(-50%);
+    }
   }
 
   // .sidebar-wrapper &.close {
@@ -173,7 +178,13 @@ figure.image img {
 
 @media only screen and (max-width: 400px){
   .togglebutton {
-    display: none;
+    display: inline-block;
+    // position: sticky;
+    top: 25px;
+    height: auto;
+    left: -360px;
+    padding: 0;
+    transform: rotate(90deg);
   }
 }
 
