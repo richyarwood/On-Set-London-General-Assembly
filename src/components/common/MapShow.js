@@ -50,9 +50,9 @@ class MapShow extends React.Component {
               coordinates={[marker.coordinates.lng, marker.coordinates.lat]}
               anchor="bottom">
               <img
-                src='/images/marker-icon.png'
-                width='30px'
+                src={this.props.data.center.lat === marker.coordinates.lat ? '/images/active-marker.png': '/images/marker-icon.png'}
                 onClick={() => this.popUpShow(marker)}
+                className= {this.props.data.center.lat === marker.coordinates.lat ? 'active-marker': 'marker'}
               />
             </Marker>
           )}

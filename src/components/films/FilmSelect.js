@@ -9,36 +9,72 @@ export default class FilmSelect extends React.Component {
     super(props)
     this.state = {
       options: null,
-      newFilm: false
+      selectedFilm: {},
+      newFilm: false,
+      filmImage: ''
     }
     this.handleCreate = this.handleCreate.bind(this)
+    this.handleChange = this.handleChange.bind(this)
+    this.handleSave = this.handleSave.bind(this)
+    this.handleFilmImage = this.handleFilmImage.bind(this)
+    this.sortFilms = this.sortFilms.bind(this)
   }
 
 
 
   handleCreate(inputValue){
-    const token = Auth.getToken()
     const { options } = this.state
-    axios.post('/api/films', {title: inputValue},  {
-      headers: { 'Authorization': `Bearer ${token}` }
+    const newFilm = { value: inputValue, label: inputValue }
+    const selectedFilm = newFilm
+    this.setState({
+      options: [...options, newFilm],
+      selectedFilm,
+      newFilm: true
     })
-      .then(res => {
-        const newFilm = { value: res.data._id, label: res.data.title }
-        this.setState({
-          options: [...options, newFilm],
-          newFilm: true
+
+  }
+
+
+
+  handleSave(){
+    if(!this.state.selectedFilm.value) return null
+    else {
+      if(this.state.newFilm) {
+        console.log(this.state)
+        const token = Auth.getToken()
+        axios.post('/api/films', { title: this.state.selectedFilm.value, image: this.state.filmImage },  {
+          headers: { 'Authorization': `Bearer ${token}` }
         })
-      })
+          .then(res => {
+            const selectedFilm = {value: res.data._id, title: res.data.title}
+            this.setState({selectedFilm})
+          })
+          .then(() => this.props.getFilm(this.state.selectedFilm))
+      } else {
+        const selectedFilm = {value: this.state.selectedFilm.value, title: this.state.selectedFilm.label}
+        this.setState({selectedFilm})
+        this.props.getFilm(this.state.selectedFilm)
+      }
+    }
   }
 
 
-  handleInputChange(inputValue){
-    console.log(inputValue, 'input')
-    console.log(this.state.selectedFilm, 'value')
-    this.setState({selectedFilm: inputValue })
-    console.log(this.state.selectedFilm, 'value')
+  handleChange(inputValue){
+    const selectedFilm = inputValue
+    this.setState({ selectedFilm })
   }
 
+  sortFilms(films){
+    return films.sort((a, b) => {
+      if (a.label === b.label) return 0
+      return a.label < b.label ? -1 : 1
+    })
+  }
+
+  handleFilmImage(e){
+    const filmImage = e.target.value
+    this.setState({ filmImage })
+  }
 
   componentDidMount() {
     axios.get('/api/films')
@@ -46,28 +82,29 @@ export default class FilmSelect extends React.Component {
         films = res.data.map(film => {
           return { value: film._id, label: film.title }
         })
-        return films
-        // return  films.sort
+        return this.sortFilms(films)
       })
-      .then(res => this.setState({isLoading: false, options: res }))
+      .then(res => this.setState({ options: res }))
   }
 
   render() {
     return (
       <div>
         <div className="field">
-          <label className="label">Film title</label>
+          <label className="label">Choose a film title</label>
           <div className="control">
             <CreatableSelect
               onCreateOption={this.handleCreate}
-              onChange={this.props.handleChange}
+              onChange={this.handleChange}
               options={this.state.options}
+              onInputChange={this.handleInputChange}
+              value={this.state.selectedFilm ? this.state.selectedFilm : null}
             />
           </div>
         </div>
         {this.state.newFilm &&
         <div className="field">
-          <label className="label">Film image</label>
+          <label className="label">Add a film image</label>
           <div className="control">
             <input className="input"
               name="filmImage"
@@ -78,6 +115,7 @@ export default class FilmSelect extends React.Component {
           </div>
         </div>
         }
+        <div className="button" onClick={this.handleSave}>Next</div>
       </div>
     )
   }

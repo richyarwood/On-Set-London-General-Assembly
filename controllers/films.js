@@ -19,8 +19,17 @@ function createRoute(req, res, next) {
     .catch(next)
 }
 
+function updateRoute(req, res, next){
+  req.body.modifiedBy = req.currentUser
+  Film.findById(req.params.id)
+    .then(film => film.set(req.body))
+    .then(film => film.save())
+    .then(film => res.json(film))
+    .catch(next)
+}
 module.exports = {
   index: indexRoute,
   show: showRoute,
-  create: createRoute
+  create: createRoute,
+  update: updateRoute
 }

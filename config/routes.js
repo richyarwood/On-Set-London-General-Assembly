@@ -15,6 +15,7 @@ router.post('/locations', secureRoute, locationsController.create)
 router.get('/films', filmsController.index)
 router.get('/films/:id', filmsController.show)
 router.post('/films', secureRoute, filmsController.create)
+router.put('/films/:id', secureRoute, filmsController.update)
 
 router.post('/register', authenticationController.register)
 router.post('/login', authenticationController.login)
