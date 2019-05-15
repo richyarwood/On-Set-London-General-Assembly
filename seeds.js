@@ -98,11 +98,14 @@ mongoose.connect(dbUri, (err, db) => {
         }, {
           title: 'Clockwork Orange',
           image: 'http://t2.gstatic.com/images?q=tbn:ANd9GcTB-hK0IAfj71C5QASyaTIK-lGBenOwmkG-AjFJNAoRL1t-PO3h'
+        }, {
+          title: 'Stormbreaker',
+          image: 'http://www.gstatic.com/tv/thumb/v22vodart/161382/p161382_v_v8_ab.jpg'
         }
       ])
         .then(films => {
 
-          const [ theElephantMan, laraCroft, vForVendetta, lawrenceOfArabia, greatExpectations, theWorldIsNotEnough, harryPotterPS, blackWindmill, earthCaughtFire, manTooMuch, fourWeddings, bDiary, eastEast, goldenEye, theSaint, batmanBegins, aboutABoy, slidingDoors, theAvengers, loveActually, nineteen84, seanOTDead, clockworkOrange ] = films
+          const [ theElephantMan, laraCroft, vForVendetta, lawrenceOfArabia, greatExpectations, theWorldIsNotEnough, harryPotterPS, blackWindmill, earthCaughtFire, manTooMuch, fourWeddings, bDiary, eastEast, goldenEye, theSaint, batmanBegins, aboutABoy, slidingDoors, theAvengers, loveActually, nineteen84, seanOTDead, clockworkOrange, stormBreaker ] = films
 
           return Location.create([{
             name: 'Drapers Hall',
@@ -457,8 +460,24 @@ mongoose.connect(dbUri, (err, db) => {
             postCode: 'SW18 1JT',
             sceneNotes: [{
 
-              text: 'In the film, the pub is renamed "The Winchester Arms" and is Sean\'s beloved local. This site has since been redeveloped and turned into flats',
+              text: 'The southern underpass beneath a huge circular advertising installation is where Alex and the "droogs" attack the Irish tramp at the begining of the film',
               film: clockworkOrange
+            }]
+          }, {
+            name: 'Science Museum',
+            image: 'https://cdn.londonandpartners.com/asset/8ee0b8e262ad8ef44167aab3b2e40563.jpg',
+            coordinates: {
+              lat: '51.497807',
+              lng: '-0.174526'
+            },
+            films: [stormBreaker],
+            areaOfLondon: 'South West London',
+            streetAddress: 'Exhibition Rd, South Kensington',
+            postCode: 'SW7 2DD',
+            sceneNotes: [{
+
+              text: 'In the Museum\'s "Making the Modern World" gallery, Alex Rider thwarts the attempt by Darrius Sayles to get the Brisih PM to launch the virus-laden computer network',
+              film: stormBreaker
             }]
           }])
         })
