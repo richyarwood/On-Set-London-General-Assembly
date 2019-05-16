@@ -8,7 +8,7 @@ import LocationEntry from './LocationEntry'
 const initialState = {
   location: {
     coordinates: {},
-    sceneNotes: {}
+    sceneNotes: []
   },
   errors: {},
   message: null,
@@ -31,7 +31,8 @@ class LocationNew extends React.Component {
     const selectedFilm = {...film}
     const films = []
     films.push(film.value)
-    const sceneNotes = {...this.state.location.sceneNotes, film: film.value}
+    const sceneNotes = []
+    sceneNotes.push({...this.state.location.sceneNotes, film: film.value})
     const location = {...this.state.location, films, sceneNotes}
     this.setState({selectedFilm, location})
   }
@@ -39,12 +40,15 @@ class LocationNew extends React.Component {
 
   handleChange(e){
     let location = this.state.location
+    let sceneNotes = []
     switch(true){
       case (e.name === 'areaOfLondon'):
         location = {...this.state.location, [e.name]: e.value}
         break
       case (!!e.target.dataset.sceneNotes):
-        location = {...this.state.location, sceneNotes: {...this.state.location.sceneNotes, [e.target.name]: e.target.value}}
+        sceneNotes = []
+        sceneNotes.push({...this.state.location.sceneNotes, [e.target.name]: e.target.value})
+        location = {...this.state.location, sceneNotes}
         break
       default:
         location = {...this.state.location, [e.target.name]: e.target.value}

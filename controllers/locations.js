@@ -16,13 +16,30 @@ function showRoute(req, res, next) {
 
 function createRoute(req, res, next) {
   req.body.createdBy = req.currentUser
+  req.body.sceneNotes.map(sceneNote => {
+    sceneNote.createdBy = req.currentUser
+    return sceneNote
+  })
   Location.create(req.body)
     .then(location => res.status(201).json(location))
     .catch(next)
 }
 
+// function sceneNoteCreateRoute(req, res, next) {
+//   req.body.createdBy = req.currentUser
+//   Location.findById(req.params.id)
+//     .populate('films sceneNotes.film sceneNotes.createdBy', '-email')
+//     .then(location => {
+//       location.sceneNotes.push(req.body)
+//       return location.save()
+//     })
+//     .then(location => res.json(location))
+//     .catch(next)
+// }
+
 module.exports = {
   index: indexRoute,
   show: showRoute,
   create: createRoute
+  // sceneNoteCreate: sceneNoteCreateRoute
 }
