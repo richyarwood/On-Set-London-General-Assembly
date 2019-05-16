@@ -21,6 +21,13 @@ function createRoute(req, res, next) {
     .catch(next)
 }
 
+function updateRoute(req, res, next) {
+  req.body.createdBy = req.currentUser
+  Location.create(req.body)
+    .then(location => res.status(201).json(location))
+    .catch(next)
+}
+
 module.exports = {
   index: indexRoute,
   show: showRoute,
