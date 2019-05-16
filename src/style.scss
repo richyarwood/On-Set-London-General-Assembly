@@ -211,6 +211,10 @@ figure.image img {
 
 
 // ICONS AND MAP FURNITURE=======================================
+.map, .location {
+  height: 100vh;
+}
+
 .map-icon {
   position: fixed;
   display: block;
@@ -241,6 +245,9 @@ figure.image img {
 }
 
 @media only screen and (max-width: 400px){
+  .map, .location {
+    height: 50vh;
+  }
   .map-icon {
     position: fixed;
     display: inline-block;

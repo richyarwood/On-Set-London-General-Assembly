@@ -49,7 +49,7 @@ class MapShow extends React.Component {
           center={this.props.data.center}
           zoom={[15]}
           containerStyle={{
-            height: '100vh',
+            height: '100%',
             width: '100vw'
           }}>
 
