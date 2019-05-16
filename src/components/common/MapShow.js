@@ -18,7 +18,7 @@ const MapShow = ({  data, scrollLocationOnMarkerClick, toggleSidebarClick, activ
         center={data.center}
         zoom={[15]}
         containerStyle={{
-          height: '100vh',
+          height: '100%',
           width: '100vw'
         }}>
 

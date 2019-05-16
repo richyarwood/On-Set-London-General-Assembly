@@ -50,12 +50,13 @@ class LocationIndex extends React.Component {
   render() {
     if (!this.props) return <h1>Loading...</h1>
     return (
-      <div>
+      <div className="locationsIndex">
         <Select
           defaultValue={areasOfLondon[0]}
           options={areasOfLondon}
           name="areaOfLondon"
           onChange={this.handleChange}
+          className="filterSelect"
         />
         <hr />
         {this.filteredLocations().map(location =>
@@ -63,6 +64,7 @@ class LocationIndex extends React.Component {
             {// -----ITEMS ARE ALWAYS VISIBILE-----}
             }
             <div
+              className="locationsContainer"
               onClick={() => this.props.toggleActiveLocation(location)}
             >
               <div className="title is-4">{location.name}</div>
@@ -73,18 +75,19 @@ class LocationIndex extends React.Component {
                 onClick={this.props.handleLocationClick}
                 style={{ backgroundImage: `url(${location.image})` }} >
               </div>
-              <div className="is-size-6"> {`${location.streetAddress}, ${location.postCode}`}
+              <div className="address is-size-6"> {`${location.streetAddress}, ${location.postCode}`}
               </div>
             </div>
 
             {// -----ITEMS ARE HIDDEN ON LOAD AND APPEAR ON CLICK-----
             }
-            <div
-              className={`locationShow${this.props.activeLocation !== location ? '' : ' show' }`}>
+            <div className={`locationShow${this.props.activeLocation !== location ? '' : ' show' }`}
+              onClick={() => this.props.toggleActiveLocation(location)}>
               <div className="subtitle is-size-6">Films and notes</div>
               {location.sceneNotes.map(note =>
                 <div key={note._id} className="note-wrapper">
-                  <div className="columns">
+                  <hr />
+                  <div className="columns is-mobile">
                     <div className="column">
                       <img src={note.film.image} />
                     </div>
