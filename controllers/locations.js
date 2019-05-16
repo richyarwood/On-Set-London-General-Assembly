@@ -23,6 +23,7 @@ function createRoute(req, res, next) {
 
 function showSceneRoute(req, res, next) {
   Location.findById(req.params.id)
+    .populate('sceneNotes.film')
     .then(location => {
       const sceneNote = location.sceneNotes.id(req.params.sceneId)
       res.json(sceneNote)

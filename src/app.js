@@ -8,7 +8,7 @@ import Home from './components/common/Home'
 import Login from './components/auth/Login'
 import Register from './components/auth/Register'
 import Profile from './components/auth/Profile'
-import ShowSceneNote from './components/locations/ShowSceneNote'
+import EditSceneNote from './components/locations/EditSceneNote'
 
 import LocationNew from './components/locations/LocationNew'
 
@@ -31,7 +31,7 @@ class App extends React.Component{
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
           <Route path="/new" component={LocationNew} />
-          <Route path="/locations/:id/scenenotes/:sceneId" component={ShowSceneNote} />
+          <Route path="/locations/:id/scenenotes/:sceneId" component={EditSceneNote} />
           <Route exact path="/" component={Home} />
         </Switch>
       </Router>
