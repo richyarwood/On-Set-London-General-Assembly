@@ -14,7 +14,8 @@ class MapShow extends React.Component {
 
     this.state = {
       marker: {},
-      markerClick: false
+      markerClick: false,
+      activeMarker: false
     }
 
     this.popUpShow = this.popUpShow.bind(this)
@@ -38,6 +39,9 @@ class MapShow extends React.Component {
     if(this.state.markerClick) return this.state.marker.coordinates.lat === marker.coordinates.lat? 'active-marker': 'marker'
     else return this.props.data.center.lat === marker.coordinates.lat? 'active-marker': 'marker'
   }
+  turnOffMarker(){
+    this.setState({ markerClick: false })
+  }
 
   render() {
     console.log(this.state.marker)
@@ -48,6 +52,7 @@ class MapShow extends React.Component {
           style='mapbox://styles/mapbox/streets-v10'
           center={this.props.data.center}
           zoom={[15]}
+          onClick={this.turnOffMarker}
           containerStyle={{
             height: '100vh',
             width: '100vw'
