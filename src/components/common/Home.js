@@ -45,15 +45,12 @@ class Home extends React.Component {
   toggleSidebarClick(){
     console.log('clicked')
     this.setState({ toggleSidebar: !this.state.toggleSidebar})
-    if(this.state.toggleSidebar) this.setState({ toggleRightBar: false})
-    if(!this.state.toggleSidebar) this.setState({ toggleRightBar: true})
   }
 
   toggleRightBar(message) {
     this.setState({ toggleRightBar: !this.state.toggleRightBar, message: message })
-    if(this.state.toggleRightBar) this.setState({ toggleSidebar: false})
+    if(this.state.toggleRightBar) this.setState({ toggleSidebar: true})
     if(!this.state.toggleRightBar) this.setState({ toggleSidebar: true})
-
   }
 
   updatePage(){
