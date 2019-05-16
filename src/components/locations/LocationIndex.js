@@ -21,11 +21,6 @@ class LocationIndex extends React.Component {
     this.handleChange = this.handleChange.bind(this)
   }
 
-  toggleActiveLocation(location){
-    if(location === this.state.activeLocation) this.setState({ activeLocation: null })
-    else this.setState({ activeLocation: location })
-  }
-
   handleChange(inputValue) {
     this.setState({ area: inputValue.value })
   }
@@ -68,7 +63,7 @@ class LocationIndex extends React.Component {
             {// -----ITEMS ARE ALWAYS VISIBILE-----}
             }
             <div
-              onClick={() => this.toggleActiveLocation(location)}
+              onClick={() => this.props.toggleActiveLocation(location)}
             >
               <div className="title is-4">{location.name}</div>
               <div className="subtitle is-6">{location.areaOfLondon}</div>
@@ -85,7 +80,7 @@ class LocationIndex extends React.Component {
             {// -----ITEMS ARE HIDDEN ON LOAD AND APPEAR ON CLICK-----
             }
             <div
-              className={`locationShow${this.state.activeLocation !== location ? '' : ' show' }`}>
+              className={`locationShow${this.props.activeLocation !== location ? '' : ' show' }`}>
               <div className="subtitle is-size-6">Films and notes</div>
               {location.sceneNotes.map(note =>
                 <div key={note._id} className="note-wrapper">

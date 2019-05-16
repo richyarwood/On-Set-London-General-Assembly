@@ -93,7 +93,7 @@ mongoose.connect(dbUri, (err, db) => {
           title: 'Nineteen Eighty-Four',
           image: 'http://www.gstatic.com/tv/thumb/v22vodart/8582/p8582_v_v8_ab.jpg'
         }, {
-          title: 'Sean of the Dead',
+          title: 'Shaun of the Dead',
           image: 'http://www.movienewsletters.net/photos/043445R1.jpg'
         }, {
           title: 'Clockwork Orange',
@@ -117,7 +117,7 @@ mongoose.connect(dbUri, (err, db) => {
       ])
         .then(films => {
 
-          const [ theElephantMan, laraCroft, vForVendetta, lawrenceOfArabia, greatExpectations, theWorldIsNotEnough, harryPotterPS, blackWindmill, earthCaughtFire, manTooMuch, fourWeddings, bDiary, eastEast, goldenEye, theSaint, batmanBegins, aboutABoy, slidingDoors, theAvengers, loveActually, nineteen84, seanOTDead, clockworkOrange, stormBreaker, americanAssassin, brazil, theDaVinciCode ] = films
+          const [ theElephantMan, laraCroft, vForVendetta, lawrenceOfArabia, greatExpectations, theWorldIsNotEnough, harryPotterPS, blackWindmill, earthCaughtFire, manTooMuch, fourWeddings, bDiary, eastEast, goldenEye, theSaint, batmanBegins, aboutABoy, slidingDoors, theAvengers, loveActually, nineteen84, shaunOTDead, clockworkOrange, stormBreaker, americanAssassin, brazil, theDaVinciCode ] = films
 
           return Location.create([{
             name: 'Drapers Hall',
@@ -450,14 +450,14 @@ mongoose.connect(dbUri, (err, db) => {
               lat: '51.478016',
               lng: '-0.047708'
             },
-            films: [seanOTDead],
+            films: [shaunOTDead],
             areaOfLondon: 'Southeast London',
             streetAddress: '39 Monson Rd, New Cross',
             postCode: 'SE14 5EQ',
             sceneNotes: [{
               createdBy: user,
-              text: 'In the film, the pub is renamed "The Winchester Arms" and is Sean\'s beloved local. This site has since been redeveloped and turned into flats',
-              film: seanOTDead
+              text: 'In the film, the pub is renamed "The Winchester Arms" and is Shaun\'s beloved local. This site has since been redeveloped and turned into flats',
+              film: shaunOTDead
             }]
           }, {
             name: 'Trinity Road',
