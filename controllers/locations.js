@@ -2,7 +2,7 @@ const Location = require('../models/Location')
 
 function indexRoute(req, res, next) {
   Location.find()
-    .populate('films sceneNotes.film sceneNotes.createdBy')
+    .populate('films sceneNotes.film sceneNotes.createdBy filmImage')
     .then(locations => res.json(locations))
     .catch(next)
 }

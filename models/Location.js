@@ -48,7 +48,10 @@ const locationSchema = new mongoose.Schema({
       unique: 'A location with this longitude already exists'
     }
   },
-  films: [{ type: mongoose.Schema.ObjectId, ref: 'Film' }],
+  films: [{
+    type: mongoose.Schema.ObjectId,
+    ref: 'Film'
+  }],
   sceneNotes: [{
     createdBy: {
       type: mongoose.Schema.ObjectId,
