@@ -47,7 +47,7 @@ class LocationNew extends React.Component {
         break
       case (!!e.target.dataset.sceneNotes):
         sceneNotes = []
-        sceneNotes.push({...this.state.location.sceneNotes, [e.target.name]: e.target.value})
+        sceneNotes.push({...this.state.location.sceneNotes[0], [e.target.name]: e.target.value})
         location = {...this.state.location, sceneNotes}
         break
       default:
