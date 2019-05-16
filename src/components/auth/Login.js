@@ -32,7 +32,7 @@ class Login extends React.Component {
         console.log(res.data.token)
         this.props.history.push('/')
       })
-      .catch(() => this.setState({ error: 'Invalid credentials' }))
+      .catch(err => console.log(err))
   }
 
   render() {
