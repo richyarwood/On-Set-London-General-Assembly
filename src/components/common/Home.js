@@ -19,13 +19,20 @@ class Home extends React.Component {
         lng: -0.095843
       },
       toggleSidebar: false,
-      toggleRightBar: false
+      toggleRightBar: false,
+      activeLocation: null,
+      markerClick: false
     }
 
     this.handleLocationClick = this.handleLocationClick.bind(this)
     this.toggleSidebarClick = this.toggleSidebarClick.bind(this)
     this.toggleRightBar = this.toggleRightBar.bind(this)
+    this.toggleMarker = this.toggleMarker.bind(this)
+    this.toggleActiveLocation = this.toggleActiveLocation.bind(this)
     this.updatePage = this.updatePage.bind(this)
+    this.popUpShow = this.popUpShow.bind(this)
+    this.getFilms = this.getFilms.bind(this)
+    this.scrollLocationOnMarkerClick = this.scrollLocationOnMarkerClick.bind(this)
   }
 
   componentDidMount() {
@@ -57,16 +64,32 @@ class Home extends React.Component {
     this.forceUpdate()
   }
 
+  getFilms(films){
+    return films.map(film => film.title).slice(0,2)
+  }
+
+  popUpShow(marker){
+    const lat = marker.coordinates.lat
+    const lng = marker.coordinates.lng
+    this.setState( { center: { lat: lat, lng: lng } } )
+    if(this.state.markerClick) this.setState({ activeLocation: null, markerClick: !this.state.markerClick})
+    else if(!this.state.markerClick) this.setState({ activeLocation: marker, markerClick: !this.state.markerClick})
+  }
 
   //Scrolls the location index to the entry on map click===============
-  scrollLocationOnMarkerClick(locationId){
-    document.getElementById(locationId)
+  scrollLocationOnMarkerClick(){
+    document.getElementById(this.state.activeLocation._id)
       .scrollIntoView({ behavior: 'smooth', block: 'start' })
   }
 
   toggleActiveLocation(location){
-    if(location === this.state.activeLocation) this.setState({ activeLocation: null })
+    if(location === this.state.activeLocation && !this.state.markerClick) this.setState({ activeLocation: null })
     else this.setState({ activeLocation: location })
+  }
+
+
+  toggleMarker(marker){
+    return this.state.activeLocation === marker? 'active-marker': 'marker'
   }
 
   render() {
@@ -84,6 +107,7 @@ class Home extends React.Component {
                 data={this.state.locations}
                 handleLocationClick={this.handleLocationClick}
                 toggleActiveLocation={this.toggleActiveLocation}
+                activeLocation={this.state.activeLocation}
               />
             </div>
             <div className="togglewrapper">
@@ -115,6 +139,12 @@ class Home extends React.Component {
             scrollLocationOnMarkerClick={this.scrollLocationOnMarkerClick}
             toggleSidebarClick={this.toggleSidebarClick}
             toggleSideBar={this.state.toggleSidebar}
+            activeLocation={this.state.activeLocation}
+            popUpShow={this.popUpShow}
+            marker={this.state.marker}
+            markerClick={this.state.markerClick}
+            toggleMarker = {this.toggleMarker}
+            getFilms = {this.getFilms}
           />
         </div>
         <div className="map-icon" onClick={this.toggleRightBar}>

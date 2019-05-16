@@ -16,6 +16,10 @@ function showRoute(req, res, next) {
 
 function createRoute(req, res, next) {
   req.body.createdBy = req.currentUser
+  req.body.sceneNotes.map(sceneNote => {
+    sceneNote.createdBy = req.currentUser
+    return sceneNote
+  })
   Location.create(req.body)
     .then(location => res.status(201).json(location))
     .catch(next)

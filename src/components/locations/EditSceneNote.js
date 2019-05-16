@@ -1,5 +1,6 @@
 import React from 'react'
 import axios from 'axios'
+import { Link } from 'react-router-dom'
 
 class EditSceneNote extends React.Component{
   constructor(props){
@@ -58,6 +59,7 @@ class EditSceneNote extends React.Component{
                 </div>
                 <button className="button">Save scene note</button>
               </form>
+              <Link to='/me'><button className="button edit-cancel">Cancel</button></Link>
             </div>
           </div>
         </div>

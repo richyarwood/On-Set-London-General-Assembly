@@ -7,74 +7,40 @@ const Map = ReactMapboxGl({
   accessToken: mapBoxToken
 })
 
-class MapShow extends React.Component {
-
-  constructor(props){
-    super(props)
-
-    this.state = {
-      marker: {},
-      markerClick: false
-    }
-
-    this.popUpShow = this.popUpShow.bind(this)
-    this.popUpHide = this.popUpHide.bind(this)
-    this.toggleMarker = this.toggleMarker.bind(this)
-  }
-
-  popUpShow(marker){
-    this.setState({ marker, markerClick: !this.state.markerClick })
-  }
-
-  popUpHide(){
-    this.setState({ markerClick: false})
-  }
-  getFilms(films){
-    return films.map(film => film.title).slice(0,2)
-  }
+const MapShow = ({  data, scrollLocationOnMarkerClick, toggleSidebarClick, activeLocation, popUpShow, markerClick, toggleMarker, getFilms}) => {
 
 
-  toggleMarker(marker){
-    if(this.state.markerClick) return this.state.marker.coordinates.lat === marker.coordinates.lat? 'active-marker': 'marker'
-    else return this.props.data.center.lat === marker.coordinates.lat? 'active-marker': 'marker'
-  }
+  if (!data) return <h1>Loading...</h1>
+  return (
+    <div className="location">
+      <Map
+        style='mapbox://styles/mapbox/streets-v10'
+        center={data.center}
+        zoom={[15]}
+        containerStyle={{
+          height: '100%',
+          width: '100vw'
+        }}>
 
-  render() {
-    console.log(this.state.marker)
-    if (!this.props.data) return <h1>Loading...</h1>
-    return (
-      <div className="location">
-        <Map
-          style='mapbox://styles/mapbox/streets-v10'
-          center={this.props.data.center}
-          zoom={[15]}
-          containerStyle={{
-            height: '100vh',
-            width: '100vw'
-          }}>
+        {data.locations.map(marker =>
+          <Marker key={marker._id}
+            coordinates={[marker.coordinates.lng, marker.coordinates.lat]}
+            anchor="bottom">
+            <img
+              src={`/images/${toggleMarker(marker)}.png`}
+              onClick={() => popUpShow(marker)}
+              className= {toggleMarker(marker)}
+            />
+          </Marker>
+        )}
 
-          {this.props.data.locations.map(marker =>
-            <Marker key={marker._id}
-              coordinates={[marker.coordinates.lng, marker.coordinates.lat]}
-              anchor="bottom">
-              <img
-                src={`/images/${this.toggleMarker(marker)}.png`}
-                onClick={() => this.popUpShow(marker)}
-                className= {this.toggleMarker(marker)}
-              />
-            </Marker>
-          )}
-
-          {this.state.markerClick &&
+        {markerClick &&
             <Popup
-              coordinates={[
-                this.state.marker.coordinates.lng,
-                this.state.marker.coordinates.lat
-              ]}
+              coordinates={[activeLocation.coordinates.lng, activeLocation.coordinates.lat]}
               onClick={() => {
-                this.props.scrollLocationOnMarkerClick(this.state.marker._id)
-                if (this.props.data.toggleSidebar) {
-                  this.props.toggleSidebarClick()
+                scrollLocationOnMarkerClick()
+                if (data.toggleSidebar) {
+                  toggleSidebarClick()
                 }
               }}
               className="marker-popup"
@@ -86,14 +52,14 @@ class MapShow extends React.Component {
             >
               <div className="marker-popup-content">
 
-                <img src={this.state.marker.image} alt={this.state.marker.name}/>
+                <img src={activeLocation.image} alt={activeLocation.name}/>
                 <div>
                   <div className="pop-up-title is-size-6">
-                    <strong>{this.state.marker.name}</strong>
+                    <strong>{activeLocation.name}</strong>
                   </div>
                   <div className="pop-up-films"><strong>Films: </strong>
                     <ul>
-                      {this.getFilms(this.state.marker.films).slice(0, 2).map(film =>
+                      {getFilms(activeLocation.films).slice(0, 2).map(film =>
                         <li key={film}>{film}</li>
                       )}
                     </ul>
@@ -103,10 +69,9 @@ class MapShow extends React.Component {
               </div>
             </Popup>}
 
-        </Map>
-      </div>
-    )
-  }
+      </Map>
+    </div>
+  )
 }
 
 export default MapShow
