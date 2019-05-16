@@ -77,7 +77,7 @@ class LocationEntry extends React.Component {
             />
           </div>
           <div>
-            {this.props.errors.invalidOpenCageAddress && <div className="help is-danger">{this.props.errors.invalidOpenCageAddress}</div>}
+            {this.props.errors.invalidCoordinates && <div className="help is-danger">{this.props.errors.invalidCoordinates}</div>}
           </div>
         </div>
         <div className="field">
@@ -128,8 +128,3 @@ class LocationEntry extends React.Component {
 }
 
 export default LocationEntry
-
-
-// {this.props.message &
-//   <div className="notification is-success">{this.state.message}</div>
-// }
