@@ -54,7 +54,7 @@ class MapShow extends React.Component {
           zoom={[15]}
           onClick={this.turnOffMarker}
           containerStyle={{
-            height: '100vh',
+            height: '100%',
             width: '100vw'
           }}>
 
