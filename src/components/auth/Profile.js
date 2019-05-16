@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import axios from 'axios'
 import Auth from '../../lib/Auth'
 
-class EditProfile extends React.Component {
+class Profile extends React.Component {
 
   constructor(){
     super()
@@ -49,7 +49,7 @@ class EditProfile extends React.Component {
                   <div className="title is-3">My scene notes</div>
                   {this.state.data.locations.map(location =>
                     <div key={location._id}>
-                      <div className="title is-4">{location.name}</div>
+                      <div className="title is-4">{location.name}</div>{location._id}
 
                       {location.sceneNotes.map(note =>
                         note.createdBy === this.state.data._id &&
@@ -68,8 +68,9 @@ class EditProfile extends React.Component {
                                 <div className="is-size-5">
                                 </div>
                                 <div className="content">
-                                  {note.text}<br />
+                                  {note.text}{note._id}
                                 </div>
+                                <Link to={`/locations/${location._id}/scenenotes/${note._id}`}>Edit</Link>
                               </div>
                             </div>
                           </div>
@@ -89,4 +90,4 @@ class EditProfile extends React.Component {
 
 }
 
-export default EditProfile
+export default Profile

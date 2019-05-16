@@ -21,15 +21,30 @@ function createRoute(req, res, next) {
     .catch(next)
 }
 
-function updateRoute(req, res, next) {
-  req.body.createdBy = req.currentUser
-  Location.create(req.body)
-    .then(location => res.status(201).json(location))
+function showSceneRoute(req, res, next) {
+  Location.findById(req.params.id)
+    .then(location => {
+      const sceneNote = location.sceneNotes.id(req.params.sceneId)
+      res.json(sceneNote)
+    })
+    .catch(next)
+}
+
+// For updating a scenenote
+function updateRoute(req, res, next) { // this is a placeholder and incorrect
+  Location.findById(req.params.id)
+    .then(location => {
+      const sceneNote = location.sceneNotes.id(req.params.sceneId)
+      sceneNote.save(req.body)
+      res. json(sceneNote)
+    })
     .catch(next)
 }
 
 module.exports = {
   index: indexRoute,
   show: showRoute,
-  create: createRoute
+  create: createRoute,
+  updateScene: updateRoute,
+  showScene: showSceneRoute
 }
