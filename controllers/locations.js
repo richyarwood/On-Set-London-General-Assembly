@@ -35,9 +35,10 @@ function updateRoute(req, res, next) { // this is a placeholder and incorrect
   Location.findById(req.params.id)
     .then(location => {
       const sceneNote = location.sceneNotes.id(req.params.sceneId)
-      sceneNote.save(req.body)
-      res. json(sceneNote)
+      sceneNote.set(req.body)
+      return location.save()
     })
+    .then(location => res.json(location))
     .catch(next)
 }
 
