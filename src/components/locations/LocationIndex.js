@@ -25,6 +25,7 @@ class LocationIndex extends React.Component {
     this.setState({ area: inputValue.value })
   }
 
+  // Provides and A-Z sort to the location data==============
   sortedLocations() {
     return this.props.data.sort((a, b) => {
       if (a.name === b.name) return 0
@@ -32,13 +33,7 @@ class LocationIndex extends React.Component {
     })
   }
 
-  sortedAreas() {
-    return this.props.data.sort((a, b) => {
-      if (a.name === b.name) return 0
-      return a.name < b.name ? -1 : 1
-    })
-  }
-
+  //Filters the sorted locations on dropdown select==========
   filteredLocations() {
     const locations = this.sortedLocations()
     if (this.state.area === 'All') return this.props.data
