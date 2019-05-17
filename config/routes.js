@@ -10,7 +10,9 @@ router.get('/', (req, res) => res.json({ message: 'Welcome to On Set London' }))
 router.get('/locations', locationsController.index)
 router.get('/locations/:id', locationsController.show)
 router.post('/locations', secureRoute, locationsController.create)
-// router.put('/locations/:id/sceneNotes/:id', secureRoute, locationsController.update)
+
+router.get('/locations/:id/scenenotes/:sceneId', locationsController.showScene)
+router.put('/locations/:id/scenenotes/:sceneId', locationsController.updateScene)
 
 router.get('/films', filmsController.index)
 router.get('/films/:id', filmsController.show)

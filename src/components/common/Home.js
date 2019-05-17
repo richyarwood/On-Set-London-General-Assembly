@@ -83,7 +83,7 @@ class Home extends React.Component {
   }
 
   toggleActiveLocation(location){
-    if(location === this.state.activeLocation) this.setState({ activeLocation: null })
+    if(location === this.state.activeLocation && !this.state.markerClick) this.setState({ activeLocation: null })
     else this.setState({ activeLocation: location })
   }
 

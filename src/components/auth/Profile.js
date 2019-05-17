@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import axios from 'axios'
 import Auth from '../../lib/Auth'
 
-class EditProfile extends React.Component {
+class Profile extends React.Component {
 
   constructor(){
     super()
@@ -27,7 +27,6 @@ class EditProfile extends React.Component {
 
   render(){
     if(!this.state.data) return null
-    console.log(this.state.data)
     return(
       <main>
         <section className="section">
@@ -54,7 +53,7 @@ class EditProfile extends React.Component {
                       {location.sceneNotes.map(note =>
                         note.createdBy === this.state.data._id &&
                           <div key={note._id}>
-                            <div className="columns">
+                            <div className="columns profile-note">
                               <div className="column is-one-fifth">
                                 <img src={note.film.image} alt={location.title} />
                               </div>
@@ -68,8 +67,11 @@ class EditProfile extends React.Component {
                                 <div className="is-size-5">
                                 </div>
                                 <div className="content">
-                                  {note.text}<br />
+                                  {note.text}
                                 </div>
+                                <Link to={`/locations/${location._id}/scenenotes/${note._id}`}><button className="button">
+                                  Edit
+                                </button></Link>
                               </div>
                             </div>
                           </div>
@@ -89,4 +91,4 @@ class EditProfile extends React.Component {
 
 }
 
-export default EditProfile
+export default Profile

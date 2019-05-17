@@ -8,17 +8,9 @@ class LocationEntry extends React.Component {
 
   constructor(props){
     super(props)
-    this.state={
-      location: {
-        coordinates: {},
-        sceneNotes: {}
-      },
-      errors: {},
-      message: '',
-      film: {},
-      selectedFilm: null
-    }
+    this.state = {}
   }
+
 
 
   componentDidMount(){

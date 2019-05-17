@@ -36,10 +36,7 @@ const MapShow = ({  data, scrollLocationOnMarkerClick, toggleSidebarClick, activ
 
         {markerClick &&
             <Popup
-              coordinates={[
-                activeLocation.coordinates.lng,
-                activeLocation.coordinates.lat
-              ]}
+              coordinates={[activeLocation.coordinates.lng, activeLocation.coordinates.lat]}
               onClick={() => {
                 scrollLocationOnMarkerClick()
                 if (data.toggleSidebar) {
