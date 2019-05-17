@@ -7,7 +7,7 @@ const Map = ReactMapboxGl({
   accessToken: mapBoxToken
 })
 
-const MapShow = ({  data, scrollLocationOnMarkerClick, toggleSidebarClick, activeLocation, popUpShow, markerClick, toggleMarker, getFilms}) => {
+const MapShow = ({ data, scrollLocationOnMarkerClick, toggleSidebarClick, popUpShow, toggleMarker, getFilms}) => {
 
 
   if (!data) return <h1>Loading...</h1>
@@ -34,9 +34,9 @@ const MapShow = ({  data, scrollLocationOnMarkerClick, toggleSidebarClick, activ
           </Marker>
         )}
 
-        {markerClick &&
+        {data.markerClick &&
             <Popup
-              coordinates={[activeLocation.coordinates.lng, activeLocation.coordinates.lat]}
+              coordinates={[data.activeLocation.coordinates.lng, data.activeLocation.coordinates.lat]}
               onClick={() => {
                 scrollLocationOnMarkerClick()
                 if (data.toggleSidebar) {
@@ -52,14 +52,14 @@ const MapShow = ({  data, scrollLocationOnMarkerClick, toggleSidebarClick, activ
             >
               <div className="marker-popup-content">
 
-                <img src={activeLocation.image} alt={activeLocation.name}/>
+                <img src={data.activeLocation.image} alt={data.activeLocation.name}/>
                 <div>
                   <div className="pop-up-title is-size-6">
-                    <strong>{activeLocation.name}</strong>
+                    <strong>{data.activeLocation.name}</strong>
                   </div>
                   <div className="pop-up-films"><strong>Films: </strong>
                     <ul>
-                      {getFilms(activeLocation.films).slice(0, 2).map(film =>
+                      {getFilms(data.activeLocation.films).slice(0, 2).map(film =>
                         <li key={film}>{film}</li>
                       )}
                     </ul>

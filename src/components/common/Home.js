@@ -41,33 +41,37 @@ class Home extends React.Component {
       .catch(err => console.error(err))
   }
 
+
+  // Moves the map to the correct marker on sidebar click=============
   handleLocationClick(e){
     const lat = e.target.dataset.lat
     const lng = e.target.dataset.lng
     this.setState( { center: { lat: lat, lng: lng } } )
-    console.log(this.state.center)
-    this.toggleSidebarClick = this.toggleSidebarClick.bind(this)
   }
 
+  // Toggles location index===========================================
   toggleSidebarClick(){
-    console.log('clicked')
     this.setState({ toggleSidebar: !this.state.toggleSidebar})
   }
 
-  toggleRightBar(message) {
-    this.setState({ toggleRightBar: !this.state.toggleRightBar, message: message })
+  // Toggles add location=============================================
+  toggleRightBar() {
+    this.setState({ toggleRightBar: !this.state.toggleRightBar })
     if(this.state.toggleRightBar) this.setState({ toggleSidebar: true})
     if(!this.state.toggleRightBar) this.setState({ toggleSidebar: true})
   }
 
+  //Used to update page and toggle logout button to login==============
   updatePage(){
     this.forceUpdate()
   }
 
+  //Provides the first two films for marker popup======================
   getFilms(films){
     return films.map(film => film.title).slice(0,2)
   }
 
+  // This takes coordinates from the marker click to place the popup==
   popUpShow(marker){
     const lat = marker.coordinates.lat
     const lng = marker.coordinates.lng
@@ -76,12 +80,13 @@ class Home extends React.Component {
     else if(!this.state.markerClick) this.setState({ activeLocation: marker, markerClick: !this.state.markerClick})
   }
 
-  //Scrolls the location index to the entry on map click===============
+  // Scrolls the location index to the entry on map click===============
   scrollLocationOnMarkerClick(){
     document.getElementById(this.state.activeLocation._id)
       .scrollIntoView({ behavior: 'smooth', block: 'start' })
   }
 
+  // This sets what has been clicked on the left side bar===============
   toggleActiveLocation(location){
     if(location === this.state.activeLocation && !this.state.markerClick) this.setState({ activeLocation: null })
     else this.setState({ activeLocation: location })
@@ -138,11 +143,7 @@ class Home extends React.Component {
             data={this.state}
             scrollLocationOnMarkerClick={this.scrollLocationOnMarkerClick}
             toggleSidebarClick={this.toggleSidebarClick}
-            toggleSideBar={this.state.toggleSidebar}
-            activeLocation={this.state.activeLocation}
             popUpShow={this.popUpShow}
-            marker={this.state.marker}
-            markerClick={this.state.markerClick}
             toggleMarker = {this.toggleMarker}
             getFilms = {this.getFilms}
           />
