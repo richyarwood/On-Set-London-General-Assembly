@@ -69,7 +69,7 @@ class LocationEntry extends React.Component {
             />
           </div>
           <div>
-            {this.props.errors.invalidCoordinates && <div className="help is-danger">{this.props.errors.invalidCoordinates}</div>}
+            {this.props.errors.streetAddress && <div className="help is-danger">{this.props.errors.streetAddress}</div>}
           </div>
         </div>
         <div className="field">

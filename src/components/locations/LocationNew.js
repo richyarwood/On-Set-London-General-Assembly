@@ -70,7 +70,6 @@ class LocationNew extends React.Component {
         proximity: '51.5074, 0.1278'
       }
     })
-      .catch(err => this.setState({ ...this.state.errors, invalidCoordinates: err.data}))
       .then(res => {
         if(res.data.results[0]) {
           const location = {
@@ -82,8 +81,9 @@ class LocationNew extends React.Component {
           }
           this.setState({ location })
         } else {
-          const errors = {...this.state.errors, invalidCoordinates: 'Please enter a valid address'}
-          this.setState({ errors })
+          const streetAddress = ''
+          const location = {...this.state.location, streetAddress}
+          this.setState({ location })
         }
       })
       .then(() => {
@@ -100,7 +100,7 @@ class LocationNew extends React.Component {
         }, 2000)
       })
       .catch(err => {
-        const errors = { ...this.state.errors, ...err.response.data.errors }
+        const errors = { ...err.response.data.errors }
         this.setState({ errors })
       })
   }

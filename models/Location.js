@@ -32,7 +32,7 @@ const locationSchema = new mongoose.Schema({
   },
   streetAddress: {
     type: String,
-    required: 'Please enter street address'
+    required: 'Please enter a valid street address'
   },
   postCode: {
     type: String,
