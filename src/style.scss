@@ -25,37 +25,59 @@ body {
   }
 }
 
+.marker {
+  width: 30px;
+}
+
 .active-marker {
   width: 40px;
 }
 
-
 .film-image-form {
   max-height: 70px;
-  max-width: 70px
+  max-width: 70px;
+  margin: auto;
 }
 
 .film-card-form {
-  height: 150px;
-  width: 150px;
-  margin: 20px;
+  min-height: 150px;
+  height: auto;
+  min-width: 150px;
+  max-width: 200px;
+  margin: 20px auto;
   display: flex;
   flex-direction: column;
-
+  // width: 100%;
 }
 
-div.film-card-form {
-  display: block;
-  width: 100%;
+.card {
+  // justify-content: center;
+  // width: 100%;
+  // width: auto;
+  justify-content: center;
+  text-align: center;
 }
 
-figure {
-  width: 100%;
+.card-image.film-image-form {
+  justify-content: center;
 }
+//
+// div.film-card-form {
+//   display: block;
+//   width: 100%;
+// }
+
+// figure {
+//   width: 100%;
+// }
 
 figure.image img {
-  margin: 10px 40px 25px 40px;
+  margin: 10px 0 25px 0;
+}
 
+.first-field label.label {
+  padding-top: 20px;
+  // display: block;
 }
 
 .logo{
@@ -68,9 +90,6 @@ figure.image img {
   }
 }
 
-.marker {
-  width: 30px;
-}
 //SIDE BARS ==================================
 .sidebar-wrapper {
   position: absolute;
@@ -153,6 +172,9 @@ figure.image img {
   .sidebar {
     padding: 30px 0px;
   }
+  // .locationsIndex {
+  //   padding-bottom: 50px;
+  // }
   .locationsContainer {
     .title, .subtitle, .address {
       padding: 0 15px;

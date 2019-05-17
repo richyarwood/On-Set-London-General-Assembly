@@ -40,12 +40,12 @@ class LocationEntry extends React.Component {
               </figure>
             </div>
             <div className="card-content">
-              <p className="title is-6">Film: {this.state.selectedFilm.title}</p>
+              <p className="title is-6">{this.state.selectedFilm.title}</p>
             </div>
           </div>
         </div>
-        <div className="field">
-          <label className="label">Name</label>
+        <div className="field first-field">
+          <label className="label">Location Name</label>
           <div className="control">
             <input className="input"
               name="name"
@@ -121,7 +121,7 @@ class LocationEntry extends React.Component {
           </div>
         </div>
         </div>
-        <button className="submit">Submit</button>
+        <button className="submit button">Submit</button>
       </div>
     )
   }
