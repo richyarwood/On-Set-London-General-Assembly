@@ -32,13 +32,19 @@ class Home extends React.Component {
     this.updatePage = this.updatePage.bind(this)
     this.popUpShow = this.popUpShow.bind(this)
     this.getFilms = this.getFilms.bind(this)
+    this.getLocations = this.getLocations.bind(this)
+    this.addNewLocationToIndex = this.addNewLocationToIndex.bind(this)
     this.scrollLocationOnMarkerClick = this.scrollLocationOnMarkerClick.bind(this)
   }
 
-  componentDidMount() {
+
+  getLocations() {
     axios.get('/api/locations')
       .then(res => this.setState({ locations: res.data }))
       .catch(err => console.error(err))
+  }
+  componentDidMount() {
+    this.getLocations()
   }
 
 
@@ -57,8 +63,7 @@ class Home extends React.Component {
   // Toggles add location=============================================
   toggleRightBar() {
     this.setState({ toggleRightBar: !this.state.toggleRightBar })
-    if(this.state.toggleRightBar) this.setState({ toggleSidebar: true})
-    if(!this.state.toggleRightBar) this.setState({ toggleSidebar: true})
+    if(this.state.toggleRightBar) this.setState({ toggleSidebar: false})
   }
 
   //Used to update page and toggle logout button to login==============
@@ -69,6 +74,10 @@ class Home extends React.Component {
   //Provides the first two films for marker popup======================
   getFilms(films){
     return films.map(film => film.title).slice(0,2)
+  }
+  addNewLocationToIndex(){
+    this.setState({ toggleRightBar: false, toggleSidebar: false})
+    this.getLocations()
   }
 
   // This takes coordinates from the marker click to place the popup==
@@ -134,6 +143,8 @@ class Home extends React.Component {
             <div className="sidebar">
               <LocationNew
                 toggleRightBar={this.toggleRightBar}
+                updatePage={this.updatePage}
+                addNewLocationToIndex={this.addNewLocationToIndex}
               />
             </div>
           </div>

@@ -13,7 +13,8 @@ const initialState = {
   errors: {},
   message: null,
   film: {},
-  selectedFilm: null
+  selectedFilm: null,
+  activeLocation: {}
 }
 
 class LocationNew extends React.Component {
@@ -47,7 +48,7 @@ class LocationNew extends React.Component {
         break
       case (!!e.target.dataset.sceneNotes):
         sceneNotes = []
-        sceneNotes.push({...this.state.location.sceneNotes, [e.target.name]: e.target.value})
+        sceneNotes.push({...this.state.location.sceneNotes[0], [e.target.name]: e.target.value})
         location = {...this.state.location, sceneNotes}
         break
       default:
@@ -64,9 +65,12 @@ class LocationNew extends React.Component {
     axios.get('https://api.opencagedata.com/geocode/v1/json', {
       params: {
         key: process.env.OPENCAGE_API_TOKEN,
-        q: this.state.location.streetAddress
+        q: this.state.location.streetAddress,
+        countrycode: 'gb',
+        proximity: '51.5074, 0.1278'
       }
     })
+      .catch(err => this.setState({ ...this.state.errors, invalidCoordinates: err.data}))
       .then(res => {
         if(res.data.results[0]) {
           const location = {
@@ -87,11 +91,12 @@ class LocationNew extends React.Component {
           headers: { 'Authorization': `Bearer ${token}` }
         })
       })
-      .then(() => {
+      .then((res) => {
         this.setState({message: 'Location created'})
+        console.log(res.data)
         setTimeout(() => {
-          this.props.toggleRightBar()
-          this.setState({ ...initialState})
+          this.setState({ ...initialState })
+          this.props.addNewLocationToIndex()
         }, 2000)
       })
       .catch(err => {

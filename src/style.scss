@@ -16,48 +16,6 @@ body {
   font-family: 'Roboto', sans-serif;
 }
 
-.title, .subtitle {
-  font-family: 'Oswald', sans-serif;
-  letter-spacing: 0.5px;
-
-  &.indexTitle {
-    margin-bottom: 2px;
-  }
-}
-
-.active-marker {
-  width: 40px;
-}
-
-
-.film-image-form {
-  max-height: 70px;
-  max-width: 70px
-}
-
-.film-card-form {
-  height: 150px;
-  width: 150px;
-  margin: 20px;
-  display: flex;
-  flex-direction: column;
-
-}
-
-div.film-card-form {
-  display: block;
-  width: 100%;
-}
-
-figure {
-  width: 100%;
-}
-
-figure.image img {
-  margin: 10px 40px 25px 40px;
-
-}
-
 .logo{
   display: block;
 }
@@ -68,9 +26,61 @@ figure.image img {
   }
 }
 
+.title, .subtitle {
+  font-family: 'Oswald', sans-serif;
+  letter-spacing: 0.5px;
+
+  &.indexTitle {
+    margin-bottom: 2px;
+  }
+}
+
 .marker {
   width: 30px;
 }
+
+.active-marker {
+  width: 40px;
+}
+
+// FORM ==================================
+.film-image-form {
+  max-height: 70px;
+  max-width: 70px;
+  margin: auto;
+}
+
+.film-card-form {
+  min-height: 150px;
+  height: auto;
+  min-width: 150px;
+  max-width: 200px;
+  margin: 20px auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.card {
+  justify-content: center;
+  text-align: center;
+}
+
+.card-image.film-image-form {
+  justify-content: center;
+}
+
+figure.image img {
+  margin: 10px 0 25px 0;
+}
+
+.first-field label.label {
+  padding-top: 20px;
+}
+
+.submit {
+  margin: 10px auto;
+}
+
 //SIDE BARS ==================================
 .sidebar-wrapper {
   position: absolute;
@@ -164,10 +174,6 @@ figure.image img {
   .locationShow {
     margin: 15px;
   }
-  hr.dark-hr {
-    margin: 5px 0;
-    margin-bottom: 25px;
-  }
 }
 
 .togglewrapper {
@@ -183,6 +189,15 @@ figure.image img {
   z-index: 1;
 }
 
+@media only screen and (max-width: 400px){
+  .togglewrapper {
+    width: 100%;
+    height: 55px;
+    left: 0;
+    background-color: #fff;
+  }
+}
+
 .togglebutton {
   position: absolute;
   width: 35px;
@@ -194,12 +209,6 @@ figure.image img {
 }
 
 @media only screen and (max-width: 400px){
-  .togglewrapper {
-    width: 100%;
-    height: 55px;
-    left: 0;
-    background-color: #fff;
-  }
   .togglebutton, {
     top: 25px;
     height: auto;
@@ -213,6 +222,11 @@ figure.image img {
 // ICONS AND MAP FURNITURE=======================================
 .map, .location {
   height: 100vh;
+}
+@media only screen and (max-width: 400px){
+  .map, .location {
+    height: 50vh;
+  }
 }
 
 .map-icon {
@@ -245,9 +259,6 @@ figure.image img {
 }
 
 @media only screen and (max-width: 400px){
-  .map, .location {
-    height: 50vh;
-  }
   .map-icon {
     position: fixed;
     display: inline-block;
@@ -398,6 +409,13 @@ figure.image img {
 
 hr.dark-hr {
 background-color: #d8d8d8;
+}
+
+@media only screen and (max-width: 400px){
+  hr.dark-hr {
+    margin: 5px 0;
+    margin-bottom: 25px;
+  }
 }
 
 .hidden {
