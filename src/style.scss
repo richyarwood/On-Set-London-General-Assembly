@@ -16,6 +16,16 @@ body {
   font-family: 'Roboto', sans-serif;
 }
 
+.logo{
+  display: block;
+}
+
+@media only screen and (max-width: 400px){
+  .logo {
+    display: none;
+  }
+}
+
 .title, .subtitle {
   font-family: 'Oswald', sans-serif;
   letter-spacing: 0.5px;
@@ -47,13 +57,9 @@ body {
   margin: 20px auto;
   display: flex;
   flex-direction: column;
-  // width: 100%;
 }
 
 .card {
-  // justify-content: center;
-  // width: 100%;
-  // width: auto;
   justify-content: center;
   text-align: center;
 }
@@ -61,15 +67,6 @@ body {
 .card-image.film-image-form {
   justify-content: center;
 }
-//
-// div.film-card-form {
-//   display: block;
-//   width: 100%;
-// }
-
-// figure {
-//   width: 100%;
-// }
 
 figure.image img {
   margin: 10px 0 25px 0;
@@ -77,21 +74,10 @@ figure.image img {
 
 .first-field label.label {
   padding-top: 20px;
-  // display: block;
 }
 
 .submit {
   margin: 10px auto;
-}
-
-.logo{
-  display: block;
-}
-
-@media only screen and (max-width: 400px){
-  .logo {
-    display: none;
-  }
 }
 
 //SIDE BARS ==================================
