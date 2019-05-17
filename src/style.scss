@@ -43,6 +43,7 @@ body {
   width: 40px;
 }
 
+// FORM ==================================
 .film-image-form {
   max-height: 70px;
   max-width: 70px;
@@ -162,9 +163,6 @@ figure.image img {
   .sidebar {
     padding: 30px 0px;
   }
-  // .locationsIndex {
-  //   padding-bottom: 50px;
-  // }
   .locationsContainer {
     .title, .subtitle, .address {
       padding: 0 15px;
@@ -175,10 +173,6 @@ figure.image img {
   }
   .locationShow {
     margin: 15px;
-  }
-  hr.dark-hr {
-    margin: 5px 0;
-    margin-bottom: 25px;
   }
 }
 
@@ -195,6 +189,15 @@ figure.image img {
   z-index: 1;
 }
 
+@media only screen and (max-width: 400px){
+  .togglewrapper {
+    width: 100%;
+    height: 55px;
+    left: 0;
+    background-color: #fff;
+  }
+}
+
 .togglebutton {
   position: absolute;
   width: 35px;
@@ -206,12 +209,6 @@ figure.image img {
 }
 
 @media only screen and (max-width: 400px){
-  .togglewrapper {
-    width: 100%;
-    height: 55px;
-    left: 0;
-    background-color: #fff;
-  }
   .togglebutton, {
     top: 25px;
     height: auto;
@@ -225,6 +222,11 @@ figure.image img {
 // ICONS AND MAP FURNITURE=======================================
 .map, .location {
   height: 100vh;
+}
+@media only screen and (max-width: 400px){
+  .map, .location {
+    height: 50vh;
+  }
 }
 
 .map-icon {
@@ -257,9 +259,6 @@ figure.image img {
 }
 
 @media only screen and (max-width: 400px){
-  .map, .location {
-    height: 50vh;
-  }
   .map-icon {
     position: fixed;
     display: inline-block;
@@ -405,6 +404,13 @@ figure.image img {
 
 hr.dark-hr {
 background-color: #d8d8d8;
+}
+
+@media only screen and (max-width: 400px){
+  hr.dark-hr {
+    margin: 5px 0;
+    margin-bottom: 25px;
+  }
 }
 
 .hidden {
