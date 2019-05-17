@@ -113,7 +113,7 @@ class LocationEntry extends React.Component {
           </div>
         </div>
         </div>
-        <button className="submit">Submit</button>
+        <button className="button submit">Submit</button>
       </div>
     )
   }

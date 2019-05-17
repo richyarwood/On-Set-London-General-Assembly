@@ -32,13 +32,19 @@ class Home extends React.Component {
     this.updatePage = this.updatePage.bind(this)
     this.popUpShow = this.popUpShow.bind(this)
     this.getFilms = this.getFilms.bind(this)
+    this.getLocations = this.getLocations.bind(this)
+    this.addNewLocationToIndex = this.addNewLocationToIndex.bind(this)
     this.scrollLocationOnMarkerClick = this.scrollLocationOnMarkerClick.bind(this)
   }
 
-  componentDidMount() {
+
+  getLocations() {
     axios.get('/api/locations')
       .then(res => this.setState({ locations: res.data }))
       .catch(err => console.error(err))
+  }
+  componentDidMount() {
+    this.getLocations()
   }
 
   handleLocationClick(e){
@@ -56,7 +62,7 @@ class Home extends React.Component {
 
   toggleRightBar(message) {
     this.setState({ toggleRightBar: !this.state.toggleRightBar, message: message })
-    if(this.state.toggleRightBar) this.setState({ toggleSidebar: true})
+    if(this.state.toggleRightBar) this.setState({ toggleSidebar: false})
     if(!this.state.toggleRightBar) this.setState({ toggleSidebar: true})
   }
 
@@ -66,6 +72,10 @@ class Home extends React.Component {
 
   getFilms(films){
     return films.map(film => film.title).slice(0,2)
+  }
+  addNewLocationToIndex(){
+    this.setState({ toggleRightBar: false, toggleSidebar: false})
+    this.getLocations()
   }
 
   popUpShow(marker){
@@ -129,6 +139,8 @@ class Home extends React.Component {
             <div className="sidebar">
               <LocationNew
                 toggleRightBar={this.toggleRightBar}
+                updatePage={this.updatePage}
+                addNewLocationToIndex={this.addNewLocationToIndex}
               />
             </div>
           </div>
