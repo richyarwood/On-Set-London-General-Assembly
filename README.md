@@ -109,7 +109,7 @@ handleChange(e){
 }
 ```
 
-On submit, OpenCageData is called to reverse lookup the location address and return the correct latitude and longitude. Once this state is updated, the form data is submitted to both the Location and Film models.
+On submit, OpenCageData is called to forward lookup the location address and return the correct latitude and longitude. Once this state is updated, the form data is submitted to both the Location and Film models.
 
 ```
 handleSubmit(e) {
