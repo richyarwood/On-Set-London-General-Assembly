@@ -215,7 +215,7 @@ mongoose.connect(dbUri, (err, db) => {
             }]
           },{
             name: 'Liverpool Street Station',
-            image: 'https://cdn.networkrail.co.uk/wp-content/uploads/2017/04/Liverpool-street-station.jpg',
+            image: 'https://assets.londonist.com/uploads/2016/12/i875/liverpoolstreetstatoin.png  ',
             coordinates: {
               lat: '51.523350',
               lng: '-0.077440'
