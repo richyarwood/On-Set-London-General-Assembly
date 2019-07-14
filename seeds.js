@@ -217,8 +217,8 @@ mongoose.connect(dbUri, (err, db) => {
             name: 'Liverpool Street Station',
             image: 'https://assets.londonist.com/uploads/2016/12/i875/liverpoolstreetstatoin.png',
             coordinates: {
-              lat: '51.523350',
-              lng: '-0.077440'
+              lat: '51.517855',
+              lng: '-0.081744'
             },
             films: [theElephantMan],
             areaOfLondon: 'East London',
