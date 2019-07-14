@@ -2,12 +2,16 @@ const User = require('../models/User')
 const jwt = require('jsonwebtoken')
 const { secret } = require('../config/environment')
 
+
+// Register a new user =======================
 function registerRoute(req, res, next) {
   User.create(req.body)
     .then(() => res.status(201).json({ message: 'Registration successful' }))
     .catch(next)
 }
 
+
+// Login a user ==============================
 function loginRoute(req, res, next) {
   // find the user by their email address
   User.findOne({ email: req.body.email })
@@ -24,6 +28,7 @@ function loginRoute(req, res, next) {
     .catch(next)
 }
 
+// Get a user profile =======================
 function profileRoute(req, res) {
   req.currentUser
     .populate({

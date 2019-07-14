@@ -13,7 +13,6 @@ class LocationEntry extends React.Component {
 
 
   componentDidMount(){
-    console.log(this.props.selectedFilm)
     axios.get(`/api/films/${this.props.selectedFilm.value}`)
       .then((res) =>  this.setState({selectedFilm: res.data}))
   }

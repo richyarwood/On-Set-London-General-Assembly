@@ -59,7 +59,6 @@ class LocationNew extends React.Component {
 
 
   handleSubmit(e) {
-    console.log(this.state.location)
     e.preventDefault()
     const token = Auth.getToken()
     axios.get('https://api.opencagedata.com/geocode/v1/json', {

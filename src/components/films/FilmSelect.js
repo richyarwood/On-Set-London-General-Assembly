@@ -20,8 +20,6 @@ export default class FilmSelect extends React.Component {
     this.sortFilms = this.sortFilms.bind(this)
   }
 
-
-
   handleCreate(inputValue){
     const { options } = this.state
     const newFilm = { value: inputValue, label: inputValue }
@@ -34,13 +32,10 @@ export default class FilmSelect extends React.Component {
 
   }
 
-
-
   handleSave(){
     if(!this.state.selectedFilm.value) return null
     else {
       if(this.state.newFilm) {
-        console.log(this.state)
         const token = Auth.getToken()
         axios.post('/api/films', { title: this.state.selectedFilm.value, image: this.state.filmImage },  {
           headers: { 'Authorization': `Bearer ${token}` }
@@ -57,7 +52,6 @@ export default class FilmSelect extends React.Component {
       }
     }
   }
-
 
   handleChange(inputValue){
     const selectedFilm = inputValue
