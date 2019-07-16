@@ -75,6 +75,7 @@ class Home extends React.Component {
   getFilms(films){
     return films.map(film => film.title).slice(0,2)
   }
+  
   addNewLocationToIndex(){
     this.setState({ toggleRightBar: false, toggleSidebar: false})
     this.getLocations()
