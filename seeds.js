@@ -4,7 +4,11 @@ const Location = require('./models/Location')
 const User = require('./models/User')
 const { dbUri } = require('./config/environment')
 
-mongoose.connect(dbUri, (err, db) => {
+mongoose.connect(dbUri, {
+  useNewUrlParser: true, 
+  useUnifiedTopology: true
+},
+  (err, db) => {
 
   db.dropDatabase()
   return User.create({
