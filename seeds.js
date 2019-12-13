@@ -6,8 +6,7 @@ const { dbUri } = require('./config/environment')
 
 mongoose.connect(dbUri, {
   useNewUrlParser: true, 
-  useUnifiedTopology: true
-},
+  useUnifiedTopology: true },
   (err, db) => {
 
   db.dropDatabase()
