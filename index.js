@@ -9,7 +9,10 @@ require('dotenv').config()
 
 const app = express()
 
-mongoose.connect(dbUri)
+mongoose.connect(dbUri, { 
+    useNewUrlParser: true, 
+    useUnifiedTopology: true 
+});
 
 app.use(express.static(`${__dirname}/dist`))
 
