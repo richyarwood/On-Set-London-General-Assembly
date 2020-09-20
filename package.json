@@ -20,7 +20,7 @@
     "@fortawesome/react-fontawesome": "^0.1.4",
     "axios": "^0.18.1",
     "babel-loader": "^8.0.5",
-    "bcrypt": "^3.0.6",
+    "bcrypt": "^5.0.0",
     "bluebird": "^3.5.4",
     "brcypt": "^1.0.1",
     "bulma": "^0.7.4",
