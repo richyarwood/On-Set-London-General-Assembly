@@ -4,7 +4,8 @@ const Location = require("./models/Location");
 const User = require("./models/User");
 const { dbUri } = require("./config/environment");
 
-mongoose.connect(dbUri, async () => {
+mongoose.connect(dbUri, async (err, db) => {
+	db.dropDatabase();
 	const user = await User.create({
 		username: "Mr User",
 		email: "email@email.com",
