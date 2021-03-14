@@ -18,7 +18,7 @@
 		"@fortawesome/fontawesome-svg-core": "^1.2.18",
 		"@fortawesome/free-solid-svg-icons": "^5.8.2",
 		"@fortawesome/react-fontawesome": "^0.1.4",
-		"axios": "^0.18.1",
+		"axios": "^0.21.1",
 		"babel-loader": "^8.0.5",
 		"bcrypt": "^5.0.0",
 		"bluebird": "^3.5.4",
